@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
+import com.sooq.price.GearLottieIcon
 
 // Material 3
 import androidx.compose.material3.*
@@ -80,7 +81,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Default.Settings, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Icon({GearLottieIcon()}, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             )
@@ -191,6 +192,240 @@ fun MainScreen(navController: NavHostController) {
                             }
                         }
 
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
                         Spacer(modifier = Modifier.height(48.dp))
                     }
                 }
