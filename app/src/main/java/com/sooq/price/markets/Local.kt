@@ -7,6 +7,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
+import com.sooq.price.ui.GearAnimation
 import com.airbnb.lottie.compose.*
 //import com.sooq.price.appintro.GearLottieIcon
 

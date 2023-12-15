@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
+/*@Composable
 fun OnboardingPager(onFinish: () -> Unit) {
     var page by remember { mutableStateOf(0) }
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -119,22 +119,22 @@ object AppIntroManager {
         val sharedPrefs = context.getSharedPreferences(PREF_INTRO, Context.MODE_PRIVATE)
         sharedPrefs.edit { putBoolean(PREF_INTRO_SHOWN, true) }
     }
-}
+}*/
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    val startDestination = if (AppIntroManager.shouldShowIntro(context)) {
+/*    val startDestination = if (AppIntroManager.shouldShowIntro(context)) {
         "intro"
     } else {
         "main"
-    }
+    }*/
 
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = "main",
 /*        enterTransition = {
             fadeIn(animationSpec = tween(750, easing = FastOutSlowInEasing)) +
                     scaleIn(initialScale = 0.9f, animationSpec = tween(300, easing = FastOutSlowInEasing))
@@ -152,7 +152,7 @@ fun AppNavigation() {
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },*/
     ) {
-        composable("intro") { OnboardingPager(navController) }
+//        composable("intro") { OnboardingPager(navController) }
         composable("main") { MainScreen(navController) }
         composable("khr") { Khr(navController) }
         composable("jaz") { Jaz(navController) }
