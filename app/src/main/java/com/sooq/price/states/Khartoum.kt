@@ -1,4 +1,4 @@
-package com.sooq.price.ui
+package com.sooq.price.states
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -75,7 +75,7 @@ fun GearAnimation(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavHostController) {
+fun Khr(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -146,7 +146,7 @@ fun MainScreen(navController: NavHostController) {
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { navController.navigate("khr") },
+                                onClick = { navController.navigate("local") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -154,7 +154,7 @@ fun MainScreen(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.khr),
+                                    painter = painterResource(id = R.drawable.loc),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
@@ -162,7 +162,7 @@ fun MainScreen(navController: NavHostController) {
                             }
 
                             Card(
-                                onClick = { navController.navigate("jaz") },
+                                onClick = { navController.navigate("central") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -170,7 +170,7 @@ fun MainScreen(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.jaz),
+                                    painter = painterResource(id = R.drawable.cen),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
@@ -178,7 +178,7 @@ fun MainScreen(navController: NavHostController) {
                             }
                         }
                         
-                        Spacer(modifier = Modifier.height(48.dp))                        
+                        Spacer(modifier = Modifier.height(48.dp))
                     }
                 }
             }

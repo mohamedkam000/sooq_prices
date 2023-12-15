@@ -1,4 +1,4 @@
-package com.sooq.price.ui.categories
+package com.sooq.price.markets
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,9 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
+import com.sooq.price.ui.theme.*
+import com.airbnb.lottie.compose.*
+//import com.sooq.price.appintro.GearLottieIcon
 
 // Material 3
 import androidx.compose.material3.*
+import androidx.compose.material.icons.*
+import androidx.compose.material.icons.filled.*
 
 // Navigation
 import androidx.navigation.compose.rememberNavController
@@ -18,42 +23,60 @@ import androidx.navigation.compose.composable
 
 // Compose UI
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.graphics.luminance
-import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.*
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.*
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.*
-import androidx.compose.ui.res.stringResource
 
 // Compose foundation
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 
 // Compose animation
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 
 // Compose runtime
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.*
+
+fun lerp(start: Float, stop: Float, fraction: Float): Float {
+    return start + (stop - start) * fraction
+}
+
+@Composable
+fun GearAnimation(modifier: Modifier = Modifier) {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
+    val progress by animateLottieCompositionAsState(
+        composition,
+        iterations = LottieConstants.IterateForever
+    )
+
+    val gearColor = MaterialTheme.colorScheme.primary.toArgb()
+    val dynamicProperties = rememberLottieDynamicProperties(
+        rememberLottieDynamicProperty(
+            property = LottieProperty.COLOR,
+            value = gearColor,
+            keyPath = arrayOf("GearHollowAltWeb Outlines", "Fill 1")
+        )
+    )
+
+    LottieAnimation(
+        composition = composition,
+        progress = progress,
+        dynamicProperties = dynamicProperties,
+        modifier = modifier
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Footwear(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.background
+fun Loc(navController: NavHostController) {
+    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp
@@ -75,17 +98,17 @@ fun Footwear(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        "Market",
+                        "Thinking...",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background)
-/*                actions = {
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                actions = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Default.Settings, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        GearAnimation(modifier = Modifier.size(32.dp))
                     }
-                }*/
+                }
             )
         },
         content = { innerPadding ->
@@ -104,7 +127,7 @@ fun Footwear(navController: NavHostController) {
                     Spacer(modifier = Modifier.height(spacerHeight))
 
                     Text(
-                        text = "Hello There!",
+                        text = "Good Afternoon!",
                         fontSize = animatedFontSize,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -123,7 +146,7 @@ fun Footwear(navController: NavHostController) {
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-//                                onClick = { navController.navigate("footwear") },
+                                onClick = { navController.navigate("veg") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -131,7 +154,7 @@ fun Footwear(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.footwear),
+                                    painter = painterResource(id = R.drawable.veg),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
@@ -139,7 +162,7 @@ fun Footwear(navController: NavHostController) {
                             }
 
                             Card(
-//                                onClick = { navController.navigate("footwear") },
+                                onClick = { navController.navigate("fru") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -147,7 +170,7 @@ fun Footwear(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.footwear),
+                                    painter = painterResource(id = R.drawable.fru),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
@@ -155,45 +178,6 @@ fun Footwear(navController: NavHostController) {
                             }
                         }
                         
-                        Spacer(modifier = Modifier.height(48.dp))
-                        
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            Card(
-//                                onClick = { navController.navigate("footwear") },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(150.dp)
-                                    .clip(MaterialTheme.shapes.medium),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.footwear),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-
-                            Card(
-//                                onClick = { navController.navigate("footwear") },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(150.dp)
-                                    .clip(MaterialTheme.shapes.medium),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.footwear),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-                        }
-
                         Spacer(modifier = Modifier.height(48.dp))
                     }
                 }

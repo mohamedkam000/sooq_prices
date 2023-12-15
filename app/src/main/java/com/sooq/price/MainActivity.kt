@@ -5,6 +5,12 @@ import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.content.edit
+import com.sooq.price.ui.*
+import com.sooq.price.categories.*
+import com.sooq.price.states.*
+import com.sooq.price.markets.*
+import com.sooq.price.ui.theme.*
 
 // Compose Foundation
 import androidx.compose.foundation.background
@@ -35,15 +41,15 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.animation.*
+
+// Compose Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+
+// Compose Animation
 import androidx.compose.animation.core.*
-import androidx.core.content.edit
-import com.sooq.price.ui.*
-import com.sooq.price.ui.categories.*
-import com.sooq.price.ui.theme.*
+import androidx.compose.animation.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,8 +152,13 @@ fun AppNavigation() {
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },*/
     ) {
-        composable("intro") { MainScreen(navController) }
+        composable("intro") { OnboardingPager(navController) }
         composable("main") { MainScreen(navController) }
-        composable("footwear") { Footwear(navController) }
+        composable("khr") { Khr(navController) }
+        composable("jaz") { Jaz(navController) }
+        composable("veg") { Veg(navController) }
+        composable("fru") { Fru(navController) }
+        composable("central") { Cen(navController) }
+        composable("local") { Loc(navController) }
     }
 }
