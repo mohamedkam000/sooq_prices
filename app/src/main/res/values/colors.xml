@@ -1,0 +1,5 @@
+<resources>
+    <color name="primary">#675FF0</color>
+    <color name="primary_variant">#3700F0</color>
+    <color name="on_primary">#FFFFFF</color>
+</resources>
