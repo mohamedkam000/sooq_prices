@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application") version "8.4.0" apply false
-    kotlin("android") version "2.0.0" apply false
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -47,5 +48,4 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
     implementation("androidx.compose.material3:material3:1.3.0")
-    // If using Compose UI, add more Compose dependencies as needed
 }
