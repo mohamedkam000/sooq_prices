@@ -57,6 +57,12 @@ fun PageIndicator(
         label = "indicator width"
     )
 
+    val height by animateDpAsState(
+        targetValue = 10.dp,
+        animationSpec = tween(durationMillis = 300),
+        label = "indicator height"
+    )
+
     val color by animateColorAsState(
         targetValue = if (isSelected) activeColor else inactiveColor,
         animationSpec = tween(durationMillis = 300),
