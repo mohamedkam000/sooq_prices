@@ -40,7 +40,7 @@ android {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
 
-    compilerOptions {
+    compileOptions {
         jvmTarget.set(JavaVersion.VERSION_19)
     }
 }
