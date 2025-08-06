@@ -19,7 +19,7 @@ import com.sooq.prices.features.settings.ui.SettingsScreen
 fun AppNavHost(navController: NavHostController, startDestination: String) {
     val duration = 400
 
-    val application = LocalContext.current.applicationContext as AppLockApplication
+    val application = LocalContext.current.applicationContext as MainActivity
 
     NavHost(
         navController = navController,
@@ -34,7 +34,7 @@ fun AppNavHost(navController: NavHostController, startDestination: String) {
         },
     ) {
         composable(Screen.AppIntro.route) { AppIntroScreen(navController) }
-        composable(Screen.Main.route) { MainScreen(navController) }
+//        composable(Screen.Main.route) { MainScreen(navController) }
         composable(Screen.Settings.route) { SettingsScreen(navController) }
     }
 }
