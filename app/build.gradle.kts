@@ -22,10 +22,10 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("sign.p12")
-            storePassword = "74554"
-            keyAlias = "sign"
-            keyPassword = "74554"
+            storeFile = file("sooq.p12")
+            storePassword = "1234"
+            keyAlias = "Sooq"
+            keyPassword = "1234"
             storeType = "pkcs12"
         }
     }
