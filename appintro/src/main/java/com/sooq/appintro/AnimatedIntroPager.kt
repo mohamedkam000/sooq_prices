@@ -23,7 +23,7 @@ fun AnimatedIntroPager(
         pageSpacing = 0.dp,
         userScrollEnabled = false,
         pageContent = { page ->
-            val pageOffset =
+            val normalizedPageOffset =
                 ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
 
             IntroPageContent(
@@ -31,12 +31,12 @@ fun AnimatedIntroPager(
                 modifier = Modifier
                     .fillMaxSize()
                     .graphicsLayer {
-                        val scale = 1f - (0.1f * pageOffset.coerceIn(0f, 1f))
+                        val scale = 1f - (0.1f * normalizedPageOffset.coerceIn(0f, 1f))
                         scaleX = scale
                         scaleY = scale
-                        alpha = 1f - (0.5f * pageOffset.coerceIn(0f, 1f))
-                        rotationY = 8f * pageOffset.coerceIn(-1f, 1f)
-                        cameraDistance = 8f * density
+                        alpha = 1f - (0.5f * normalizedPageOffset.coerceIn(0f, 1f))
+                        rotationY = 8f * normalizedPageOffset.coerceIn(-1f, 1f)
+                        cameraDistance = 8000f * density
                     },
                 isVisible = page == pagerState.currentPage
             )

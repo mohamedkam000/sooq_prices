@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Sooq Prices"
+rootProject.name = "Sooq Price"
 include(":app")
 include(":appintro")

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.sooq.prices"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -27,13 +27,17 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlin.compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 

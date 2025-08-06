@@ -49,6 +49,7 @@ import kotlinx.coroutines.launch
     ExperimentalAnimationApi::class,
     ExperimentalMaterial3ExpressiveApi::class
 )
+
 @Composable
 fun AppIntro(
     pages: List<IntroPage>,
