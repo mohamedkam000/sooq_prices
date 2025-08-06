@@ -16,12 +16,12 @@ Sooq Price is a modern solution with modern design and simple user interface. Th
 
 - Material 3 Expressive design
 - Clean and direct UI
-- No ads
 - Very fast UI
+- No ads
 
 <b></b>
 
 ## Uses
 
-- Check market prices that are daily updated
+- Stay updated with latest price changes
 - Compare the prices of the same items at diffrent markets
