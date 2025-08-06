@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.text
+import androidx.compose.material3.Text
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
@@ -46,36 +47,17 @@ fun AppNavigation() {
 @Composable
 fun MainScreen(navController: NavHostController) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 40.dp),
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Bubble(text = "Screen 1") {
-                navController.navigate("screen1")
-            }
-            Bubble(text = "Screen 2") {
-                navController.navigate("screen2")
-            }
+        Button(onClick = { navController.navigate("screen1") }) {
+            Text("Go to Screen 1")
         }
-    }
-}
-
-@Composable
-fun Bubble(text: String, onClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .size(120.dp)
-            .padding(8.dp)
-            .background(Color(0xFF90CAF9), RoundedCornerShape(16.dp))
-            .clickable { onClick() },
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = text, color = Color.White)
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { navController.navigate("screen2") }) {
+            Text("Go to Screen 2")
+        }
     }
 }
 
