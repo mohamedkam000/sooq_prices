@@ -4,6 +4,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+kotlin {
+    jvmToolchain(19)
+}
+
 android {
     namespace = "com.sooq.prices"
     compileSdk = 36
@@ -43,10 +47,6 @@ android {
     compileOptions {
         jvmTarget.set(JavaVersion.VERSION_19)
     }
-}
-
-kotlin {
-    jvmToolchain(19)
 }
 
 dependencies {
