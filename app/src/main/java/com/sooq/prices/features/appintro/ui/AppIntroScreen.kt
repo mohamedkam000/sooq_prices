@@ -45,7 +45,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import com.sooq.appintro.AppIntro
 import com.sooq.appintro.IntroPage
-//import com.sooq.prices.core.navigation.Screen
+import com.sooq.prices.core.navigation.Screen
 import com.sooq.prices.features.appintro.domain.AppIntroManager
 
 @Composable
@@ -120,7 +120,7 @@ fun AppIntroScreen(navController: NavController) {
 
     val basicPages = listOf(
         IntroPage(
-            title = "Welcome to Sooq Prices",
+            title = "Welcome to Sooq Price",
             description = "Here, you'll get a daily updated prices of items in the Sudanese market.",
             backgroundColor = Color(0xFF00A5FF),
             contentColor = Color.White,
