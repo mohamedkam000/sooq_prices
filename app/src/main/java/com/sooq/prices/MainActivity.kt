@@ -336,7 +336,7 @@ fun ScreenFour() {
 }
 
 @Composable
-fun ScreenOne() {
+fun ScreenFive() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -346,7 +346,7 @@ fun ScreenOne() {
 }
 
 @Composable
-fun ScreenTwo() {
+fun ScreenSix() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -356,7 +356,7 @@ fun ScreenTwo() {
 }
 
 @Composable
-fun ScreenThree() {
+fun ScreenSeven() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -366,7 +366,7 @@ fun ScreenThree() {
 }
 
 @Composable
-fun ScreenFour() {
+fun ScreenEight() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -376,7 +376,7 @@ fun ScreenFour() {
 }
 
 @Composable
-fun ScreenThree() {
+fun ScreenNine() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -386,7 +386,7 @@ fun ScreenThree() {
 }
 
 @Composable
-fun ScreenFour() {
+fun ScreenTen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -396,7 +396,7 @@ fun ScreenFour() {
 }
 
 @Composable
-fun ScreenOne() {
+fun ScreenEleven() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -406,7 +406,7 @@ fun ScreenOne() {
 }
 
 @Composable
-fun ScreenTwo() {
+fun ScreenTwelve() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -416,7 +416,7 @@ fun ScreenTwo() {
 }
 
 @Composable
-fun ScreenThree() {
+fun ScreenThirteen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -426,7 +426,7 @@ fun ScreenThree() {
 }
 
 @Composable
-fun ScreenFour() {
+fun ScreenFourteen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
