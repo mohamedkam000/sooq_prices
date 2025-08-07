@@ -1,9 +1,10 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+    id("com.android.library") version "8.13.0-alpha03"
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -16,7 +17,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
         }
     }
 
@@ -35,12 +36,18 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(platform("androidx.compose:compose-bom:2025.07.00"))
+    implementation("androidx.compose.ui:ui:1.9.0-rc01")
+    implementation("androidx.compose.ui:ui-tooling:1.9.0-rc01")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.9.0-rc01")
+    implementation("androidx.activity:activity-compose:1.12.0-alpha05")
+    implementation("androidx.compose.runtime:runtime:1.9.0-rc01")
+    implementation("androidx.compose.material3:material3:1.5.0-alpha01")
+    implementation("androidx.navigation:navigation-compose:2.9.2")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.google.android.material:material:1.14.0-alpha03")
+    implementation("androidx.activity:activity-ktx:1.12.0-alpha05")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha01")
     implementation("androidx.compose.material:material-icons-core:1.7.8")
+    implementation("androidx.core:core-ktx:1.16.0")
 }
