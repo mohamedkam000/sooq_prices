@@ -17,27 +17,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
-private val SooqLightColorScheme = lightColorScheme(
-    primary = Color(0xFF00BCD4),
-    onPrimary = Color.White,
-    secondary = Color(0xFF0097A7),
-    onSecondary = Color.White,
-    background = Color.White,
-    onBackground = Color.Black,
-    surface = Color.White,
-    onSurface = Color.Black,
-)
-
-private val SooqDarkColorScheme = darkColorScheme(
-    primary = Color(0xFF00BCD4),
-    onPrimary = Color.Black,
-    secondary = Color(0xFF0097A7),
-    onSecondary = Color.White,
-    background = Color(0xFF121212),
-    onBackground = Color.White,
-    surface = Color(0xFF1E1E1E),
-    onSurface = Color.White,
-)
+// private val SooqLightColorScheme = lightColorScheme(
+//     primary = Color(0xFF00BCD4),
+//     onPrimary = Color.White,
+//     secondary = Color(0xFF0097A7),
+//     onSecondary = Color.White,
+//     background = Color.White,
+//     onBackground = Color.Black,
+//     surface = Color.White,
+//     onSurface = Color.Black,
+// )
+// 
+// private val SooqDarkColorScheme = darkColorScheme(
+//     primary = Color(0xFF00BCD4),
+//     onPrimary = Color.Black,
+//     secondary = Color(0xFF0097A7),
+//     onSecondary = Color.White,
+//     background = Color(0xFF121212),
+//     onBackground = Color.White,
+//     surface = Color(0xFF1E1E1E),
+//     onSurface = Color.White,
+// )
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
