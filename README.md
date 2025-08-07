@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/sooq_prices.jpg" alt="Sooq Price" width="600" />
+  <img src="app/sooq_prices.png" alt="Sooq Price" width="600" />
 </div>
 
 <h1 align="center">Sooq Price</h1>
