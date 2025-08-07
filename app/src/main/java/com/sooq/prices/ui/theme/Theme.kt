@@ -52,11 +52,12 @@ fun SooqTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> SooqDarkColorScheme
-        else -> SooqLightColorScheme
+        else -> {
+            if (darkTheme) darkColorScheme() else lightColorScheme()
+        }
     }
 
-    val shapes = Shapes(largeIncreased = RoundedCornerShape(36.0.dp))
+    val shapes = Shapes(largeIncreased = RoundedCornerShape(32.0.dp))
 
     MaterialExpressiveTheme(
         colorScheme = colorScheme,
