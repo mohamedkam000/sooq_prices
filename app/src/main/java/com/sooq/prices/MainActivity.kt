@@ -46,6 +46,16 @@ fun AppNavigation() {
         composable("screen2") { ScreenTwo() }
         composable("screen3") { ScreenThree() }
         composable("screen4") { ScreenFour() }
+        composable("screen5") { ScreenFive() }
+        composable("screen6") { ScreenSix() }
+        composable("screen7") { ScreenSeven() }
+        composable("screen8") { ScreenEight() }
+        composable("screen9") { ScreenNine() }
+        composable("screen10") { ScreenTen() }
+        composable("screen11") { ScreenEleven() }
+        composable("screen12") { ScreenTwelve() }
+        composable("screen13") { ScreenThirteen() }
+        composable("screen14") { ScreenFourteen() }
     }
 }
 
@@ -58,6 +68,14 @@ fun MainScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Welcome to Sooq Price",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+        )
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -65,7 +83,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen1") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
                     contentColor = Color.White
                 ),
                 modifier = Modifier
@@ -78,7 +96,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen2") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
                     contentColor = Color.White
                 ),
                 modifier = Modifier
@@ -96,7 +114,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen3") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
                     contentColor = Color.White
                 ),
                 modifier = Modifier
@@ -109,7 +127,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen4") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
                     contentColor = Color.White
                 ),
                 modifier = Modifier
@@ -117,6 +135,161 @@ fun MainScreen(navController: NavHostController) {
                     .height(150.dp)
             ) {
                 Text("Go to Screen 4", fontSize = 18.sp)
+            }
+        }
+    
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("screen5") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 5", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen6") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 6", fontSize = 18.sp)
+            }
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("screen7") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 7", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen8") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 8", fontSize = 18.sp)
+            }
+        }
+    
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("screen9") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 9", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen10") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 10", fontSize = 18.sp)
+            }
+        }
+    
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("screen11") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 11", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen12") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 12", fontSize = 18.sp)
+            }
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("screen13") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 13", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen14") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 14", fontSize = 18.sp)
             }
         }
     }
@@ -159,5 +332,105 @@ fun ScreenFour() {
         contentAlignment = Alignment.Center
     ) {
         Text("This is Screen 4")
+    }
+}
+
+@Composable
+fun ScreenOne() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 5")
+    }
+}
+
+@Composable
+fun ScreenTwo() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 6")
+    }
+}
+
+@Composable
+fun ScreenThree() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 7")
+    }
+}
+
+@Composable
+fun ScreenFour() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 8")
+    }
+}
+
+@Composable
+fun ScreenThree() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 9")
+    }
+}
+
+@Composable
+fun ScreenFour() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 10")
+    }
+}
+
+@Composable
+fun ScreenOne() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 11")
+    }
+}
+
+@Composable
+fun ScreenTwo() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 12")
+    }
+}
+
+@Composable
+fun ScreenThree() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 13")
+    }
+}
+
+@Composable
+fun ScreenFour() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 14")
     }
 }
