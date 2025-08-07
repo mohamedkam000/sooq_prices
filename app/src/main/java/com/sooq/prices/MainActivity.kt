@@ -51,63 +51,73 @@ fun AppNavigation() {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(
-            onClick = { navController.navigate("screen1") },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .weight(1f)
-                .height(150.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text("Go to Screen 1", fontSize = 18.sp)
+            Button(
+                onClick = { navController.navigate("screen1") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 1", fontSize = 18.sp)
+            }
+
+            Button(
+                onClick = { navController.navigate("screen2") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 2", fontSize = 18.sp)
+            }
         }
 
-        Button(
-            onClick = { navController.navigate("screen2") },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .weight(1f)
-                .height(150.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text("Go to Screen 2", fontSize = 18.sp)
-        }
+            Button(
+                onClick = { navController.navigate("screen3") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 3", fontSize = 18.sp)
+            }
 
-        Button(
-            onClick = { navController.navigate("screen3") },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .weight(1f)
-                .height(150.dp)
-        ) {
-            Text("Go to Screen 3", fontSize = 18.sp)
-        }
-
-        Button(
-            onClick = { navController.navigate("screen4") },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .weight(1f)
-                .height(150.dp)
-        ) {
-            Text("Go to Screen 4", fontSize = 18.sp)
+            Button(
+                onClick = { navController.navigate("screen4") },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+                    .weight(1f)
+                    .height(150.dp)
+            ) {
+                Text("Go to Screen 4", fontSize = 18.sp)
+            }
         }
     }
 }
