@@ -8,7 +8,7 @@
 
 ## Overview
 
-Sooq Price is a modern solution with modern design and simple user interface. The app uses a very clean and ensures your time is valuable and not wasted around.
+Sooq Price is a modern solution with modern design and simple user interface. The app uses a clean UI and ensures your time is valuable and not wasted around.
 
 <b></b>
 
