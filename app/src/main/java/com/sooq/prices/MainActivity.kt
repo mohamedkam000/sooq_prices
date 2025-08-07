@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
                 AppNavigation()
             }
         }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }
 
@@ -53,7 +54,7 @@ fun AppNavigation() {
         composable("screen2") { ScreenTwo() }
         composable("screen3") { ScreenThree() }
         composable("screen4") { ScreenFour() }
-/*        composable("screen5") { ScreenFive() }
+        composable("screen5") { ScreenFive() }
         composable("screen6") { ScreenSix() }
         composable("screen7") { ScreenSeven() }
         composable("screen8") { ScreenEight() }
@@ -62,19 +63,19 @@ fun AppNavigation() {
         composable("screen11") { ScreenEleven() }
         composable("screen12") { ScreenTwelve() }
         composable("screen13") { ScreenThirteen() }
-        composable("screen14") { ScreenFourteen() }*/
+        composable("screen14") { ScreenFourteen() }
     }
 }
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.background
+    val backgroundColor = MaterialTheme.colorScheme.primary
     val systemUiController = rememberSystemUiController()
     val darkTheme = isSystemInDarkTheme()
     val useDarkIcons = backgroundColor.luminance() > 0.5f
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = backgroundColor,
+            color = Color.Transparent,
             darkIcons = useDarkIcons
         )
     }
@@ -83,16 +84,19 @@ fun MainScreen(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+//            .padding(16.dp)
+            .padding(WindowInsets.statusBars.asPaddingValues()),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Welcome to Sooq Price",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.headlineMedium,
+//            fontSize = 28.sp,
+//            fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .padding(bottom = 100.dp)
+                .padding(bottom = 200.dp)
+//                .padding(WindowInsets.statusBars.asPaddingValues())
         )
 
         Row(
@@ -102,7 +106,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen1") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
                     contentColor = MaterialTheme.colorScheme.onPrimary
     ),
                 modifier = Modifier
@@ -115,7 +119,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen2") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
                     contentColor = MaterialTheme.colorScheme.onPrimary
     ),
                 modifier = Modifier
@@ -133,7 +137,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen3") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
                     contentColor = MaterialTheme.colorScheme.onPrimary
     ),
                 modifier = Modifier
@@ -146,7 +150,7 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen4") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
                     contentColor = MaterialTheme.colorScheme.onPrimary
     ),
                 modifier = Modifier
@@ -157,7 +161,7 @@ fun MainScreen(navController: NavHostController) {
             }
         }
     
-/*        Row(
+        Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -310,7 +314,7 @@ fun MainScreen(navController: NavHostController) {
             ) {
                 Text("Go to Screen 14", fontSize = 18.sp)
             }
-        }*/
+        }
     }
 }
 
@@ -354,7 +358,7 @@ fun ScreenFour() {
     }
 }
 
-/*@Composable
+@Composable
 fun ScreenFive() {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -452,4 +456,4 @@ fun ScreenFourteen() {
     ) {
         Text("This is Screen 14")
     }
-}*/
+}
