@@ -46,17 +46,29 @@ fun AppNavigation() {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(onClick = { navController.navigate("screen1") }) {
-            Text("Go to Screen 1")
+        Button(
+            onClick = { navController.navigate("screen1") },
+            modifier = Modifier
+                .weight(1f)
+                .height(100.dp)
+        ) {
+            Text("Go to Screen 1", fontSize = 18.sp)
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { navController.navigate("screen2") }) {
-            Text("Go to Screen 2")
+
+        Button(
+            onClick = { navController.navigate("screen2") },
+            modifier = Modifier
+                .weight(1f)
+                .height(100.dp)
+        ) {
+            Text("Go to Screen 2", fontSize = 18.sp)
         }
     }
 }
