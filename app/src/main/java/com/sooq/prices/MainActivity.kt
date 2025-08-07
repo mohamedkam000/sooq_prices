@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
@@ -63,7 +64,7 @@ fun MainScreen(navController: NavHostController) {
     ),
             modifier = Modifier
                 .weight(1f)
-                .height(100.dp)
+                .height(150.dp)
         ) {
             Text("Go to Screen 1", fontSize = 18.sp)
         }
@@ -75,7 +76,7 @@ fun MainScreen(navController: NavHostController) {
     ),
             modifier = Modifier
                 .weight(1f)
-                .height(100.dp)
+                .height(150.dp)
         ) {
             Text("Go to Screen 2", fontSize = 18.sp)
         }
@@ -88,7 +89,7 @@ fun MainScreen(navController: NavHostController) {
     ),
             modifier = Modifier
                 .weight(1f)
-                .height(100.dp)
+                .height(150.dp)
         ) {
             Text("Go to Screen 3", fontSize = 18.sp)
         }
@@ -100,7 +101,7 @@ fun MainScreen(navController: NavHostController) {
     ),
             modifier = Modifier
                 .weight(1f)
-                .height(100.dp)
+                .height(150.dp)
         ) {
             Text("Go to Screen 4", fontSize = 18.sp)
         }
