@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
-//import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
@@ -42,6 +41,8 @@ fun AppNavigation() {
         composable("main") { MainScreen(navController) }
         composable("screen1") { ScreenOne() }
         composable("screen2") { ScreenTwo() }
+        composable("screen3") { ScreenThree() }
+        composable("screen4") { ScreenFour() }
     }
 }
 
@@ -56,6 +57,10 @@ fun MainScreen(navController: NavHostController) {
     ) {
         Button(
             onClick = { navController.navigate("screen1") },
+            colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+            contentColor = Color.White
+    ),
             modifier = Modifier
                 .weight(1f)
                 .height(100.dp)
@@ -65,11 +70,39 @@ fun MainScreen(navController: NavHostController) {
 
         Button(
             onClick = { navController.navigate("screen2") },
+            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+            contentColor = Color.White
+    ),
             modifier = Modifier
                 .weight(1f)
                 .height(100.dp)
         ) {
             Text("Go to Screen 2", fontSize = 18.sp)
+        }
+
+        Button(
+            onClick = { navController.navigate("screen3") },
+            colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+            contentColor = Color.White
+    ),
+            modifier = Modifier
+                .weight(1f)
+                .height(100.dp)
+        ) {
+            Text("Go to Screen 3", fontSize = 18.sp)
+        }
+
+        Button(
+            onClick = { navController.navigate("screen4") },
+            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+            contentColor = Color.White
+    ),
+            modifier = Modifier
+                .weight(1f)
+                .height(100.dp)
+        ) {
+            Text("Go to Screen 4", fontSize = 18.sp)
         }
     }
 }
@@ -91,5 +124,25 @@ fun ScreenTwo() {
         contentAlignment = Alignment.Center
     ) {
         Text("This is Screen 2")
+    }
+}
+
+@Composable
+fun ScreenThree() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 3")
+    }
+}
+
+@Composable
+fun ScreenFour() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text("This is Screen 4")
     }
 }
