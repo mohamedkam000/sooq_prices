@@ -22,6 +22,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -70,10 +71,10 @@ fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.background
     val systemUiController = rememberSystemUiController()
     val darkTheme = isSystemInDarkTheme()
-    val useDarkIcons = !darkTheme
+    val useDarkIcons = backgroundColor.luminance() > 0.5f
     SideEffect {
         systemUiController.setStatusBarColor(
-//            color = backgroundColor,
+            color = backgroundColor,
             darkIcons = useDarkIcons
         )
     }
