@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -59,9 +60,9 @@ fun MainScreen(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("screen1") },
             colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-            contentColor = Color.White
-    ),
+                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                contentColor = Color.White
+            ),
             modifier = Modifier
                 .weight(1f)
                 .height(150.dp)
@@ -71,9 +72,10 @@ fun MainScreen(navController: NavHostController) {
 
         Button(
             onClick = { navController.navigate("screen2") },
-            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-            contentColor = Color.White
-    ),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                contentColor = Color.White
+            ),
             modifier = Modifier
                 .weight(1f)
                 .height(150.dp)
@@ -84,9 +86,9 @@ fun MainScreen(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("screen3") },
             colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-            contentColor = Color.White
-    ),
+                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                contentColor = Color.White
+            ),
             modifier = Modifier
                 .weight(1f)
                 .height(150.dp)
@@ -96,9 +98,10 @@ fun MainScreen(navController: NavHostController) {
 
         Button(
             onClick = { navController.navigate("screen4") },
-            containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
-            contentColor = Color.White
-    ),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                contentColor = Color.White
+            ),
             modifier = Modifier
                 .weight(1f)
                 .height(150.dp)
