@@ -52,7 +52,7 @@ fun AppNavigation() {
         composable("screen2") { ScreenTwo() }
         composable("screen3") { ScreenThree() }
         composable("screen4") { ScreenFour() }
-        composable("screen5") { ScreenFive() }
+/*        composable("screen5") { ScreenFive() }
         composable("screen6") { ScreenSix() }
         composable("screen7") { ScreenSeven() }
         composable("screen8") { ScreenEight() }
@@ -61,7 +61,7 @@ fun AppNavigation() {
         composable("screen11") { ScreenEleven() }
         composable("screen12") { ScreenTwelve() }
         composable("screen13") { ScreenThirteen() }
-        composable("screen14") { ScreenFourteen() }
+        composable("screen14") { ScreenFourteen() }*/
     }
 }
 
@@ -73,7 +73,7 @@ fun MainScreen(navController: NavHostController) {
     val useDarkIcons = !darkTheme
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = backgroundColor,
+//            color = backgroundColor,
             darkIcons = useDarkIcons
         )
     }
@@ -91,7 +91,7 @@ fun MainScreen(navController: NavHostController) {
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .padding(bottom = 32.dp)
+                .padding(bottom = 100.dp)
         )
 
         Row(
@@ -101,12 +101,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen1") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 1", fontSize = 18.sp)
             }
@@ -114,12 +114,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen2") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 2", fontSize = 18.sp)
             }
@@ -132,12 +132,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen3") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 3", fontSize = 18.sp)
             }
@@ -145,30 +145,30 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen4") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 4", fontSize = 18.sp)
             }
         }
     
-        Row(
+/*        Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Button(
                 onClick = { navController.navigate("screen5") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 5", fontSize = 18.sp)
             }
@@ -176,12 +176,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen6") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 6", fontSize = 18.sp)
             }
@@ -194,12 +194,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen7") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 7", fontSize = 18.sp)
             }
@@ -207,12 +207,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen8") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 8", fontSize = 18.sp)
             }
@@ -225,12 +225,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen9") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 9", fontSize = 18.sp)
             }
@@ -238,12 +238,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen10") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 10", fontSize = 18.sp)
             }
@@ -256,12 +256,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen11") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 11", fontSize = 18.sp)
             }
@@ -269,12 +269,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen12") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 12", fontSize = 18.sp)
             }
@@ -287,12 +287,12 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen13") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 13", fontSize = 18.sp)
             }
@@ -300,16 +300,16 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen14") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF6AC9B4).copy(alpha = 0.5f),
-                    contentColor = Color.White
-                ),
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+    ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(150.dp)
+                    .height(100.dp)
             ) {
                 Text("Go to Screen 14", fontSize = 18.sp)
             }
-        }
+        }*/
     }
 }
 
@@ -353,7 +353,7 @@ fun ScreenFour() {
     }
 }
 
-@Composable
+/*@Composable
 fun ScreenFive() {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -451,4 +451,4 @@ fun ScreenFourteen() {
     ) {
         Text("This is Screen 14")
     }
-}
+}*/
