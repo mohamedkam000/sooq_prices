@@ -66,16 +66,20 @@ fun AppNavigation() {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val backgroundColor = MaterialTheme.colorScheme.background
     val systemUiController = rememberSystemUiController()
-    val statusBarColor = MaterialTheme.colorScheme.primary
+    val useDarkIcons = !darkTheme
+//    val statusBarColor = MaterialTheme.colorScheme.primary
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = statusBarColor,
-            darkIcons = false
+//            color = statusBarColor,
+            color = backgroundColor,
+            darkIcons = useDarkIcons
         )
     }
 
     Column(
+        color = backgroundColor
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
