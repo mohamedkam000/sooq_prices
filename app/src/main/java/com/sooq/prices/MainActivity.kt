@@ -52,6 +52,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+fun lerp(start: Float, stop: Float, fraction: Float): Float {
+    return start + (stop - start) * fraction
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation() {
