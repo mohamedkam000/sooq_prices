@@ -24,17 +24,17 @@ import androidx.navigation.compose.composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.unit.lerp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.lerp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -113,42 +113,61 @@ fun AppNavigation() {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.75f)
+//    val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.75f)
+    val backgroundColor = MaterialTheme.colorScheme.primary
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = backgroundColor.luminance() > 0.5f
+    val useDarkIcons = isSystemInDarkTheme()
+//    val useDarkIcons = backgroundColor.luminance() > 0.5f
 
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Color.Transparent,
-            darkIcons = useDarkIcons
+            darkIcons = !useDarkIcons
         )
         systemUiController.setNavigationBarColor(
-            color = Color.Transparent,
-            darkIcons = useDarkIcons
+            color = Color.Transparent
+//            darkIcons = useDarkIcons
         )
     }
+
+
+    val googleFont = FontFamily(
+    Font(R.font.google_sans_regular, FontWeight.Bold)
+    )
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
     val minFontSize = 20.sp
     val maxTopPadding = 40.dp
     val minTopPadding = 0.dp
-    val collapseRange = 200f
+    val spacerHeight = 150.dp
+    val collapseRangeDp = 200.dp
+    val density = LocalDensity.current
+    val spacerPx = with(density) { spacerHeight.toPx() }
+    val collapseRangePx = with(density) { collapseRangeDp.toPx() }
 
-    val googleFont = FontFamily(
-    Font(R.font.google_sans_regular, FontWeight.Bold)
+    val collapseFraction = ((scrollState.value - spacerPx) / collapseRangePx).coerceIn(0f, 1f)
+    val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
+    val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
+
+    val topBarBackgroundColor by animateColorAsState(
+        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.1f) else Color.Transparent
     )
+
+    val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
+
+//    val collapseRange = 200f
 
     val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
 
     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
-    val topBarBackgroundColor by animateColorAsState(
-        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.5f) else Color.Transparent
-    )
+//    val topBarBackgroundColor by animateColorAsState(
+//        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.1f) else Color.Transparent
+//    )
 
-    val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
+//    val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
     Box(
         modifier = Modifier
@@ -167,7 +186,7 @@ fun MainScreen(navController: NavHostController) {
 
             Text(
                 text = "Welcome to Sooq Price",
-                fontFamily = googleFont,
+//                fontFamily = googleFont,
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -432,8 +451,9 @@ fun MainScreen(navController: NavHostController) {
                 )
         ) {
             Text(
-                text = "Welcome to Sooq Price",
-                fontSize = 20.sp,
+                text = "Good Morning!",
+                fontFamily = googleFont,
+                fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White.copy(alpha = titleAlpha),
                 modifier = Modifier.align(Alignment.CenterStart)
