@@ -64,6 +64,8 @@ import androidx.compose.runtime.SideEffect
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        EdgeToEdge.enableEdgeToEdge(this.window)
         setContent {
             MaterialTheme {
                 AppNavigation()
@@ -111,7 +113,7 @@ fun AppNavigation() {
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.75f)
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = backgroundColor.luminance() > 0.25f
+    val useDarkIcons = backgroundColor.luminance() > 0.5f
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -137,13 +139,16 @@ fun MainScreen(navController: NavHostController) {
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
     val topBarBackgroundColor by animateColorAsState(
-        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.85f) else Color.Transparent
+        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.5f) else Color.Transparent
     )
 
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(WindowInsets.systemBars.asPaddingValues())
+            .background(backgroundColor)
     ) {
         Column(
             modifier = Modifier
@@ -152,7 +157,7 @@ fun MainScreen(navController: NavHostController) {
                 .padding(horizontal = 16.dp)
                 .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
-            Spacer(modifier = Modifier.height(100.dp))
+            Spacer(modifier = Modifier.height(150.dp))
 
             Text(
                 text = "Welcome to Sooq Price",
@@ -162,7 +167,7 @@ fun MainScreen(navController: NavHostController) {
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(100.dp))
             
             Column(
                 modifier = Modifier
