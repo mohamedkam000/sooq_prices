@@ -114,7 +114,7 @@ fun AppNavigation() {
 @Composable
 fun MainScreen(navController: NavHostController) {
 //    val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.75f)
-    val backgroundColor = MaterialTheme.colorScheme.primary
+    val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.1f)
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = isSystemInDarkTheme()
 //    val useDarkIcons = backgroundColor.luminance() > 0.5f
