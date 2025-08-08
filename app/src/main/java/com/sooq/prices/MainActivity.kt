@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import androidx.core.graphics.ColorUtils
 
 // Material 3
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +35,7 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.toArgb
 
 // Compose foundation
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -156,6 +158,7 @@ fun MainScreen(navController: NavHostController) {
                 text = "Welcome to Sooq Price",
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
 
@@ -164,7 +167,6 @@ fun MainScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-//                    .verticalScroll(scrollState)
                     .padding(horizontal = 16.dp)
                     .padding(WindowInsets.statusBars.asPaddingValues())
             ) {
