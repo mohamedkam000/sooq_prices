@@ -34,8 +34,10 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 
 // Compose foundation
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -133,6 +135,10 @@ fun MainScreen(navController: NavHostController) {
     val minTopPadding = 0.dp
     val collapseRange = 200f
 
+    val googleFont = FontFamily(
+    Font(R.font.google_sans_regular, FontWeight.Bold)
+    )
+
     val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
 
     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
@@ -161,6 +167,7 @@ fun MainScreen(navController: NavHostController) {
 
             Text(
                 text = "Welcome to Sooq Price",
+                fontFamily = googleFont,
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -187,7 +194,7 @@ fun MainScreen(navController: NavHostController) {
                         contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .height(200.dp)
                             .clip(MaterialTheme.shapes.medium)
                     ) {
                         Image(
@@ -213,7 +220,7 @@ fun MainScreen(navController: NavHostController) {
                         contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .height(200.dp)
                             .clip(MaterialTheme.shapes.medium)
                     ) {
                         Image(
@@ -239,7 +246,7 @@ fun MainScreen(navController: NavHostController) {
                         contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .height(200.dp)
                             .clip(MaterialTheme.shapes.medium)
                     ) {
                         Image(
@@ -265,7 +272,7 @@ fun MainScreen(navController: NavHostController) {
                         contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .height(200.dp)
                             .clip(MaterialTheme.shapes.medium)
                     ) {
                         Image(
