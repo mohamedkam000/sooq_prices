@@ -376,50 +376,50 @@ fun MainScreen(navController: NavHostController) {
 
 
 
-@Composable
-fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.primary
-    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = backgroundColor.luminance() > 0.5f
-
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Color.Transparent,
-            darkIcons = useDarkIcons
-        )
-    }
-
-    val scrollState = rememberScrollState()
-    val maxFontSize = 34.sp
-    val minFontSize = 20.sp
-    val maxTopPadding = 40.dp
-    val minTopPadding = 0.dp
-    val collapseRange = 200f
-
-    val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
-
-    val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
-    val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .padding(WindowInsets.statusBars.asPaddingValues())
-    ) {
-        Text(
-            text = "Welcome to Sooq Price",
-            fontSize = animatedFontSize,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = animatedTopPadding)
-        )
-    
-        Spacer(modifier = Modifier.height(48.dp))
-
-        
-    }
-}
-
+// @Composable
+// fun MainScreen(navController: NavHostController) {
+//     val backgroundColor = MaterialTheme.colorScheme.primary
+//     val systemUiController = rememberSystemUiController()
+//     val useDarkIcons = backgroundColor.luminance() > 0.5f
+// 
+//     SideEffect {
+//         systemUiController.setStatusBarColor(
+//             color = Color.Transparent,
+//             darkIcons = useDarkIcons
+//         )
+//     }
+// 
+//     val scrollState = rememberScrollState()
+//     val maxFontSize = 34.sp
+//     val minFontSize = 20.sp
+//     val maxTopPadding = 40.dp
+//     val minTopPadding = 0.dp
+//     val collapseRange = 200f
+// 
+//     val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
+// 
+//     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
+//     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
+// 
+//     Column(
+//         modifier = Modifier
+//             .fillMaxSize()
+//             .padding(horizontal = 16.dp)
+//             .padding(WindowInsets.statusBars.asPaddingValues())
+//     ) {
+//         Text(
+//             text = "Welcome to Sooq Price",
+//             fontSize = animatedFontSize,
+//             fontWeight = FontWeight.Bold,
+//             modifier = Modifier.padding(top = animatedTopPadding)
+//         )
+//     
+//         Spacer(modifier = Modifier.height(48.dp))
+// 
+//         
+//     }
+// }
+// 
 @Composable
 fun ScreenOne() {
     Box(
