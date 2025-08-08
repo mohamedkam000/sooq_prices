@@ -74,6 +74,13 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
+fun Color.darken(factor: Float): Color {
+    val hsl = FloatArray(3)
+    ColorUtils.colorToHSL(this.toArgb(), hsl)
+    hsl[2] = (hsl[2] * factor).coerceIn(0f, 1f)
+    return Color(ColorUtils.HSLToColor(hsl))
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation() {
