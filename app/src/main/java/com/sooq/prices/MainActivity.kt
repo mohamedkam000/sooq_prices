@@ -156,7 +156,7 @@ fun MainScreen(navController: NavHostController) {
 
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
-    val collapseRangeDp = 200.dp
+//    val collapseRangeDp = 200.dp
 
 //    val collapseRange = 200f
 
