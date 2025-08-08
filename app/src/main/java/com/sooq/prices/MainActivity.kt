@@ -55,7 +55,6 @@ class MainActivity : ComponentActivity() {
                 AppNavigation()
             }
         }
-//        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }
 
@@ -139,8 +138,8 @@ fun MainScreen(navController: NavHostController) {
             
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState)
+                    .fillMaxWidth()
+//                    .verticalScroll(scrollState)
                     .padding(horizontal = 16.dp)
                     .padding(WindowInsets.statusBars.asPaddingValues())
             ) {
