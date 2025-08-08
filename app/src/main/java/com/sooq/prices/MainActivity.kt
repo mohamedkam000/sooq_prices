@@ -37,8 +37,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.foundation.Image
-//import androidx.compose.animation.core.lerp
 import androidx.compose.ui.unit.lerp
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.ui.platform.WindowInsets
+import androidx.compose.ui.platform.WindowInsets.Companion.statusBars
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -419,7 +424,7 @@ fun MainScreen(navController: NavHostController) {
 //         
 //     }
 // }
-// 
+
 @Composable
 fun ScreenOne() {
     Box(
