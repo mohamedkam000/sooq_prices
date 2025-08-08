@@ -131,9 +131,9 @@ fun MainScreen(navController: NavHostController) {
     }
 
 
-    val googleFont = FontFamily(
-    Font(R.font.google_sans_regular, FontWeight.Bold)
-    )
+//    val googleFont = FontFamily(
+//    Font(R.font.google_sans_regular, FontWeight.Bold)
+//    )
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -156,12 +156,14 @@ fun MainScreen(navController: NavHostController) {
 
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
+    val collapseRangeDp = 200.dp
+
 //    val collapseRange = 200f
 
-    val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
+//    val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
 
-    val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
-    val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
+//    val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
+//    val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
 //    val topBarBackgroundColor by animateColorAsState(
 //        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.1f) else Color.Transparent
@@ -452,7 +454,7 @@ fun MainScreen(navController: NavHostController) {
         ) {
             Text(
                 text = "Good Morning!",
-                fontFamily = googleFont,
+//                fontFamily = googleFont,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White.copy(alpha = titleAlpha),
