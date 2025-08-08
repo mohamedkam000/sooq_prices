@@ -3,28 +3,23 @@ package com.sooq.prices
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.MaterialTheme
 import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
+// Material 3
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.Button
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+
+// Navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.rememberScrollState
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.ui.graphics.luminance
-import androidx.compose.runtime.SideEffect
+
+// Compose UI
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,18 +29,35 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.foundation.Image
 import androidx.compose.ui.unit.lerp
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
+
+// Compose foundation
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.isSystemInDarkTheme
+
+// Compose animation
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.asPaddingValues
+
+// Compose runtime
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,10 +83,10 @@ fun AppNavigation() {
         composable("main") { MainScreen(navController) }
         composable("screen1") { ScreenOne() }
         composable("screen2") { ScreenTwo() }
-/*        composable("screen3") { ScreenThree() }
-        composable("screen4") { ScreenFour() }*/
-        composable("screen5") { ScreenFive() }
-        composable("screen6") { ScreenSix() }
+        composable("screen3") { ScreenThree() }
+        composable("screen4") { ScreenFour() }
+/*        composable("screen5") { ScreenFive() }
+        composable("screen6") { ScreenSix() }*/
         composable("screen7") { ScreenSeven() }
         composable("screen8") { ScreenEight() }
         composable("screen9") { ScreenNine() }
@@ -88,12 +100,16 @@ fun AppNavigation() {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.primary
+    val backgroundColor = MaterialTheme.colorScheme.primary.darken(0.75f)
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = backgroundColor.luminance() > 0.5f
+    val useDarkIcons = backgroundColor.luminance() > 0.25f
 
     SideEffect {
         systemUiController.setStatusBarColor(
+            color = Color.Transparent,
+            darkIcons = useDarkIcons
+        )
+        systemUiController.setNavigationBarColor(
             color = Color.Transparent,
             darkIcons = useDarkIcons
         )
@@ -112,7 +128,7 @@ fun MainScreen(navController: NavHostController) {
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
     val topBarBackgroundColor by animateColorAsState(
-        targetValue = if (collapseFraction > 0f) Color(0xFF121212) else Color.Transparent
+        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.85f) else Color.Transparent
     )
 
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
@@ -127,6 +143,8 @@ fun MainScreen(navController: NavHostController) {
                 .padding(horizontal = 16.dp)
                 .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
+            Spacer(modifier = Modifier.height(100.dp))
+
             Text(
                 text = "Welcome to Sooq Price",
                 fontSize = animatedFontSize,
@@ -185,8 +203,8 @@ fun MainScreen(navController: NavHostController) {
                             .clip(MaterialTheme.shapes.medium)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Car Image",
+                            painter = painterResource(id = R.drawable.motorbike),
+                            contentDescription = "Motorbike Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -200,32 +218,53 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Button(
-                        onClick = { navController.navigate("screen5") },
+                        onClick = { navController.navigate("screen3") },
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            contentColor = MaterialTheme.colorScheme.onPrimary
-            ),
+                            containerColor = Color.Transparent
+                        ),
+                        contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
-                            .weight(1f)
-                            .height(100.dp)
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium)
                     ) {
-                        Text("Go to Screen 5", fontSize = 18.sp)
-                    }
-        
-                    Button(
-                        onClick = { navController.navigate("screen6") },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
-                            contentColor = MaterialTheme.colorScheme.onPrimary
-            ),
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(100.dp)
-                    ) {
-                        Text("Go to Screen 6", fontSize = 18.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.vegetables),
+                            contentDescription = "Vegetables Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
                     }
                 }
-        
+
+                Spacer(modifier = Modifier.height(48.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Button(
+                        onClick = { navController.navigate("screen4") },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Transparent
+                        ),
+                        contentPadding = PaddingValues(0.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.fruits),
+                            contentDescription = "Fruits Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(48.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -256,7 +295,9 @@ fun MainScreen(navController: NavHostController) {
                         Text("Go to Screen 8", fontSize = 18.sp)
                     }
                 }
-            
+
+                Spacer(modifier = Modifier.height(48.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -287,7 +328,9 @@ fun MainScreen(navController: NavHostController) {
                         Text("Go to Screen 10", fontSize = 18.sp)
                     }
                 }
-            
+
+                Spacer(modifier = Modifier.height(48.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -318,7 +361,9 @@ fun MainScreen(navController: NavHostController) {
                         Text("Go to Screen 12", fontSize = 18.sp)
                     }
                 }
-        
+
+                Spacer(modifier = Modifier.height(48.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -376,56 +421,6 @@ fun MainScreen(navController: NavHostController) {
     }
 }
 
-
-
-
-
-
-
-// @Composable
-// fun MainScreen(navController: NavHostController) {
-//     val backgroundColor = MaterialTheme.colorScheme.primary
-//     val systemUiController = rememberSystemUiController()
-//     val useDarkIcons = backgroundColor.luminance() > 0.5f
-// 
-//     SideEffect {
-//         systemUiController.setStatusBarColor(
-//             color = Color.Transparent,
-//             darkIcons = useDarkIcons
-//         )
-//     }
-// 
-//     val scrollState = rememberScrollState()
-//     val maxFontSize = 34.sp
-//     val minFontSize = 20.sp
-//     val maxTopPadding = 40.dp
-//     val minTopPadding = 0.dp
-//     val collapseRange = 200f
-// 
-//     val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
-// 
-//     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
-//     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
-// 
-//     Column(
-//         modifier = Modifier
-//             .fillMaxSize()
-//             .padding(horizontal = 16.dp)
-//             .padding(WindowInsets.statusBars.asPaddingValues())
-//     ) {
-//         Text(
-//             text = "Welcome to Sooq Price",
-//             fontSize = animatedFontSize,
-//             fontWeight = FontWeight.Bold,
-//             modifier = Modifier.padding(top = animatedTopPadding)
-//         )
-//     
-//         Spacer(modifier = Modifier.height(48.dp))
-// 
-//         
-//     }
-// }
-
 @Composable
 fun ScreenOne() {
     Box(
@@ -446,7 +441,7 @@ fun ScreenTwo() {
     }
 }
 
-/*@Composable
+@Composable
 fun ScreenThree() {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -464,9 +459,9 @@ fun ScreenFour() {
     ) {
         Text("This is Screen 4")
     }
-}*/
+}
 
-@Composable
+/*@Composable
 fun ScreenFive() {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -484,7 +479,7 @@ fun ScreenSix() {
     ) {
         Text("This is Screen 6")
     }
-}
+}*/
 
 @Composable
 fun ScreenSeven() {
