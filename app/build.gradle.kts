@@ -9,11 +9,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.sooq.prices"
+    namespace = "com.sooq.price"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.sooq.prices"
+        applicationId = "com.sooq.price"
         minSdk = 28
         targetSdk = 36
         versionCode = 1
