@@ -31,6 +31,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +44,7 @@ class MainActivity : ComponentActivity() {
                 AppNavigation()
             }
         }
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }
 
@@ -71,34 +75,44 @@ fun AppNavigation() {
 @Composable
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.primary
+    val statusbarColor = MaterialTheme.colorScheme.onPrimary
     val systemUiController = rememberSystemUiController()
-    val darkTheme = isSystemInDarkTheme()
     val useDarkIcons = backgroundColor.luminance() > 0.5f
+
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = Color.Transparent,
+            color = statusbarColor,
             darkIcons = useDarkIcons
         )
     }
 
+    val scrollState = rememberScrollState()
+    val maxFontSize = 34.sp
+    val minFontSize = 20.sp
+    val maxTopPadding = 40.dp
+    val minTopPadding = 0.dp
+    val collapseRange = 200f
+
+    val collapseFraction = (scrollState.value / collapseRange).coerceIn(0f, 1f)
+
+    val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
+    val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-//            .padding(16.dp)
-            .padding(WindowInsets.statusBars.asPaddingValues()),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .verticalScroll(scrollState)
+            .padding(horizontal = 16.dp)
+            .padding(WindowInsets.statusBars.asPaddingValues())
     ) {
         Text(
             text = "Welcome to Sooq Price",
-            style = MaterialTheme.typography.headlineMedium,
-//            fontSize = 28.sp,
-//            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(bottom = 200.dp)
-//                .padding(WindowInsets.statusBars.asPaddingValues())
+            fontSize = animatedFontSize,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(top = animatedTopPadding)
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -107,14 +121,20 @@ fun MainScreen(navController: NavHostController) {
             Button(
                 onClick = { navController.navigate("screen1") },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
-                    contentColor = MaterialTheme.colorScheme.onPrimary
-    ),
+                    containerColor = Color.Transparent
+                ),
+                contentPadding = PaddingValues(0.dp),
                 modifier = Modifier
-                    .weight(1f)
-                    .height(100.dp)
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .clip(MaterialTheme.shapes.medium)
             ) {
-                Text("Go to Screen 1", fontSize = 18.sp)
+                Image(
+                    painter = painterResource(id = R.drawable.car),
+                    contentDescription = "Car Image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
             Button(
@@ -125,7 +145,7 @@ fun MainScreen(navController: NavHostController) {
     ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(100.dp)
+                    .height(180.dp)
             ) {
                 Text("Go to Screen 2", fontSize = 18.sp)
             }
@@ -143,7 +163,7 @@ fun MainScreen(navController: NavHostController) {
     ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(100.dp)
+                    .height(180.dp)
             ) {
                 Text("Go to Screen 3", fontSize = 18.sp)
             }
@@ -156,7 +176,7 @@ fun MainScreen(navController: NavHostController) {
     ),
                 modifier = Modifier
                     .weight(1f)
-                    .height(100.dp)
+                    .height(180.dp)
             ) {
                 Text("Go to Screen 4", fontSize = 18.sp)
             }
