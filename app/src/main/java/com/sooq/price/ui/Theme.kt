@@ -22,8 +22,8 @@ fun SooqTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        typography = Typography,
-        shapes = Shapes,
+        typography = Typography(),
+        shapes = Shapes(),
         content = content
     )
 }

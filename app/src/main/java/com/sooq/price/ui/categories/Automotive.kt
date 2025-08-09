@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
+import com.sooq.price.ui.navigation.Navigation
 
 // Material 3
 import androidx.compose.material3.*
