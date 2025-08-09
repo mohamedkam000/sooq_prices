@@ -62,7 +62,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Automotive(navController: NavHostController) {
+fun Automotive() {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -129,7 +129,7 @@ fun Automotive(navController: NavHostController) {
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
-                        Box(
+/*                        Box(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(Color.Black.copy(alpha = 0.4f))
@@ -140,7 +140,7 @@ fun Automotive(navController: NavHostController) {
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .padding(16.dp)
-                        )
+                        )*/
                     }
                 }
 

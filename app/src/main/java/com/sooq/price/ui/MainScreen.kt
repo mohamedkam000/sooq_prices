@@ -98,9 +98,9 @@ fun MainScreen(navController: NavHostController) {
 
             Text(
                 text = "Hello There!",
-//                fontSize = animatedFontSize,
-//                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyLarge,
+                fontSize = animatedFontSize,
+                fontWeight = FontWeight.Bold,
+//                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
@@ -117,37 +117,32 @@ fun MainScreen(navController: NavHostController) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Button(
+                    Card(
                         onClick = { navController.navigate("automotive") },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent
-                        ),
-                        contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
-                        Box(modifier = Modifier.fillMaxSize()) {
-                            Image(
-                                painter = painterResource(id = R.drawable.car),
-                                contentDescription = "Automotive Image",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxSize()
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(Color.Black.copy(alpha = 0.4f))
-                            )
-                            Text(
-                                text = stringResource(id = R.string.automotive),
-                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .padding(16.dp)
-                            )
-                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.car),
+                            contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+/*                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color.Black.copy(alpha = 0.4f))
+                        )
+                        Text(
+                            text = stringResource(id = R.string.automotive),
+                            style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .padding(16.dp)
+                        )*/
                     }
                 }
     
