@@ -98,8 +98,9 @@ fun MainScreen(navController: NavHostController) {
 
             Text(
                 text = "Hello There!",
-                fontSize = animatedFontSize,
-                fontWeight = FontWeight.Bold,
+//                fontSize = animatedFontSize,
+//                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
