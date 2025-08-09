@@ -10,6 +10,8 @@ import com.sooq.price.ui.navigation.AppNavigation
 
 // Material 3
 import androidx.compose.material3.*
+//import androidx.compose.material3.Card
+//import androidx.compose.material3.CardDefaults
 
 // Navigation
 import androidx.navigation.compose.rememberNavController
@@ -60,7 +62,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Automotive(navController: navController) {
+fun Automotive(navController: NavController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -91,7 +93,7 @@ fun Automotive(navController: navController) {
                 .padding(horizontal = 16.dp)
                 .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
-            Spacer(modifier = Modifier.height(150.dp))
+            Spacer(modifier = Modifier.height(spacerHeight))
 
             Text(
                 text = "Hello There!",
@@ -102,7 +104,7 @@ fun Automotive(navController: navController) {
             )
 
             Spacer(modifier = Modifier.height(100.dp))
-            
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -113,40 +115,35 @@ fun Automotive(navController: navController) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Button(
+                    Card(
                         onClick = { navController.navigate("main") },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent
-                        ),
-                        contentPadding = PaddingValues(0.dp),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
-                        Box(modifier = Modifier.fillMaxSize()) {
-                            Image(
-                                painter = painterResource(id = R.drawable.car),
-                                contentDescription = "Automotive Image",
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxSize()
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(Color.Black.copy(alpha = 0.4f))
-                            )
-                            Text(
-                                text = stringResource(id = R.string.automotive),
-                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .padding(16.dp)
-                            )
-                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.car),
+                            contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color.Black.copy(alpha = 0.4f))
+                        )
+                        Text(
+                            text = stringResource(id = R.string.automotive),
+                            style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .padding(16.dp)
+                        )
                     }
                 }
-    
+
                 Spacer(modifier = Modifier.height(48.dp))
             }
         }

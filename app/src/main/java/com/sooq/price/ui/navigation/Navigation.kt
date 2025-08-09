@@ -41,7 +41,7 @@ fun AppNavigation() {
         composable("intro") { AppIntroScreen(navController) }
         composable("main") { MainScreen(navController) }
         composable("automotive") { Automotive() }
-        composable("food") { Food() }
+/*        composable("food") { Food() }
         composable("beverage") { Beverage() }
         composable("electronic") { Electronic() }
         composable("construction") { Construction() }
@@ -50,6 +50,6 @@ fun AppNavigation() {
         composable("fuel") { Fuel() }
         composable("furniture") { Furniture() }
         composable("tool") { Tool() }
-//        composable("toy") { Toy() }
+        composable("toy") { Toy() }*/
     }
 }
