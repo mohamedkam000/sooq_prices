@@ -63,6 +63,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.derivedStateOf
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -81,7 +82,7 @@ fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surface
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = derivedStateOf { topBarColor.luminance() > 0.5f }
-    }
+//    }
 //    val useDarkIcons = isSystemInDarkTheme()
 
     SideEffect {
