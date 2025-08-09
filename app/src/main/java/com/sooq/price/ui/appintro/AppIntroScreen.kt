@@ -55,8 +55,9 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import com.sooq.appintro.AppIntro
-import com.sooq.appintro.IntroPage
+//import com.sooq.appintro.IntroPage
 import com.sooq.price.ui.navigation.Navigation
+
 //import dev.muhammad.applock.core.navigation.Screen
 //import dev.muhammad.applock.core.utils.appLockRepository
 //import dev.muhammad.applock.core.utils.hasUsagePermission
@@ -136,6 +137,18 @@ fun MethodSelectionCard(
 }
 
 @SuppressLint("BatteryLife")*/
+
+data class IntroPage(
+    val title: String,
+    val description: String,
+//    val icon: ImageVector? = null,
+    val backgroundColor: Color? = null,
+    val contentColor: Color? = null,
+    val illustration: (@Composable () -> Unit)? = null,
+    val customContent: (@Composable () -> Unit)? = null,
+    val onNext: (() -> Boolean)? = null
+)
+
 @Composable
 fun AppIntroScreen(navController: NavController) {
     val context = LocalContext.current
@@ -176,7 +189,7 @@ fun AppIntroScreen(navController: NavController) {
     val onFinishCallback = {
         AppIntroManager.markIntroAsCompleted(context)
         navController.navigate("main") {
-            popUpTo("appintro") { inclusive = true }
+            popUpTo("intro") { inclusive = true }
         }
     }
 
@@ -250,8 +263,8 @@ fun AppIntroScreen(navController: NavController) {
                     }
                 } else {
                     true
-                }*/
-            }
+                }
+            }*/
         )
     )
 
@@ -403,9 +416,9 @@ fun AppIntroScreen(navController: NavController) {
         pages = allPages,
         onSkip = {
             AppIntroManager.markIntroAsCompleted(context)
-//            navController.navigate(Screen.SetPassword.route) {
-//                popUpTo(Screen.AppIntro.route) { inclusive = true }
-//            }
+            navController.navigate("main") {
+                popUpTo("intro") { inclusive = true }
+            }
         },
         onFinish = onFinishCallback,
         showSkipButton = false,
