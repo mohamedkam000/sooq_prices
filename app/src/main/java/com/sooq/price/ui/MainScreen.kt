@@ -7,6 +7,7 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
+import androidx.compose.ui.res.stringResource
 
 // Material 3
 import androidx.compose.material3.MaterialTheme
