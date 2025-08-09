@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
-import com.sooq.price.ui.navigation.AppNavigation
+//import com.sooq.price.ui.navigation.AppNavigation
 
 // Material 3
 import androidx.compose.material3.*
@@ -62,7 +62,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Automotive() {
+fun Automotive(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -116,7 +116,7 @@ fun Automotive() {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Card(
-                        onClick = { navController.navigate("main") },
+//                        onClick = { navController.navigate("main") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
