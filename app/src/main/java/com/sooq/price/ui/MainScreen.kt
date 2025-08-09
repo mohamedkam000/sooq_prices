@@ -64,7 +64,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
