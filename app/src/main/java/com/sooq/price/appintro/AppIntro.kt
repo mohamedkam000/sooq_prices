@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import com.sooq.price.ui.appintro.*
 
 @OptIn(
     ExperimentalAnimationApi::class,
@@ -64,19 +65,21 @@ fun AppIntro(
     val pagerState = rememberPagerState(pageCount = { pages.size })
     val coroutineScope = rememberCoroutineScope()
     val colorScheme = MaterialTheme.colorScheme
-    val currentPageColor by remember(pagerState.currentPage) {
-        derivedStateOf {
-            pages.getOrNull(pagerState.currentPage)?.backgroundColor
-                ?: colorScheme.primary
-        }
-    }
+    val currentPageColor = MaterialTheme.colorScheme.primary
+//    val currentPageColor by remember(pagerState.currentPage) {
+//        derivedStateOf {
+//            pages.getOrNull(pagerState.currentPage)?.backgroundColor
+//                ?: colorScheme.primary
+//        }
+//    }
 
-    val currentPageTextColor by remember(pagerState.currentPage) {
-        derivedStateOf {
-            pages.getOrNull(pagerState.currentPage)?.contentColor
-                ?: colorScheme.onPrimary
-        }
-    }
+    val currentPageTextColor = MaterialTheme.colorScheme.onPrimary
+//    val currentPageTextColor by remember(pagerState.currentPage) {
+//        derivedStateOf {
+//            pages.getOrNull(pagerState.currentPage)?.contentColor
+//                ?: colorScheme.onPrimary
+//        }
+//    }
 
     Box(
         modifier = Modifier.fillMaxSize()
