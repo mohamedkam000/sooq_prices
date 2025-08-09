@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
+import com.sooq.price.ui.appintro.AppIntroScreen
 
 object AppIntroManager {
     private const val PREF_APP_INTRO = "app_prefs"

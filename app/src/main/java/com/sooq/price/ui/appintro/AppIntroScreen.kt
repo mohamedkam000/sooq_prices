@@ -56,13 +56,14 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import com.sooq.appintro.AppIntro
 import com.sooq.appintro.IntroPage
-import dev.muhammad.applock.core.navigation.Screen
+import com.sooq.price.ui.avigation.Navigation
+//import dev.muhammad.applock.core.navigation.Screen
 //import dev.muhammad.applock.core.utils.appLockRepository
 //import dev.muhammad.applock.core.utils.hasUsagePermission
 //import dev.muhammad.applock.core.utils.isAccessibilityServiceEnabled
 //import dev.muhammad.applock.core.utils.launchBatterySettings
 //import dev.muhammad.applock.data.repository.BackendImplementation
-import dev.muhammad.applock.features.appintro.domain.AppIntroManager
+//import dev.muhammad.applock.features.appintro.domain.AppIntroManager
 //import dev.muhammad.applock.services.ExperimentalAppLockService
 //import dev.muhammad.applock.ui.icons.Accessibility
 //import dev.muhammad.applock.ui.icons.BatterySaver
