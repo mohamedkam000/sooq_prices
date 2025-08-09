@@ -179,7 +179,7 @@ fun MainScreen(navController: NavHostController) {
                                     .background(Color.Black.copy(alpha = 0.4f))
                             )
                             Text(
-                                text = "Automotive",
+                                text = stringResource(id = R.string.automotive),
                                 style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
                                 modifier = Modifier
                                     .align(Alignment.Center)
