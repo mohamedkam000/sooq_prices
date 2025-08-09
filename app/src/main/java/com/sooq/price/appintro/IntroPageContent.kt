@@ -35,6 +35,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.sooq.price.ui.appintro.*
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
