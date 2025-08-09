@@ -24,7 +24,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
+//import androidx.compose.material.icons.Icons
 //import androidx.compose.material.icons.filled.Lock
 //import androidx.compose.material.icons.filled.Notifications
 //import androidx.compose.material.icons.filled.QueryStats
@@ -56,7 +56,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import com.sooq.appintro.AppIntro
 import com.sooq.appintro.IntroPage
-import com.sooq.price.ui.avigation.Navigation
+import com.sooq.price.ui.navigation.Navigation
 //import dev.muhammad.applock.core.navigation.Screen
 //import dev.muhammad.applock.core.utils.appLockRepository
 //import dev.muhammad.applock.core.utils.hasUsagePermission
@@ -175,9 +175,9 @@ fun AppIntroScreen(navController: NavController) {
 
     val onFinishCallback = {
         AppIntroManager.markIntroAsCompleted(context)
-//        navController.navigate(Screen.SetPassword.route) {
-//            popUpTo(Screen.AppIntro.route) { inclusive = true }
-//        }
+        navController.navigate("main") {
+            popUpTo("appintro") { inclusive = true }
+        }
     }
 
     val basicPages = listOf(
