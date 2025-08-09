@@ -81,9 +81,9 @@ fun Color.darken(factor: Float): Color {
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surface
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = derivedStateOf { topBarColor.luminance() > 0.5f }
+//    val useDarkIcons = derivedStateOf { topBarColor.luminance() > 0.5f }
 //    }
-//    val useDarkIcons = isSystemInDarkTheme()
+    val useDarkIcons = isSystemInDarkTheme()
 
     SideEffect {
         systemUiController.setStatusBarColor(
