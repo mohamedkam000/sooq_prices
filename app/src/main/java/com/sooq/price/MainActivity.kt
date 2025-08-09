@@ -13,7 +13,7 @@ import androidx.compose.material3.Shapes
 //import androidx.compose.material3.dynamicDarkColorScheme
 //import androidx.compose.runtime.Composable
 //import androidx.compose.ui.platform.LocalContext
-import com.sooq.price.ui.theme.*
+import com.sooq.price.ui.Theme
 import com.sooq.price.ui.navigation.AppNavigation
 
 class MainActivity : ComponentActivity() {
