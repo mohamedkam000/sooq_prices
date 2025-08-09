@@ -9,6 +9,7 @@ import com.sooq.price.ui.navigation.AppNavigation
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
             window.statusBarColor = android.graphics.Color.TRANSPARENT
             window.navigationBarColor = android.graphics.Color.TRANSPARENT
@@ -19,6 +20,7 @@ class MainActivity : ComponentActivity() {
 
             windowInsetsController.isAppearanceLightStatusBars = !isDarkTheme
             windowInsetsController.isAppearanceLightNavigationBars = true
+
         setContent {
             AppNavigation()
         }

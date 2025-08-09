@@ -4,33 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
-//import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 
 // Material 3
-/*import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationRail
-import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.PermanentNavigationDrawer
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.Typography
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme*/
 import androidx.compose.material3.*
 
 // Navigation
@@ -61,11 +38,6 @@ import androidx.compose.ui.res.stringResource
 
 // Compose foundation
 import androidx.compose.foundation.Image
-//import androidx.compose.foundation.layout.Column
-/*import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth*/
-//import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -90,29 +62,9 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
-/*fun Color.darken(factor: Float): Color {
-    val hsl = FloatArray(3)
-    ColorUtils.colorToHSL(this.toArgb(), hsl)
-    hsl[2] = (hsl[2] * factor).coerceIn(0f, 1f)
-    return Color(ColorUtils.HSLToColor(hsl))
-}*/
-
-//@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-/*    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = isSystemInDarkTheme()
-
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Color.Transparent,
-            darkIcons = !useDarkIcons
-        )
-        systemUiController.setNavigationBarColor(
-            color = Color.Transparent,
-        )
-    }*/
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -124,16 +76,9 @@ fun MainScreen(navController: NavHostController) {
     val density = LocalDensity.current
     val spacerPx = with(density) { spacerHeight.toPx() }
     val collapseRangePx = with(density) { collapseRangeDp.toPx() }
-
     val collapseFraction = ((scrollState.value - spacerPx) / collapseRangePx).coerceIn(0f, 1f)
     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
-
-/*    val topBarBackgroundColor = if (scrollState.value < 200) {
-        MaterialTheme.colorScheme.surface
-    } else { MaterialTheme.colorScheme.surfaceVariant }*/
-
-    val topBarBackgroundColor = MaterialTheme.colorScheme.primaryContainer
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
     Box(
@@ -155,7 +100,7 @@ fun MainScreen(navController: NavHostController) {
                 text = "Hello There!",
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
 
@@ -206,58 +151,6 @@ fun MainScreen(navController: NavHostController) {
                 }
     
                 Spacer(modifier = Modifier.height(48.dp))
-    
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Button(
-                        onClick = { navController.navigate("food") },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent
-                        ),
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.motorbike),
-                            contentDescription = "Food Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-    
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Button(
-                        onClick = { navController.navigate("beverage") },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent
-                        ),
-                        contentPadding = PaddingValues(0.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.vegetables),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(48.dp))
             }
         }
 
@@ -265,10 +158,9 @@ fun MainScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .background(topBarBackgroundColor)
+                .background(backgroundColor)
                 .padding(
                     start = 16.dp,
-//                    top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
                     bottom = 12.dp
                 )
         ) {
