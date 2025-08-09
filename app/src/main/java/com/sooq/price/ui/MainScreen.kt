@@ -7,14 +7,31 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
-import androidx.compose.ui.res.stringResource
+
 
 // Material 3
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.PermanentNavigationDrawer
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 
 // Navigation
 import androidx.navigation.compose.rememberNavController
@@ -40,16 +57,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 
 // Compose foundation
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+//import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -70,32 +90,29 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
-fun Color.darken(factor: Float): Color {
+/*fun Color.darken(factor: Float): Color {
     val hsl = FloatArray(3)
     ColorUtils.colorToHSL(this.toArgb(), hsl)
     hsl[2] = (hsl[2] * factor).coerceIn(0f, 1f)
     return Color(ColorUtils.HSLToColor(hsl))
-}
+}*/
 
-@OptIn(ExperimentalMaterial3Api::class)
+//@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.surface
-    val systemUiController = rememberSystemUiController()
-//    val useDarkIcons = derivedStateOf { topBarColor.luminance() > 0.5f }
-//    }
+    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+/*    val systemUiController = rememberSystemUiController()
     val useDarkIcons = isSystemInDarkTheme()
 
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Color.Transparent,
-            darkIcons = useDarkIcons
+            darkIcons = !useDarkIcons
         )
         systemUiController.setNavigationBarColor(
             color = Color.Transparent,
-            darkIcons = useDarkIcons
         )
-    }
+    }*/
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -112,13 +129,11 @@ fun MainScreen(navController: NavHostController) {
     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
-/*    val topBarBackgroundColor by animateColorAsState(
-        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary else Color.Transparent
-    )*/
-    val topBarBackgroundColor = if (scrollState.value < 200) {
+/*    val topBarBackgroundColor = if (scrollState.value < 200) {
         MaterialTheme.colorScheme.surface
-    } else { MaterialTheme.colorScheme.primary }
+    } else { MaterialTheme.colorScheme.surfaceVariant }*/
 
+    val topBarBackgroundColor = MaterialTheme.colorScheme.primaryContainer
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
     Box(
