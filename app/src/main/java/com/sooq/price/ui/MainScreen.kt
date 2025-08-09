@@ -78,17 +78,20 @@ fun Color.darken(factor: Float): Color {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.primary
+    val backgroundColor = MaterialTheme.colorScheme.surface
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = isSystemInDarkTheme()
+    val useDarkIcons = derivedStateOf { topBarColor.luminance() > 0.5f }
+    }
+//    val useDarkIcons = isSystemInDarkTheme()
 
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Color.Transparent,
-            darkIcons = !useDarkIcons
+            darkIcons = useDarkIcons
         )
         systemUiController.setNavigationBarColor(
-            color = Color.Transparent
+            color = Color.Transparent,
+            darkIcons = useDarkIcons
         )
     }
 
@@ -107,9 +110,12 @@ fun MainScreen(navController: NavHostController) {
     val animatedFontSize = lerp(maxFontSize, minFontSize, collapseFraction)
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
 
-    val topBarBackgroundColor by animateColorAsState(
-        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary.darken(0.05f) else Color.Transparent
-    )
+/*    val topBarBackgroundColor by animateColorAsState(
+        targetValue = if (collapseFraction > 0f) MaterialTheme.colorScheme.primary else Color.Transparent
+    )*/
+    val topBarBackgroundColor = if (scrollState.value < 200) {
+        MaterialTheme.colorScheme.surface
+    } else { MaterialTheme.colorScheme.primary }
 
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
@@ -129,7 +135,7 @@ fun MainScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(150.dp))
 
             Text(
-                text = "Good Morning!",
+                text = "Hello There!",
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -231,7 +237,7 @@ fun MainScreen(navController: NavHostController) {
                 .background(topBarBackgroundColor)
                 .padding(
                     start = 16.dp,
-                    top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
+//                    top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
                     bottom = 12.dp
                 )
         ) {
