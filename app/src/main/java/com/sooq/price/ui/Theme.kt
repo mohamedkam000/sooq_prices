@@ -1,3 +1,5 @@
+package com.sooq.price.ui
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
