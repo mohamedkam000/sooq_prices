@@ -60,7 +60,7 @@ import androidx.compose.runtime.derivedStateOf
 
 @Composable
 fun Automotive() {
-        val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -113,7 +113,7 @@ fun Automotive() {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Button(
-//                        onClick = { navController.navigate("automotive") },
+                        onClick = { navController.navigate("main") },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Transparent
                         ),

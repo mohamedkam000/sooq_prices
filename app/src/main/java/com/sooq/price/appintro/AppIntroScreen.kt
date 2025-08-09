@@ -1,4 +1,4 @@
-package com.sooq.price.ui.appintro
+package com.sooq.price.appintro
 
 //import android.annotation.SuppressLint
 import android.content.Context

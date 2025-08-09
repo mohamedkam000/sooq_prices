@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
-import com.sooq.price.ui.appintro.AppIntroScreen
+import com.sooq.price.appintro.AppIntroScreen
 
 object AppIntroManager {
     private const val PREF_APP_INTRO = "app_prefs"
@@ -43,5 +43,13 @@ fun AppNavigation() {
         composable("automotive") { Automotive() }
         composable("food") { Food() }
         composable("beverage") { Beverage() }
+        composable("electronic") { Electronic() }
+        composable("construction") { Construction() }
+        composable("footwear") { Footwear() }
+        composable("cloth") { Cloth() }
+        composable("fuel") { Fuel() }
+        composable("furniture") { Furniture() }
+        composable("tool") { Tool() }
+//        composable("toy") { Toy() }
     }
 }
