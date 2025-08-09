@@ -166,12 +166,26 @@ fun MainScreen(navController: NavHostController) {
                             .height(250.dp)
                             .clip(MaterialTheme.shapes.medium)
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
+                        Box(modifier = Modifier.fillMaxSize()) {
+                            Image(
+                                painter = painterResource(id = R.drawable.car),
+                                contentDescription = "Automotive Image",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Color.Black.copy(alpha = 0.4f))
+                            )
+                            Text(
+                                text = "Automotive",
+                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .padding(16.dp)
+                            )
+                        }
                     }
                 }
     
