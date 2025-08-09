@@ -4,25 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.Typography
+import androidx.compose.material3.Shapes
 import com.sooq.price.ui.navigation.AppNavigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
-            window.statusBarColor = android.graphics.Color.TRANSPARENT
-            window.navigationBarColor = android.graphics.Color.TRANSPARENT
-            val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
-        
-            val isDarkTheme = (resources.configuration.uiMode and
-                    android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
-
-            windowInsetsController.isAppearanceLightStatusBars = !isDarkTheme
-            windowInsetsController.isAppearanceLightNavigationBars = true
-
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
         setContent {
-            AppNavigation()
+            MaterialTheme(
+                colorScheme = lightColorScheme(),
+                typography = Typography,
+                shapes = Shapes()
+            ) {
+                AppNavigation()
+            }
         }
     }
 }
