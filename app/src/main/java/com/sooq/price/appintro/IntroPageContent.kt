@@ -61,7 +61,6 @@ fun IntroPageContent(
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
-        // If custom content is provided, use it instead of the default layout
         if (page.customContent != null) {
             AnimatedVisibility(
                 visibleState = contentVisible,
@@ -76,24 +75,22 @@ fun IntroPageContent(
                 }
             }
         } else {
-            // Default layout
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 80.dp) // Extra padding for bottom navigation
+                    .padding(bottom = 80.dp)
             ) {
-                // Icon with optimized animation - use a more performant animation spec
                 AnimatedVisibility(
                     visibleState = contentVisible,
                     enter = fadeIn(animationSpec = tween(300)) +
                             scaleIn(
                                 animationSpec = spring(
                                     dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow // Lower stiffness for smoother animation
+                                    stiffness = Spring.StiffnessLow
                                 ),
-                                initialScale = 0.8f // Start closer to final size
+                                initialScale = 0.8f
                             ),
                     exit = fadeOut(animationSpec = tween(200))
                 ) {
@@ -104,7 +101,7 @@ fun IntroPageContent(
                         ) {
                             page.illustration.invoke()
                         }
-                    } else if (page.icon != null) {
+/*                    } else if (page.icon != null) {
                         Surface(
                             modifier = Modifier
                                 .size(140.dp)
@@ -122,13 +119,11 @@ fun IntroPageContent(
                                     .padding(32.dp)
                                     .size(76.dp)
                             )
-                        }
-                    }
+                        }*/
+                    } else { null }
                 }
 
                 Spacer(modifier = Modifier.height(40.dp))
-
-                // Title with sequential animation - slightly delayed
                 AnimatedVisibility(
                     visibleState = contentVisible,
                     enter = fadeIn(animationSpec = tween(300, delayMillis = 100)) +
@@ -137,7 +132,7 @@ fun IntroPageContent(
                                     dampingRatio = Spring.DampingRatioMediumBouncy,
                                     stiffness = Spring.StiffnessLow
                                 ),
-                                initialOffsetY = { it / 3 } // Smaller initial offset for smoother animation
+                                initialOffsetY = { it / 3 }
                             ),
                     exit = fadeOut(animationSpec = tween(200))
                 ) {
@@ -152,8 +147,6 @@ fun IntroPageContent(
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
-
-                // Description with the most delayed animation
                 AnimatedVisibility(
                     visibleState = contentVisible,
                     enter = fadeIn(animationSpec = tween(300, delayMillis = 200)) +
@@ -162,7 +155,7 @@ fun IntroPageContent(
                                     dampingRatio = Spring.DampingRatioMediumBouncy,
                                     stiffness = Spring.StiffnessLow
                                 ),
-                                initialOffsetY = { it / 4 } // Even smaller initial offset
+                                initialOffsetY = { it / 4 }
                             ),
                     exit = fadeOut(animationSpec = tween(150))
                 ) {

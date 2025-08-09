@@ -54,9 +54,9 @@ import androidx.compose.ui.unit.sp
 //import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.core.net.toUri
 import androidx.navigation.NavController
-import com.sooq.appintro.AppIntro
+import com.sooq.price.appintro.AppIntro
 //import com.sooq.appintro.IntroPage
-import com.sooq.price.ui.navigation.Navigation
+import com.sooq.price.ui.navigation.*
 
 //import dev.muhammad.applock.core.navigation.Screen
 //import dev.muhammad.applock.core.utils.appLockRepository
@@ -379,7 +379,7 @@ fun AppIntroScreen(navController: NavController) {
 //        icon = Icons.Default.Lock,
         backgroundColor = Color(0xFF0047AB),
         contentColor = Color.White,
-        onNext = { allPermissionsGranted }
+        onNext = { true }
 /*        onNext = {
             overlayPermissionGranted = Settings.canDrawOverlays(context)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
