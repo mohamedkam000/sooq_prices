@@ -40,7 +40,7 @@ fun AppNavigation() {
     NavHost(navController = navController, startDestination = startDestination) {
         composable("intro") { AppIntroScreen(navController) }
         composable("main") { MainScreen(navController) }
-        composable("automotive") { Automotive() }
+        composable("automotive") { Automotive(navController) }
 /*        composable("food") { Food() }
         composable("beverage") { Beverage() }
         composable("electronic") { Electronic() }
