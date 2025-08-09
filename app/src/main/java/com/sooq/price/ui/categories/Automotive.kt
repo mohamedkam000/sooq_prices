@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
-import com.sooq.price.ui.navigation.*
+import com.sooq.price.ui.navigation.AppNavigation
 
 // Material 3
 import androidx.compose.material3.*
@@ -60,7 +60,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Automotive(navController: NavController) {
+fun Automotive(navController: navController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
