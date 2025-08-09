@@ -84,7 +84,7 @@ fun MainScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(WindowInsets.systemBars.asPaddingValues())
+//            .padding(WindowInsets.systemBars.asPaddingValues())
             .background(backgroundColor)
     ) {
         Column(
