@@ -19,11 +19,11 @@ import androidx.navigation.compose.composable
 // Compose UI
 import androidx.compose.ui.*
 //import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.graphics.luminance
-import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.graphics.toArgb
+//import androidx.compose.ui.graphics.luminance
+//import androidx.compose.ui.graphics.lerp
+//import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.*
 //import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.Font
+//import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.*
 //import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.res.stringResource
@@ -49,15 +49,15 @@ import androidx.compose.foundation.layout.*
 
 // Compose animation
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
+//import androidx.compose.animation.core.animateDpAsState
+//import androidx.compose.animation.core.tween
 
 // Compose runtime
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.*
+//import androidx.compose.runtime.Composable
+//import androidx.compose.runtime.SideEffect
+//import androidx.compose.runtime.derivedStateOf
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -65,7 +65,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val context = LocalContext.current
+/*    val context = LocalContext.current
     val useDarkTheme = isSystemInDarkTheme()
     val colorScheme = if (useDarkTheme) {
         dynamicDarkColorScheme(context)
@@ -73,7 +73,8 @@ fun MainScreen(navController: NavHostController) {
         dynamicLightColorScheme(context)
     }
 
-    val backgroundColor = colorScheme.background
+    val backgroundColor = colorScheme.background*/
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp

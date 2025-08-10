@@ -19,8 +19,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+//        window.statusBarColor = android.graphics.Color.TRANSPARENT
+//        window.navigationBarColor = android.graphics.Color.TRANSPARENT
 //        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
 //        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
         setContent {
