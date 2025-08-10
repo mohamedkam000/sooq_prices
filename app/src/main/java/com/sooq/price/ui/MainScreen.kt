@@ -55,7 +55,8 @@ import androidx.compose.animation.core.*
 
 // Compose runtime
 import androidx.compose.runtime.*
-import com.sooq.price.ui.settings
+import com.sooq.price.ui.settings.*
+
 //import androidx.compose.material3.icons.Icons
 //import androidx.compose.material3.icons.filled.Person
 //import androidx.compose.ui.graphics.vector.ImageVector
