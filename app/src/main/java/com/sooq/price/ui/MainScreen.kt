@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.toArgb
@@ -37,14 +38,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.res.stringResource
 
 // Compose foundation
-import androidx.compose.foundation.Image
+//import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
+//import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.isSystemInDarkTheme
+//import androidx.compose.foundation.verticalScroll
+//import androidx.compose.foundation.rememberScrollState
+//import androidx.compose.foundation.isSystemInDarkTheme
 
 // Compose animation
 import androidx.compose.animation.animateColorAsState
@@ -64,7 +65,15 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.background
+    val context = LocalContext.current
+    val useDarkTheme = isSystemInDarkTheme()
+    val colorScheme = if (useDarkTheme) {
+        dynamicDarkColorScheme(context)
+    } else {
+        dynamicLightColorScheme(context)
+    }
+
+    val backgroundColor = colorScheme.background
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -84,7 +93,6 @@ fun MainScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-//            .padding(WindowInsets.systemBars.asPaddingValues())
             .background(backgroundColor)
     ) {
         Column(
@@ -100,7 +108,6 @@ fun MainScreen(navController: NavHostController) {
                 text = "Hello There!",
                 fontSize = animatedFontSize,
                 fontWeight = FontWeight.Bold,
-//                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = animatedTopPadding)
             )
