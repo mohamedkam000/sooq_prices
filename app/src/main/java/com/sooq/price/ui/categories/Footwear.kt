@@ -82,7 +82,7 @@ fun Footwear(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(WindowInsets.systemBars.asPaddingValues())
-            .background(backgroundColor)
+//            .background(backgroundColor)
     ) {
         Column(
             modifier = Modifier
@@ -254,7 +254,7 @@ fun Footwear(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .background(backgroundColor)
+//                .background(backgroundColor)
                 .padding(
                     start = 16.dp,
                     bottom = 12.dp

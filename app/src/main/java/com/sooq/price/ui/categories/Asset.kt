@@ -51,7 +51,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Construction(navController: NavHostController) {
+fun Asset(navController: NavHostController) {
 /*    val context = LocalContext.current
     val useDarkTheme = isSystemInDarkTheme()
     val colorScheme = if (useDarkTheme) {
@@ -123,7 +123,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -146,7 +146,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -169,7 +169,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -192,7 +192,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -215,7 +215,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -238,7 +238,7 @@ fun Construction(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.construction),
+                            painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()

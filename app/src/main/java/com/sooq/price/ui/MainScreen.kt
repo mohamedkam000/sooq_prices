@@ -166,7 +166,7 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Card(
-                        onClick = { navController.navigate("automotive") },
+                        onClick = { navController.navigate("cloth") },
                         modifier = Modifier
                             .weight(1f)
                             .height(150.dp)
@@ -174,15 +174,15 @@ fun MainScreen(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
+                            painter = painterResource(id = R.drawable.cloth),
+                            contentDescription = "Cloth Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
                     }
 
                     Card(
-                        onClick = { navController.navigate("beverage") },
+                        onClick = { navController.navigate("footwear") },
                         modifier = Modifier
                             .weight(1f)
                             .height(150.dp)
@@ -190,8 +190,8 @@ fun MainScreen(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
+                            painter = painterResource(id = R.drawable.footwear),
+                            contentDescription = "Footwear Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -205,7 +205,7 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Card(
-                        onClick = { navController.navigate("automotive") },
+                        onClick = { navController.navigate("construction") },
                         modifier = Modifier
                             .weight(1f)
                             .height(150.dp)
@@ -213,8 +213,8 @@ fun MainScreen(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
+                            painter = painterResource(id = R.drawable.construction),
+                            contentDescription = "Construction Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )

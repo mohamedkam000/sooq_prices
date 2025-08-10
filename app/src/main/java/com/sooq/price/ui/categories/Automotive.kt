@@ -82,7 +82,7 @@ fun Automotive(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(WindowInsets.systemBars.asPaddingValues())
-            .background(backgroundColor)
+//            .background(backgroundColor)
     ) {
         Column(
             modifier = Modifier
