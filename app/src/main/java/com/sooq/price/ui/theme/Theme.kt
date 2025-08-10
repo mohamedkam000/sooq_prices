@@ -15,7 +15,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import com.sooq.price.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = PRIMARY,
