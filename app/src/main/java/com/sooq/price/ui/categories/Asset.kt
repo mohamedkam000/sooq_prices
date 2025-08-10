@@ -60,7 +60,7 @@ fun Asset(navController: NavHostController) {
         dynamicLightColorScheme(context)
     }*/
 
-//    val backgroundColor = colorScheme.background
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -82,7 +82,7 @@ fun Asset(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(WindowInsets.systemBars.asPaddingValues())
-//            .background(backgroundColor)
+            .background(backgroundColor)
     ) {
         Column(
             modifier = Modifier
@@ -254,7 +254,7 @@ fun Asset(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-//                .background(backgroundColor)
+                .background(backgroundColor)
                 .padding(
                     start = 16.dp,
                     bottom = 12.dp

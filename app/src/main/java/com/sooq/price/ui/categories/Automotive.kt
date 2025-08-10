@@ -60,7 +60,7 @@ fun Automotive(navController: NavHostController) {
         dynamicLightColorScheme(context)
     }*/
 
-    val backgroundColor = colorScheme.background
+    val backgroundColor = MaterialTheme.colorScheme.background
 
     val scrollState = rememberScrollState()
     val maxFontSize = 34.sp
@@ -82,7 +82,7 @@ fun Automotive(navController: NavHostController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(WindowInsets.systemBars.asPaddingValues())
-//            .background(backgroundColor)
+            .background(backgroundColor)
     ) {
         Column(
             modifier = Modifier
