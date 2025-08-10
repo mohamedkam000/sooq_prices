@@ -53,11 +53,10 @@ fun MainScreen(navController: NavHostController) {
 
     val density = LocalDensity.current
 
-    // Constants from your layout for height calculation
     val spacer150DpPx = with(density) { 150.dp.toPx() }
     val spacer48DpPx = with(density) { 48.dp.toPx() }
     val cardHeightPx = with(density) { 150.dp.toPx() }
-    val rowSpacingPx = spacer48DpPx // space between rows
+    val rowSpacingPx = spacer48DpPx
 
     // Calculate offsets for categories manually:
     // Category "Automotive" starts after:
@@ -90,7 +89,6 @@ fun MainScreen(navController: NavHostController) {
     val currentCategoryIndex = categories.indexOfLast { scrollY >= it.start }.coerceAtLeast(0)
     val nextCategoryIndex = (currentCategoryIndex + 1).coerceAtMost(categories.size - 1)
 
-    // Calculate fade progress between current and next category
     val currentCategory = categories[currentCategoryIndex]
     val nextCategory = categories[nextCategoryIndex]
 
@@ -221,6 +219,88 @@ fun MainScreen(navController: NavHostController) {
             }
 
             Spacer(modifier = Modifier.height(48.dp))
+            
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Card(
+                    onClick = { navController.navigate("automotive") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(150.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.car),
+                        contentDescription = "Automotive Image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                Card(
+                    onClick = { navController.navigate("beverage") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(150.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.beverage),
+                        contentDescription = "Beverage Image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            // Category: Clothing
+            Text(
+                text = "Clothing",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(vertical = 16.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Card(
+                    onClick = { navController.navigate("cloth") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(150.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.cloth),
+                        contentDescription = "Cloth Image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                Card(
+                    onClick = { navController.navigate("footwear") },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(150.dp)
+                        .clip(MaterialTheme.shapes.medium),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.footwear),
+                        contentDescription = "Footwear Image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
         }
 
         // Sticky header with crossfade
