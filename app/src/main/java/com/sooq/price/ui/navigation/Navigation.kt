@@ -60,6 +60,7 @@ fun AppNavigation() {
         composable("construction") { Construction(navController) }
         composable("footwear") { Footwear(navController) }
         composable("cloth") { Cloth(navController) }
+        composable("settings") { Settings() }
 /*        composable("fuel") { Fuel() }
         composable("furniture") { Furniture() }
         composable("tool") { Tool() }
