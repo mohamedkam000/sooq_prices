@@ -52,13 +52,13 @@ import androidx.compose.runtime.derivedStateOf
 
 @Composable
 fun Beverage(navController: NavHostController) {
-    val context = LocalContext.current
+/*    val context = LocalContext.current
     val useDarkTheme = isSystemInDarkTheme()
     val colorScheme = if (useDarkTheme) {
         dynamicDarkColorScheme(context)
     } else {
         dynamicLightColorScheme(context)
-    }
+    }*/
 
     val backgroundColor = colorScheme.background
 

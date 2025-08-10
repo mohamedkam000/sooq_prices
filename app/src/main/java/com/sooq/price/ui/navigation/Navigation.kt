@@ -43,11 +43,11 @@ fun AppNavigation() {
         composable("automotive") { Automotive(navController) }
 //        composable("food") { Food() }
         composable("beverage") { Beverage(navController) }
-/*        composable("electronic") { Electronic() }
-        composable("construction") { Construction() }
-        composable("footwear") { Footwear() }
-        composable("cloth") { Cloth() }
-        composable("fuel") { Fuel() }
+//        composable("electronic") { Electronic() }
+        composable("construction") { Construction(navController) }
+        composable("footwear") { Footwear(navController) }
+        composable("cloth") { Cloth(navController) }
+/*        composable("fuel") { Fuel() }
         composable("furniture") { Furniture() }
         composable("tool") { Tool() }
         composable("toy") { Toy() }*/

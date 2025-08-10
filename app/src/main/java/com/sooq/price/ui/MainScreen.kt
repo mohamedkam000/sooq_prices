@@ -102,7 +102,7 @@ fun MainScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(horizontal = 16.dp)
-//                .padding(WindowInsets.statusBars.asPaddingValues())
+                .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
             Spacer(modifier = Modifier.height(150.dp))
 
