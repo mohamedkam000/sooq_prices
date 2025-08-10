@@ -13,20 +13,31 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.*
 
 @Composable
 fun SettingsIconButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    Icon(
-        imageVector = Icons.Filled.Person,
-        contentDescription = "Profile",
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+
+    Box(
         modifier = modifier
             .size(48.dp)
             .clip(CircleShape)
             .clickable(onClick = onClick)
             .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape),
-        tint = MaterialTheme.colorScheme.onSurfaceVariant
-    )
+        contentAlignment = Alignment.Center
+    ) {
+        LottieAnimation(
+            composition = composition,
+            progress = { progress },
+            modifier = Modifier.size(32.dp)
+        )
+    }
 }

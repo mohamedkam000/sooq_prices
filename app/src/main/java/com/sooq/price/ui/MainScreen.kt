@@ -94,7 +94,6 @@ fun MainScreen(navController: NavHostController) {
                 .align(Alignment.TopEnd)
                 .padding(16.dp),
             onClick = {
-                // TODO: toggle bubble or navigate to profile screen
             }
         )
         Column(
@@ -102,6 +101,7 @@ fun MainScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(horizontal = 16.dp)
+                .padding(WindowInsets.navigationBars.asPaddingValues())
                 .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
             Spacer(modifier = Modifier.height(150.dp))
@@ -445,6 +445,7 @@ fun MainScreen(navController: NavHostController) {
                     start = 16.dp,
                     bottom = 12.dp
                 )
+                .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
             Text(
                 text = "Good Morning!",
