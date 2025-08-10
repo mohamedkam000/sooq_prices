@@ -1,5 +1,7 @@
 package com.sooq.price
 
+import android.os.Build
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,7 +9,7 @@ import androidx.activity.enableEdgeToEdge
 
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.compose.material3.Typography
+/*import androidx.compose.material3.Typography
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -15,7 +17,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.isSystemInDarkTheme
-import com.sooq.price.ui.navigation.AppNavigation
+import com.sooq.price.ui.navigation.AppNavigation*/
 import com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
@@ -33,24 +35,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-/*@Composable
-fun SooqTheme(
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val context = LocalContext.current
-
-    val colors = if (useDarkTheme) {
-        dynamicDarkColorScheme(context)
-    } else {
-        dynamicLightColorScheme(context)
-    }
-
-    MaterialTheme(
-        colorScheme = colors,
-        typography = Typography(),
-        shapes = Shapes(),
-        content = content
-    )
-}*/

@@ -128,14 +128,30 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
