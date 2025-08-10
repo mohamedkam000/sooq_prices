@@ -55,10 +55,10 @@ import androidx.compose.animation.core.*
 
 // Compose runtime
 import androidx.compose.runtime.*
-import com.sooq.price.ui.settings.*
-import androidx.compose.material3.icons.Icons
-import androidx.compose.material3.icons.filled.Person
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.sooq.price.ui.settings
+//import androidx.compose.material3.icons.Icons
+//import androidx.compose.material3.icons.filled.Person
+//import androidx.compose.ui.graphics.vector.ImageVector
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -88,7 +88,7 @@ fun MainScreen(navController: NavHostController) {
             .fillMaxSize()
             .background(backgroundColor)
     ) {
-        ProfileIconButton(
+        SettingsIconButton(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp),

@@ -1,8 +1,8 @@
 package com.sooq.price.ui.settings
 
-import androidx.compose.material3.Icon
-import androidx.compose.material3.icons.Icons
-import androidx.compose.material3.icons.filled.Person
+import androidx.compose.material3.*
+import androidx.compose.material3.icons.*
+import androidx.compose.material3.icons.filled.*
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ProfileIconButton(
+fun SettingsIconButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
