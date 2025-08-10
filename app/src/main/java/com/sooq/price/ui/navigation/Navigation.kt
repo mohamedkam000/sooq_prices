@@ -7,6 +7,7 @@ import androidx.compose.animation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.animation.core.*
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
@@ -26,7 +27,10 @@ object AppIntroManager {
         sharedPrefs.edit { putBoolean(PREF_INTRO_SHOWN, true) }
     }
 }
-
+@OptIn(
+    ExperimentalMaterial3ExpressiveApi::class,
+    ExperimentalMaterial3Api::class
+)
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
