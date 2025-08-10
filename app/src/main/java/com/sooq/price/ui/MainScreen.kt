@@ -281,26 +281,7 @@ fun MainScreen(navController: NavHostController) {
                 }
     
                 Spacer(modifier = Modifier.height(48.dp))
-                
-                Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -369,7 +350,7 @@ fun MainScreen(navController: NavHostController) {
                 }
     
                 Spacer(modifier = Modifier.height(48.dp))
-                }
+//                }
             }
         }
 
