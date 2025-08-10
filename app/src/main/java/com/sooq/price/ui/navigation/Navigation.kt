@@ -42,7 +42,7 @@ fun AppNavigation() {
         composable("main") { MainScreen(navController) }
         composable("automotive") { Automotive(navController) }
 //        composable("food") { Food() }
-        composable("beverage") { Beverage() }
+        composable("beverage") { Beverage(navController) }
 /*        composable("electronic") { Electronic() }
         composable("construction") { Construction() }
         composable("footwear") { Footwear() }

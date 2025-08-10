@@ -16,8 +16,8 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.foundation.isSystemInDarkTheme
-import com.sooq.price.ui.navigation.AppNavigation*/
+import androidx.compose.foundation.isSystemInDarkTheme*/
+import com.sooq.price.ui.navigation.AppNavigation
 import com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
