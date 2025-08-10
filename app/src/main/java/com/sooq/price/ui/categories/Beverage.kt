@@ -51,7 +51,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
 @Composable
-fun Automotive(navController: NavHostController) {
+fun Beverage(navController: NavHostController) {
     val context = LocalContext.current
     val useDarkTheme = isSystemInDarkTheme()
     val colorScheme = if (useDarkTheme) {
