@@ -21,8 +21,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = android.graphics.Color.TRANSPARENT
         window.navigationBarColor = android.graphics.Color.TRANSPARENT
-        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
-        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
+//        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+//        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
         setContent {
             SooqTheme() {
                 AppNavigation()
