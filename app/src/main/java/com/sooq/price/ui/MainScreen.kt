@@ -9,6 +9,8 @@ import com.sooq.price.R
 
 // Material 3
 import androidx.compose.material3.*
+import androidx.compose.material.icons.*
+import androidx.compose.material.icons.filled.*
 
 // Navigation
 import androidx.navigation.compose.rememberNavController
@@ -18,48 +20,29 @@ import androidx.navigation.compose.composable
 
 // Compose UI
 import androidx.compose.ui.*
-//import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalContext
-//import androidx.compose.ui.graphics.luminance
-//import androidx.compose.ui.graphics.lerp
-//import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.*
-//import androidx.compose.ui.unit.dp
-//import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
-//import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.*
-//import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.res.stringResource
 
 // Compose foundation
-//import androidx.compose.foundation.Image
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.*
-//import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.verticalScroll
-//import androidx.compose.foundation.rememberScrollState
-//import androidx.compose.foundation.isSystemInDarkTheme
 
 // Compose animation
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-//import androidx.compose.animation.core.animateDpAsState
-//import androidx.compose.animation.core.tween
 
 // Compose runtime
 import androidx.compose.runtime.*
 import com.sooq.price.ui.settings.*
-
-//import androidx.compose.material3.icons.Icons
-//import androidx.compose.material3.icons.filled.Person
-//import androidx.compose.ui.graphics.vector.ImageVector
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -84,373 +67,109 @@ fun MainScreen(navController: NavHostController) {
     val animatedTopPadding = lerp(maxTopPadding, minTopPadding, collapseFraction)
     val titleAlpha by animateFloatAsState(targetValue = collapseFraction)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(backgroundColor)
-    ) {
-        SettingsIconButton(
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(16.dp),
-            onClick = {
-                // TODO: toggle bubble or navigate to profile screen
-            }
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(horizontal = 16.dp)
-                .padding(WindowInsets.statusBars.asPaddingValues())
-        ) {
-            Spacer(modifier = Modifier.height(150.dp))
-
-            Text(
-                text = "Hello There!",
-                fontSize = animatedFontSize,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = animatedTopPadding)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        "Good Morning!",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = titleAlpha)
+                    )
+                },
+                backgroundColor = backgroundColor,
+                actions = {
+                    IconButton(onClick = { navController.navigate("settings") }) {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                },
+                modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues())
             )
-
-            Spacer(modifier = Modifier.height(100.dp))
-            
-            Column(
+        },
+        content = { innerPadding ->
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .fillMaxSize()
+                    .background(backgroundColor)
+                    .padding(innerPadding)
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 16.dp)
                 ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
+                    Spacer(modifier = Modifier.height(spacerHeight))
 
-                    Card(
-                        onClick = { navController.navigate("beverage") },
+                    Text(
+                        text = "Hello There!",
+                        fontSize = animatedFontSize,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = animatedTopPadding)
+                    )
+
+                    Spacer(modifier = Modifier.height(100.dp))
+
+                    Column(
                         modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
+                        Text(
+                            text = "Hello There!",
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = animatedTopPadding)
                         )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("automotive") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.car),
+                                    contentDescription = "Automotive Image",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("beverage") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.beverage),
+                                    contentDescription = "Beverage Image",
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(48.dp))
                     }
                 }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("cloth") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.cloth),
-                            contentDescription = "Cloth Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("footwear") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.footwear),
-                            contentDescription = "Footwear Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("construction") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.construction),
-                            contentDescription = "Construction Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-
-                    Card(
-                        onClick = { navController.navigate("beverage") },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(150.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.beverage),
-                            contentDescription = "Beverage Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
             }
         }
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .background(backgroundColor)
-                .padding(start = 16.dp)
-                .padding(WindowInsets.statusBars.asPaddingValues()),
-        ) {
-            Text(
-                text = "Good Morning!",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = titleAlpha),
-                modifier = Modifier.align(Alignment.CenterStart)
-            )
-        }
-    }
+    )
 }

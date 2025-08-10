@@ -3,6 +3,7 @@ package com.sooq.price.ui.navigation
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.animation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -37,7 +38,18 @@ fun AppNavigation() {
         "main"
     }
 
-    NavHost(navController = navController, startDestination = startDestination) {
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+        enterTransition = {
+            fadeIn(animationSpec = tween(duration)) +
+                    scaleIn(initialScale = 0.9f, animationSpec = tween(duration))
+        },
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(duration)) +
+                    scaleIn(initialScale = 0.9f, animationSpec = tween(duration))
+        },
+    ) {
         composable("intro") { AppIntroScreen(navController) }
         composable("main") { MainScreen(navController) }
         composable("automotive") { Automotive(navController) }
