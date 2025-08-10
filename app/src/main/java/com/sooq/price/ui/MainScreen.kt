@@ -101,7 +101,7 @@ fun MainScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(horizontal = 16.dp)
-                .padding(WindowInsets.statusBars.asPaddingValues())
+//                .padding(WindowInsets.statusBars.asPaddingValues())
         ) {
             Spacer(modifier = Modifier.height(150.dp))
 
@@ -149,7 +149,7 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Card(
-                        onClick = { navController.navigate("automotive") },
+                        onClick = { navController.navigate("beverage") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
@@ -157,8 +157,8 @@ fun MainScreen(navController: NavHostController) {
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
