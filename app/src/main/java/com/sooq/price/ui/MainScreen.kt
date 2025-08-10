@@ -369,6 +369,7 @@ fun MainScreen(navController: NavHostController) {
                 }
     
                 Spacer(modifier = Modifier.height(48.dp))
+                }
             }
         }
 
