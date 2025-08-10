@@ -78,7 +78,7 @@ fun MainScreen(navController: NavHostController) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = titleAlpha)
                     )
                 },
-                backgroundColor = backgroundColor,
+                backgroundColor = MaterialTheme.colorScheme.background,
                 actions = {
                     IconButton(onClick = { navController.navigate("settings") }) {
                         Icon(
