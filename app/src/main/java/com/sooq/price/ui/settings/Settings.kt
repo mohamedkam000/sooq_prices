@@ -1,5 +1,6 @@
 package com.sooq.price.ui.settings
 
+import com.sooq.price.R
 import androidx.compose.material3.*
 import androidx.compose.material.icons.*
 import androidx.compose.material.icons.filled.*
