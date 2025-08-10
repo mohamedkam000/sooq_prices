@@ -14,15 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.isSystemInDarkTheme
 import com.sooq.price.ui.navigation.AppNavigation
+package com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-//        window.statusBarColor = android.graphics.Color.TRANSPARENT
-//        window.navigationBarColor = android.graphics.Color.TRANSPARENT
-//        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
-//        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
+        enableEdgeToEdge()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
+
         setContent {
             SooqTheme() {
                 AppNavigation()
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
+/*@Composable
 fun SooqTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
@@ -50,4 +51,4 @@ fun SooqTheme(
         shapes = Shapes(),
         content = content
     )
-}
+}*/

@@ -368,8 +368,8 @@ fun MainScreen(navController: NavHostController) {
                 text = "Good Morning!",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-//                color = Color.White.copy(alpha = titleAlpha),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = Color.White.copy(alpha = titleAlpha),
+//                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.align(Alignment.CenterStart)
             )
         }
