@@ -166,10 +166,26 @@ fun MainScreen(navController: NavHostController) {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Card(
+                        onClick = { navController.navigate("automotive") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.car),
+                            contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
                         onClick = { navController.navigate("beverage") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
@@ -191,14 +207,30 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -214,14 +246,30 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -237,8 +285,8 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
@@ -249,48 +297,18 @@ fun MainScreen(navController: NavHostController) {
                             modifier = Modifier.fillMaxSize()
                         )
                     }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
+
                     Card(
-                        onClick = { navController.navigate("automotive") },
+                        onClick = { navController.navigate("beverage") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-    
-                Spacer(modifier = Modifier.height(48.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Card(
-                        onClick = { navController.navigate("automotive") },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
-                            .clip(MaterialTheme.shapes.medium),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.car),
-                            contentDescription = "Automotive Image",
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -306,14 +324,30 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -329,14 +363,30 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.car),
                             contentDescription = "Automotive Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -352,8 +402,8 @@ fun MainScreen(navController: NavHostController) {
                     Card(
                         onClick = { navController.navigate("automotive") },
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .weight(1f)
+                            .height(150.dp)
                             .clip(MaterialTheme.shapes.medium),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
@@ -364,10 +414,25 @@ fun MainScreen(navController: NavHostController) {
                             modifier = Modifier.fillMaxSize()
                         )
                     }
+
+                    Card(
+                        onClick = { navController.navigate("beverage") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(150.dp)
+                            .clip(MaterialTheme.shapes.medium),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.beverage),
+                            contentDescription = "Beverage Image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
                 }
     
                 Spacer(modifier = Modifier.height(48.dp))
-//                }
             }
         }
 
@@ -385,8 +450,7 @@ fun MainScreen(navController: NavHostController) {
                 text = "Good Morning!",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White.copy(alpha = titleAlpha),
-//                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = titleAlpha),
                 modifier = Modifier.align(Alignment.CenterStart)
             )
         }
