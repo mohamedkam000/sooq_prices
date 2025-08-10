@@ -55,9 +55,10 @@ import androidx.compose.animation.core.*
 
 // Compose runtime
 import androidx.compose.runtime.*
-//import androidx.compose.runtime.Composable
-//import androidx.compose.runtime.SideEffect
-//import androidx.compose.runtime.derivedStateOf
+import com.sooq.price.ui.settings.*
+import androidx.compose.material3.icons.Icons
+import androidx.compose.material3.icons.filled.Person
+import androidx.compose.ui.graphics.vector.ImageVector
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -65,15 +66,6 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
 
 @Composable
 fun MainScreen(navController: NavHostController) {
-/*    val context = LocalContext.current
-    val useDarkTheme = isSystemInDarkTheme()
-    val colorScheme = if (useDarkTheme) {
-        dynamicDarkColorScheme(context)
-    } else {
-        dynamicLightColorScheme(context)
-    }
-
-    val backgroundColor = colorScheme.background*/
     val backgroundColor = MaterialTheme.colorScheme.background
 
     val scrollState = rememberScrollState()
@@ -96,6 +88,14 @@ fun MainScreen(navController: NavHostController) {
             .fillMaxSize()
             .background(backgroundColor)
     ) {
+        ProfileIconButton(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(16.dp),
+            onClick = {
+                // TODO: toggle bubble or navigate to profile screen
+            }
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
