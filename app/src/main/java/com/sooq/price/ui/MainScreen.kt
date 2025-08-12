@@ -50,7 +50,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val backgroundColor = MaterialTheme.colorScheme.background
+    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp
@@ -77,7 +77,7 @@ fun MainScreen(navController: NavHostController) {
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background),
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
                         Icon(Icons.Default.Settings, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)

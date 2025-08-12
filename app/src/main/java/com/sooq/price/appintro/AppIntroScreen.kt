@@ -87,14 +87,14 @@ fun AppIntroScreen(navController: NavController) {
             title = "Welcome to Sooq Price!",
             description = "This is your new best app",
             icon = { GearLottieIcon() },
-            backgroundColor = Color(0xFF00C7CC),
+            backgroundColor = Color(0xFF007B7E),
             contentColor = Color.White,
             onNext = { true }
         ),
         IntroPage(
             title = "Test page",
             description = "This is a placeholder.",
-            backgroundColor = Color(0xFF00DFE5),
+            backgroundColor = Color(0xFF990000),
             contentColor = Color.White,
             onNext = { true }
         )
@@ -120,7 +120,7 @@ fun AppIntroScreen(navController: NavController) {
         },
         onFinish = onFinishCallback,
         showSkipButton = false,
-        useAnimatedPager = true,
+//        useAnimatedPager = true,
         nextButtonText = "Next",
         finishButtonText = "Get Started"
     )

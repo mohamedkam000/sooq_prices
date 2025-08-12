@@ -55,7 +55,7 @@ fun AppIntro(
     onSkip: () -> Unit = {},
     onFinish: () -> Unit,
     showSkipButton: Boolean = true,
-    useAnimatedPager: Boolean = true,
+//    useAnimatedPager: Boolean = true,
     nextButtonText: String = "Next",
     skipButtonText: String = "Skip",
     finishButtonText: String = "Get Started",
@@ -66,17 +66,17 @@ fun AppIntro(
     val colorScheme = MaterialTheme.colorScheme
     val currentPageColor = MaterialTheme.colorScheme.primary
 
-    val currentPageTextColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val currentPageTextColor = Color.White
 
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        if (useAnimatedPager) {
+//        if (useAnimatedPager) {
             AnimatedIntroPager(
                 pages = pages,
                 pagerState = pagerState
             )
-        } else {
+/*        } else {
             HorizontalPager(
                 state = pagerState,
                 modifier = Modifier.fillMaxSize()
@@ -87,7 +87,7 @@ fun AppIntro(
                     isVisible = page == pagerState.currentPage
                 )
             }
-        }
+        }*/
 
         Box(
             modifier = Modifier
