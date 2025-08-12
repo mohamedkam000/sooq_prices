@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import com.sooq.price.R
 
 // Material 3
@@ -48,7 +50,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.background
