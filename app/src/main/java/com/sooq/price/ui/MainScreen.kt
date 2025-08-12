@@ -81,7 +81,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.background),
                 actions = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Default.Settings, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Icon(Icons.Default.Settings, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             )
@@ -138,7 +138,7 @@ fun MainScreen(navController: NavHostController) {
                             ) {
                                 Image(
                                     painter = painterResource(id = R.drawable.footwear),
-//                                    contentDescription = "Automotive Image",
+                                    contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
                                 )
@@ -154,7 +154,7 @@ fun MainScreen(navController: NavHostController) {
                             ) {
                                 Image(
                                     painter = painterResource(id = R.drawable.footwear),
-//                                    contentDescription = "Beverage Image",
+                                    contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
                                 )
