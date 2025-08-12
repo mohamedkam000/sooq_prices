@@ -66,7 +66,7 @@ fun AppIntro(
     val colorScheme = MaterialTheme.colorScheme
     val currentPageColor = MaterialTheme.colorScheme.primary
 
-    val currentPageTextColor = MaterialTheme.colorScheme.onPrimary
+    val currentPageTextColor = MaterialTheme.colorScheme.onSurfaceVariant
 
     Box(
         modifier = Modifier.fillMaxSize()

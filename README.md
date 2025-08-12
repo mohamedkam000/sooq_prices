@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/sooq_price.png" alt="Sooq Price" width="600" />
+  <img src="app/sooq_price.png" width="600" />
 </div>
 
 <h1 align="center">Sooq Price</h1>
@@ -14,7 +14,6 @@ Sooq Price is a modern solution with modern design and simple user interface. Th
 
 - Material 3 Expressive design
 - Clean and responsive UI
-- No ads
 
 <b></b>
 

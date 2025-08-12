@@ -85,16 +85,16 @@ fun AppIntroScreen(navController: NavController) {
     val basicPages = listOf(
         IntroPage(
             title = "Welcome to Sooq Price!",
-            description = "This is your new best app.",
-            icon = { GearLottieIcon() },
-            backgroundColor = Color(0xFF00E13C),
+            description = "This is your new best app",
+            icon = GearLottieIcon(),
+            backgroundColor = Color(0xFF00C7CC),
             contentColor = Color.White,
             onNext = { true }
         ),
         IntroPage(
             title = "Test page",
             description = "This is a placeholder.",
-            backgroundColor = Color(0xFFFFA700),
+            backgroundColor = Color(0xFF00DFE5),
             contentColor = Color.White,
             onNext = { true }
         )

@@ -42,7 +42,6 @@ import androidx.compose.animation.core.*
 
 // Compose runtime
 import androidx.compose.runtime.*
-//import com.sooq.price.ui.settings.*
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -116,20 +115,51 @@ fun MainScreen(navController: NavHostController) {
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
                     ) {
-/*                        Text(
-                            text = "Hello There!",
-                            style = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(top = animatedTopPadding)
-                        )*/
-
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { /*navController.navigate("footwear")*/ },
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            Card(
+                                onClick = { navController.navigate("footwear") },
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(150.dp)
+                                    .clip(MaterialTheme.shapes.medium),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.footwear),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Card(
+                                onClick = { navController.navigate("footwear") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
