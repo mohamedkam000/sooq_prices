@@ -17,6 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.animation.core.*
 import androidx.core.content.edit
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
 import com.sooq.price.appintro.AppIntroScreen
@@ -59,7 +61,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    val duration = 300
+    val duration = 300.milliseconds
 
     val startDestination = if (AppIntroManager.shouldShowIntro(context)) {
         "intro"
