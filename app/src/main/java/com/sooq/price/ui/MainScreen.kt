@@ -5,8 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
 import com.sooq.price.R
 
 // Material 3
