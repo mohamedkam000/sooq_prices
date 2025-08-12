@@ -53,11 +53,13 @@ object AppIntroManager {
     }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalMaterial3Api::class)
+//@OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     val context = LocalContext.current
+
+    val duration = Duration.milliseconds(300)
 
     val startDestination = if (AppIntroManager.shouldShowIntro(context)) {
         "intro"
@@ -85,6 +87,6 @@ fun AppNavigation() {
         composable("construction") { Construction(navController) }
         composable("footwear") { Footwear(navController) }
         composable("cloth") { Cloth(navController) }
-        composable("settings") { Settings() }
+//        composable("settings") { Settings() }
     }
 }

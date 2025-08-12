@@ -48,6 +48,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.background
