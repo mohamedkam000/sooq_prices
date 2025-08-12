@@ -42,7 +42,7 @@ import androidx.compose.animation.core.*
 
 // Compose runtime
 import androidx.compose.runtime.*
-import com.sooq.price.ui.settings.*
+//import com.sooq.price.ui.settings.*
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
@@ -80,7 +80,7 @@ fun MainScreen(navController: NavHostController) {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background),
                 actions = {
-                    IconButton(onClick = { /* TODO settings */ }) {
+                    IconButton(onClick = {}) {
                         Icon(Icons.Default.Settings, contentDescription = "Settings", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
@@ -116,20 +116,20 @@ fun MainScreen(navController: NavHostController) {
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
                     ) {
-                        Text(
+/*                        Text(
                             text = "Hello There!",
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(top = animatedTopPadding)
-                        )
+                        )*/
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { navController.navigate("automotive") },
+                                onClick = { navController.navigate("footwear") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -137,15 +137,15 @@ fun MainScreen(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.car),
-                                    contentDescription = "Automotive Image",
+                                    painter = painterResource(id = R.drawable.footwear),
+//                                    contentDescription = "Automotive Image",
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
                                 )
                             }
 
                             Card(
-                                onClick = { navController.navigate("beverage") },
+                                onClick = { navController.navigate("footwear") },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -153,8 +153,8 @@ fun MainScreen(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.beverage),
-                                    contentDescription = "Beverage Image",
+                                    painter = painterResource(id = R.drawable.footwear),
+//                                    contentDescription = "Beverage Image",
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()
                                 )

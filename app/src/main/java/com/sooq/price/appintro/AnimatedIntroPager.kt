@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import kotlin.math.absoluteValue
-import com.sooq.price.appintro.*
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

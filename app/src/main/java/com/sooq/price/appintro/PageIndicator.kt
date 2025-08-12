@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+//import androidx.compose.foundation.shape.CircleShape
+//import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,19 +53,19 @@ fun PageIndicator(
 ) {
     val width by animateDpAsState(
         targetValue = if (isSelected) 28.dp else 10.dp,
-        animationSpec = tween(durationMillis = 300),
+        animationSpec = tween(durationMillis = 750),
         label = "indicator width"
     )
 
     val height by animateDpAsState(
-        targetValue = if (isSelected) 10.dp else 10.dp,
+        targetValue = 10.dp,
         animationSpec = tween(durationMillis = 300),
         label = "indicator height"
     )
 
     val color by animateColorAsState(
         targetValue = if (isSelected) activeColor else inactiveColor,
-        animationSpec = tween(durationMillis = 300),
+        animationSpec = tween(durationMillis = 500),
         label = "indicator color"
     )
 

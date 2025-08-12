@@ -35,7 +35,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.sooq.price.appintro.*
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -47,10 +46,8 @@ fun IntroPageContent(
     val backgroundColor = page.backgroundColor ?: MaterialTheme.colorScheme.primaryContainer
     val contentColor = page.contentColor ?: MaterialTheme.colorScheme.onPrimaryContainer
 
-    // Optimization: Use a single transition state instead of multiple
     val contentVisible = remember { MutableTransitionState(false) }
 
-    // Trigger animations when page becomes visible - simplified animation trigger
     LaunchedEffect(isVisible) {
         contentVisible.targetState = isVisible
     }
@@ -101,25 +98,6 @@ fun IntroPageContent(
                         ) {
                             page.illustration.invoke()
                         }
-/*                    } else if (page.icon != null) {
-                        Surface(
-                            modifier = Modifier
-                                .size(140.dp)
-                                .clip(CircleShape)
-                                .clickable(true) {},
-                            shape = CircleShape,
-                            color = contentColor.copy(alpha = 0.15f),
-
-                            ) {
-                            Icon(
-                                imageVector = page.icon,
-                                contentDescription = null,
-                                tint = contentColor,
-                                modifier = Modifier
-                                    .padding(32.dp)
-                                    .size(76.dp)
-                            )
-                        }*/
                     } else { null }
                 }
 

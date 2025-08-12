@@ -49,13 +49,23 @@ import com.sooq.price.AppIntroManager
 data class IntroPage(
     val title: String,
     val description: String,
-//    val icon: ImageVector? = null,
+    val icon: (@Composable () -> Unit)? = null,
     val backgroundColor: Color? = null,
     val contentColor: Color? = null,
     val illustration: (@Composable () -> Unit)? = null,
     val customContent: (@Composable () -> Unit)? = null,
     val onNext: (() -> Boolean)? = null
 )
+
+@Composable
+fun GearLottieIcon() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
+    LottieAnimation(
+        composition = composition,
+        iterations = LottieConstants.IterateForever,
+        modifier = Modifier.size(100.dp)
+    )
+}
 
 @Composable
 fun AppIntroScreen(navController: NavController) {
@@ -72,8 +82,8 @@ fun AppIntroScreen(navController: NavController) {
         IntroPage(
             title = "Welcome to Sooq Price!",
             description = "This is your new best app.",
-//            icon = Icons.Filled.Lock,
-            backgroundColor = Color(0xFF00A5FF),
+            icon = { GearLottieIcon() },
+            backgroundColor = Color(0xFF00E13C),
             contentColor = Color.White,
             onNext = { true }
         ),
@@ -89,7 +99,7 @@ fun AppIntroScreen(navController: NavController) {
     val finalPage = IntroPage(
         title = "Placeholder",
         description = "This is a second placeholder.",
-        backgroundColor = Color(0xFF0047AB),
+        backgroundColor = Color(0xFF00A5FF),
         contentColor = Color.White,
         onNext = { true }
     )
