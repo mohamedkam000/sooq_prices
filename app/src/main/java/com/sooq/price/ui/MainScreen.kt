@@ -81,7 +81,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.background),
                 actions = {
                     IconButton(onClick = {}) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Icon(Icons.Default.Settings, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
             )
@@ -129,7 +129,7 @@ fun MainScreen(navController: NavHostController) {
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { navController.navigate("footwear") },
+                                onClick = { /*navController.navigate("footwear")*/ },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
