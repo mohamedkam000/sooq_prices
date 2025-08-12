@@ -44,7 +44,9 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import com.sooq.price.appintro.AppIntro
 import com.sooq.price.AppIntroManager
-
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.airbnb.lottie.compose.LottieAnimation
 
 data class IntroPage(
     val title: String,

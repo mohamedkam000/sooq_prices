@@ -18,9 +18,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.animation.core.*
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
-import com.sooq.price.ui.categories
+import com.sooq.price.ui.categories.*
 import com.sooq.price.appintro.AppIntroScreen
-import com.sooq.price.ui.theme
+import com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
