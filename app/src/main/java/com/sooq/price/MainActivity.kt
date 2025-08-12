@@ -17,8 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.animation.core.*
 import androidx.core.content.edit
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
+//import kotlin.time.Duration
+//import kotlin.time.Duration.Companion.milliseconds
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
 import com.sooq.price.appintro.AppIntroScreen
@@ -61,8 +61,6 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    val duration = 300.milliseconds
-
     val startDestination = if (AppIntroManager.shouldShowIntro(context)) {
         "intro"
     } else {
@@ -73,12 +71,20 @@ fun AppNavigation() {
         navController = navController,
         startDestination = startDestination,
         enterTransition = {
-            fadeIn(animationSpec = tween(duration)) +
-                    scaleIn(initialScale = 0.9f, animationSpec = tween(duration))
+            fadeIn(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
+                    scaleIn(initialScale = 0.9f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
         popEnterTransition = {
-            fadeIn(animationSpec = tween(duration)) +
-                    scaleIn(initialScale = 0.9f, animationSpec = tween(duration))
+            fadeIn(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
+                    scaleIn(initialScale = 0.9f, animationSpec = tween(300, easing = FastOutSlowInEasing))
+        },
+        exitTransition = {
+            fadeOut(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
+                    scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
+        },
+        popExitTransition = {
+            fadeOut(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
+                    scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
     ) {
         composable("intro") { AppIntroScreen(navController) }
@@ -89,6 +95,5 @@ fun AppNavigation() {
         composable("construction") { Construction(navController) }
         composable("footwear") { Footwear(navController) }
         composable("cloth") { Cloth(navController) }
-//        composable("settings") { Settings() }
     }
 }
