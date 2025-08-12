@@ -72,23 +72,17 @@ fun MainScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        "Good Morning!",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = titleAlpha)
+                        "Market",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
-                backgroundColor = MaterialTheme.colorScheme.background,
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background),
                 actions = {
-                    IconButton(onClick = { navController.navigate("settings") }) {
-                        Icon(
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                    IconButton(onClick = { /* TODO settings */ }) {
+                        Icon(Icons.Default.Settings, contentDescription = "Settings", tint = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
-                },
-                modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues())
+                }
             )
         },
         content = { innerPadding ->
