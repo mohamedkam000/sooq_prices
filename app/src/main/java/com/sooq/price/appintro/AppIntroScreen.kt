@@ -86,7 +86,7 @@ fun AppIntroScreen(navController: NavController) {
         IntroPage(
             title = "Welcome to Sooq Price!",
             description = "This is your new best app",
-            icon = GearLottieIcon(),
+            icon = { GearLottieIcon() },
             backgroundColor = Color(0xFF00C7CC),
             contentColor = Color.White,
             onNext = { true }

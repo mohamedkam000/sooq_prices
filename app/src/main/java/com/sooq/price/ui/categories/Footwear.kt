@@ -50,6 +50,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Footwear(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.background
