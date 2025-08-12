@@ -72,6 +72,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha01")
 //    implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
     implementation("com.airbnb.android:lottie-compose:6.6.7")
-    implementation("com.airbnb.android:lottie:6.6.7")
+//    implementation("com.airbnb.android:lottie:6.6.7")
     implementation("com.github.spotbugs:spotbugs-annotations:4.9.3")
 }
