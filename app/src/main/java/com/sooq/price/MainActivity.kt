@@ -19,7 +19,7 @@ import androidx.compose.animation.core.*
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
-import com.sooq.price.appintro.AppIntroScreen
+//import com.sooq.price.appintro.AppIntroScreen
 import com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
@@ -38,17 +38,56 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun OnboardingPager(onFinish: () -> Unit) {
+    var page by remember { mutableStateOf(0) }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        when (page) {
+            0 -> OnboardingPage(title = "Welcome", subtitle = "Discover featured categories.")
+            1 -> OnboardingPage(title = "Browse", subtitle = "Beautiful photos.")
+            2 -> OnboardingPage(title = "Enjoy", subtitle = "Fast animations and expressive theming.")
+        }
+        Row(modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .padding(24.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            for (i in 0..2) {
+                val active = i == page
+                Box(modifier = Modifier
+                    .size(if (active) 16.dp else 10.dp)
+                    .background(MaterialTheme.colorScheme.background, shape = CircleShape)
+                    .clickable { page = i })
+            }
+            Spacer(Modifier.width(8.dp))
+            Button(onClick = {
+                if (page < 2) page++ else onFinish()
+            }) {
+                Text(if (page < 2) "Next" else "Start")
+            }
+        }
+    }
+}
+
+@Composable
+fun OnboardingPage(title: String, subtitle: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Spacer(Modifier.height(80.dp))
+        Text(title, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+        Spacer(Modifier.height(12.dp))
+        Text(subtitle)
+    }
+}
+
 object AppIntroManager {
-    private const val PREF_APP_INTRO = "app_prefs"
+    private const val PREF_INTRO = "app_prefs"
     private const val PREF_INTRO_SHOWN = "intro_shown"
 
     fun shouldShowIntro(context: Context): Boolean {
-        val sharedPrefs = context.getSharedPreferences(PREF_APP_INTRO, Context.MODE_PRIVATE)
+        val sharedPrefs = context.getSharedPreferences(PREF_INTRO, Context.MODE_PRIVATE)
         return !sharedPrefs.getBoolean(PREF_INTRO_SHOWN, false)
     }
 
     fun markIntroAsCompleted(context: Context) {
-        val sharedPrefs = context.getSharedPreferences(PREF_APP_INTRO, Context.MODE_PRIVATE)
+        val sharedPrefs = context.getSharedPreferences(PREF_INTRO, Context.MODE_PRIVATE)
         sharedPrefs.edit { putBoolean(PREF_INTRO_SHOWN, true) }
     }
 }
@@ -68,7 +107,7 @@ fun AppNavigation() {
         navController = navController,
         startDestination = startDestination,
         enterTransition = {
-            fadeIn(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
+            fadeIn(animationSpec = tween(750, easing = FastOutSlowInEasing)) +
                     scaleIn(initialScale = 0.9f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
         popEnterTransition = {
@@ -84,7 +123,7 @@ fun AppNavigation() {
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
     ) {
-        composable("intro") { AppIntroScreen(navController) }
+        composable("intro") { OnboardingPager(navController) }
         composable("main") { MainScreen(navController) }
         composable("footwear") { Footwear(navController) }
     }
