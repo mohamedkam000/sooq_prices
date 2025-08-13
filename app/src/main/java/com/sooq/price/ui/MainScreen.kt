@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
-import com.sooq.price.GearLottieIcon
+import com.sooq.price.appintro.GearLottieIcon
 
 // Material 3
 import androidx.compose.material3.*
