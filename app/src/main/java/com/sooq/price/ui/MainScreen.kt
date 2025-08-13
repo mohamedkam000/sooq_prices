@@ -81,7 +81,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
-                        GearLottieIcon(modifier = Modifier.size(24.dp))
+                        GearLottieIcon()
                     }
                 }
             )

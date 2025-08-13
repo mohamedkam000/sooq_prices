@@ -67,7 +67,7 @@ fun GearLottieIcon() {
     LottieAnimation(
         composition = composition,
         iterations = LottieConstants.IterateForever,
-        modifier = Modifier.size(100.dp)
+        modifier = Modifier.size(24.dp)
     )
 }
 
