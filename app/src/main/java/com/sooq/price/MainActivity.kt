@@ -65,7 +65,7 @@ fun OnboardingPager(onFinish: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         when (page) {
             0 -> OnboardingPage(title = "Welcome", subtitle = "Discover featured categories.")
-            1 -> OnboardingPage(title = "Browse", subtitle = "Beautiful photos.")
+            1 -> OnboardingPage(title = "Browse", subtitle = "As if you were in the market.")
             2 -> OnboardingPage(title = "Enjoy", subtitle = "Fast animations and expressive theming.")
         }
         Row(modifier = Modifier
