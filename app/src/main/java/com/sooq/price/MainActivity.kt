@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.*
 
 // Material
 import androidx.compose.material3.*
@@ -145,14 +146,7 @@ fun AppNavigation() {
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },*/
     ) {
-        composable("intro") {
-            OnboardingPager {
-                AppIntroManager.markIntroAsCompleted(LocalContext.current)
-                navController.navigate("main") {
-                    popUpTo("intro") { inclusive = true }
-                }
-            }
-        }
+        composable("intro") { MainScreen(navController) }
         composable("main") { MainScreen(navController) }
         composable("footwear") { Footwear(navController) }
     }
