@@ -5,22 +5,28 @@ import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+
+// Compose Foundation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+
+// Material
 import androidx.compose.material3.*
-import androidx.compose.material3.icons.Icons
-import androidx.compose.material3.icons.filled.Settings
+import androidx.compose.material.icons.*
+import androidx.compose.material.icons.filled.*
+
 import androidx.compose.runtime.*
+
+// Compose UI
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.example.marketexpressive.ui.theme.MarketExpressiveTheme
+import androidx.compose.ui.unit.*
+
+//import coil.compose.AsyncImage
 import kotlinx.coroutines.delay
 
 import androidx.activity.enableEdgeToEdge
@@ -34,7 +40,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.animation.core.*
 import androidx.core.content.edit
-import com.sooq.price.ui.MainScreen
+import com.sooq.price.ui.*
 import com.sooq.price.ui.categories.*
 import com.sooq.price.ui.theme.*
 
