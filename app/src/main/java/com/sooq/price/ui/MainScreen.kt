@@ -7,6 +7,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
+import com.airbnb.lottie.compose.*
 //import com.sooq.price.appintro.GearLottieIcon
 
 // Material 3
@@ -23,18 +24,16 @@ import androidx.navigation.compose.composable
 // Compose UI
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.*
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.*
-import androidx.compose.ui.res.stringResource
 
 // Compose foundation
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 
@@ -97,7 +96,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
-                        GearAnimation(modifier = Modifier.size(120.dp))
+                        GearAnimation(modifier = Modifier.size(32.dp))
                     }
                 }
             )

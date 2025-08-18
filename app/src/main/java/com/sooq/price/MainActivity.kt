@@ -128,7 +128,7 @@ fun AppNavigation() {
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        enterTransition = {
+/*        enterTransition = {
             fadeIn(animationSpec = tween(750, easing = FastOutSlowInEasing)) +
                     scaleIn(initialScale = 0.9f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
@@ -143,7 +143,7 @@ fun AppNavigation() {
         popExitTransition = {
             fadeOut(animationSpec = tween(300, easing = FastOutSlowInEasing)) +
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
-        },
+        },*/
     ) {
         composable("intro") {
             OnboardingPager {
