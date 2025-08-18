@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
-import com.sooq.price.theme.SooqTheme
-import com.sooq.price.appintro.GearLottieIcon
+import com.sooq.price.ui.theme.*
+//import com.sooq.price.appintro.GearLottieIcon
 
 // Material 3
 import androidx.compose.material3.*
@@ -49,6 +49,21 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
+@Composable
+fun GearAnimation(modifier: Modifier = Modifier) {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
+    val progress by animateLottieCompositionAsState(
+        composition,
+        iterations = LottieConstants.IterateForever
+    )
+
+    LottieAnimation(
+        composition = composition,
+        progress = progress,
+        modifier = modifier
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
@@ -82,7 +97,7 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
-                        GearLottieIcon()
+                        GearAnimation(modifier = Modifier.size(120.dp))
                     }
                 }
             )
