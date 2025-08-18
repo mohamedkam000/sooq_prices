@@ -5,15 +5,10 @@ import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.stickyHeader
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.material3.icons.Icons
 import androidx.compose.material3.icons.filled.Settings
@@ -144,7 +139,14 @@ fun AppNavigation() {
                     scaleOut(targetScale = 1.1f, animationSpec = tween(300, easing = FastOutSlowInEasing))
         },
     ) {
-        composable("intro") { OnboardingPager(navController) }
+        composable("intro") {
+            OnboardingPager {
+                AppIntroManager.markIntroAsCompleted(LocalContext.current)
+                navController.navigate("main") {
+                    popUpTo("intro") { inclusive = true }
+                }
+            }
+        }
         composable("main") { MainScreen(navController) }
         composable("footwear") { Footwear(navController) }
     }
