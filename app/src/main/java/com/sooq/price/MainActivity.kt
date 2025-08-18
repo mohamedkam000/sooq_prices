@@ -41,7 +41,7 @@ import androidx.compose.animation.core.*
 import androidx.core.content.edit
 import com.sooq.price.ui.MainScreen
 import com.sooq.price.ui.categories.*
-import com.sooq.price.ui.theme.SooqTheme
+import com.sooq.price.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.sooq.price.theme
+package com.sooq.price.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
