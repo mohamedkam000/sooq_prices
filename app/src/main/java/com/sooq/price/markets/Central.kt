@@ -44,7 +44,7 @@ import androidx.compose.animation.core.*
 // Compose runtime
 import androidx.compose.runtime.*
 
-fun lerp(start: Float, stop: Float, fraction: Float): Float {
+/*fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
@@ -71,7 +71,7 @@ fun GearAnimation(modifier: Modifier = Modifier) {
         dynamicProperties = dynamicProperties,
         modifier = modifier
     )
-}
+}*/
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

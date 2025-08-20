@@ -1,4 +1,4 @@
-package com.sooq.price.markets
+package com.sooq.price.categories
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -75,7 +75,7 @@ fun GearAnimation(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Loc(navController: NavHostController) {
+fun Fru(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -146,7 +146,7 @@ fun Loc(navController: NavHostController) {
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { navController.navigate("veg") },
+                                onClick = { /*navController.navigate("veg")*/ },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -162,7 +162,7 @@ fun Loc(navController: NavHostController) {
                             }
 
                             Card(
-                                onClick = { navController.navigate("fru") },
+                                onClick = { /*navController.navigate("fru")*/ },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)

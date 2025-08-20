@@ -8,6 +8,7 @@ import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
 import com.airbnb.lottie.compose.*
+import java.time.LocalTime
 //import com.sooq.price.appintro.GearLottieIcon
 
 // Material 3
@@ -73,9 +74,20 @@ fun GearAnimation(modifier: Modifier = Modifier) {
     )
 }
 
+fun getGreeting(): String {
+    val hour = LocalTime.now().hour
+    return when (hour) {
+        in 5..11 -> "Good Morning!"
+        in 12..16 -> "Good Afternoon!"
+        in 17..20 -> "Good Evening!"
+        else -> "Good Night!"
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val greeting = remember { getGreeting() }
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -127,7 +139,7 @@ fun MainScreen(navController: NavHostController) {
                     Spacer(modifier = Modifier.height(spacerHeight))
 
                     Text(
-                        text = "Good Afternoon!",
+                        text = greeting,
                         fontSize = animatedFontSize,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
