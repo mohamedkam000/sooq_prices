@@ -119,7 +119,12 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {}) {
-                        GearAnimation(modifier = Modifier.size(32.dp))
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(32.dp)
+                        )
                     }
                 }
             )
@@ -245,6 +250,379 @@ fun MainScreen(navController: NavHostController) {
                         )
                     }
                 }
+
+                Spacer(modifier = Modifier.height(100.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+            
+                Spacer(modifier = Modifier.height(100.dp))
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(100.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+            
+                Spacer(modifier = Modifier.height(100.dp))
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(100.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+            
+                Spacer(modifier = Modifier.height(100.dp))
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(100.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
+            
+                Spacer(modifier = Modifier.height(100.dp))
             }
         }
     )
