@@ -8,6 +8,7 @@ import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
 import com.airbnb.lottie.compose.*
+import com.airbnb.lottie.*
 import java.time.LocalTime
 //import com.sooq.price.appintro.GearLottieIcon
 
