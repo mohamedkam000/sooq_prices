@@ -1,2 +1,4 @@
 <resources>
+    <string name="khr">Khartoum</string>
+    <string name="jaz">Al-Jazeera</string>
 </resources>

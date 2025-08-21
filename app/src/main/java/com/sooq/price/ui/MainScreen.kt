@@ -7,8 +7,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
-import com.airbnb.lottie.compose.*
-import com.airbnb.lottie.*
+//import com.airbnb.lottie.compose.*
+//import com.airbnb.lottie.*
 import java.time.LocalTime
 //import com.sooq.price.appintro.GearLottieIcon
 
@@ -50,7 +50,7 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return start + (stop - start) * fraction
 }
 
-@Composable
+/*@Composable
 fun GearAnimation(modifier: Modifier = Modifier) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
     val progress by animateLottieCompositionAsState(
@@ -73,7 +73,7 @@ fun GearAnimation(modifier: Modifier = Modifier) {
         dynamicProperties = dynamicProperties,
         modifier = modifier
     )
-}
+}*/
 
 fun getGreeting(): String {
     val hour = LocalTime.now().hour
@@ -131,7 +131,7 @@ fun MainScreen(navController: NavHostController) {
                     .background(backgroundColor)
                     .padding(innerPadding)
             ) {
-                Column(
+/*                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(scrollState)
@@ -191,7 +191,58 @@ fun MainScreen(navController: NavHostController) {
                             }
                         }
                         
-                        Spacer(modifier = Modifier.height(48.dp))                        
+                        Spacer(modifier = Modifier.height(48.dp))
+                        
+                    }*/
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("khr") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.khr),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Khartoum",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
+                
+                    Column(modifier = Modifier.weight(1f)) {
+                        Card(
+                            onClick = { navController.navigate("jaz") },
+                            modifier = Modifier
+                                .height(150.dp)
+                                .clip(MaterialTheme.shapes.medium),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.jaz),
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Al-Jazeera",
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
                     }
                 }
             }
