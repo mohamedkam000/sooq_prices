@@ -136,7 +136,7 @@ fun MainScreen(navController: NavHostController) {
                     .background(backgroundColor)
                     .padding(innerPadding)
             ) {
-/*                Column(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(scrollState)
@@ -159,7 +159,7 @@ fun MainScreen(navController: NavHostController) {
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
                     ) {
-                        Row(
+/*                        Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
