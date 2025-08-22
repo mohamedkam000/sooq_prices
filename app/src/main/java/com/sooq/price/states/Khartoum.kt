@@ -152,7 +152,7 @@ fun Khr(navController: NavHostController) {
                             horizontalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
                             Card(
-                                onClick = { navController.navigate("local") },
+                                onClick = { /*navController.navigate("local")*/ },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -160,7 +160,7 @@ fun Khr(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.loc),
+                                    painter = painterResource(id = R.drawable.blank),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()

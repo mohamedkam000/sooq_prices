@@ -57,6 +57,12 @@ fun getGreeting(): String {
     }
 }
 
+@Composable
+fun stringResource(id: Int): String {
+    val context = LocalContext.current
+    return remember(id) { context.getString(id) }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
@@ -152,7 +158,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.kh),
+                                    text = stringResource(R.string.kh),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -175,7 +181,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.jz),
+                                    text = stringResource(R.string.jz),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -205,7 +211,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.rn),
+                                    text = stringResource(R.string.rn),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -228,7 +234,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.rs),
+                                    text = stringResource(R.string.rs),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -258,7 +264,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.ks),
+                                    text = stringResource(R.string.ks),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -281,7 +287,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.bn),
+                                    text = stringResource(R.string.bn),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -311,7 +317,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.sn),
+                                    text = stringResource(R.string.sn),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -334,7 +340,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = getString(R.string.wn),
+                                    text = stringResource(R.string.wn),
                                     style = MaterialTheme.typography.labelMedium,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
