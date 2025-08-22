@@ -155,10 +155,10 @@ fun AppNavigation() {
 //        composable("intro") { OnboardingPager(navController) }
         composable("main") { MainScreen(navController) }
         composable("khr") { Khr(navController) }
-        composable("jaz") { Jaz(navController) }
+//        composable("jaz") { Jaz(navController) }
         composable("veg") { Veg(navController) }
-        composable("fru") { Fru(navController) }
+//        composable("fru") { Fru(navController) }
         composable("central") { Cen(navController) }
-        composable("local") { Loc(navController) }
+//        composable("local") { Loc(navController) }
     }
 }

@@ -7,9 +7,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
-//import com.sooq.price.ui.GearAnimation
-//import com.airbnb.lottie.compose.*
-//import com.sooq.price.appintro.GearLottieIcon
+import com.sooq.price.ui.getGreeting
 
 // Material 3
 import androidx.compose.material3.*
@@ -45,39 +43,11 @@ import androidx.compose.animation.core.*
 // Compose runtime
 import androidx.compose.runtime.*
 
-/*fun lerp(start: Float, stop: Float, fraction: Float): Float {
-    return start + (stop - start) * fraction
-}
-
-@Composable
-fun GearAnimation(modifier: Modifier = Modifier) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.gear))
-    val progress by animateLottieCompositionAsState(
-        composition,
-        iterations = LottieConstants.IterateForever
-    )
-
-    val gearColor = MaterialTheme.colorScheme.primary.toArgb()
-    val dynamicProperties = rememberLottieDynamicProperties(
-        rememberLottieDynamicProperty(
-            property = LottieProperty.COLOR,
-            value = gearColor,
-            keyPath = arrayOf("GearHollowAltWeb Outlines", "Fill 1")
-        )
-    )
-
-    LottieAnimation(
-        composition = composition,
-        progress = progress,
-        dynamicProperties = dynamicProperties,
-        modifier = modifier
-    )
-}*/
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Cen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    val greeting = remember { getGreeting() }
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp
@@ -133,7 +103,7 @@ fun Cen(navController: NavHostController) {
                     Spacer(modifier = Modifier.height(spacerHeight))
 
                     Text(
-                        text = "Good Afternoon!",
+                        text = greeting,
                         fontSize = animatedFontSize,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -168,7 +138,7 @@ fun Cen(navController: NavHostController) {
                             }
 
                             Card(
-                                onClick = { navController.navigate("fru") },
+                                onClick = { /*navController.navigate("fru")*/ },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(150.dp)
@@ -176,7 +146,7 @@ fun Cen(navController: NavHostController) {
                                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.fru),
+                                    painter = painterResource(id = R.drawable.blank),
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier.fillMaxSize()

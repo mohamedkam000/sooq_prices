@@ -1,4 +1,11 @@
 <resources>
-    <string name="khr">Khartoum</string>
-    <string name="jaz">Al-Jazeera</string>
+    <string name="kh">Khartoum</string>
+    <string name="jz">Al-Jazeera</string>
+    <string name="bn">Blue Nile</string>
+    <string name="wn">White Nile</string>
+    <string name="ks">Kasala</string>
+    <string name="rs">Red Sea</string>
+    <string name="rn">River Nile</string>
+    <string name="ns">Northern State</string>
+    <string name="ns">Sennar</string>
 </resources>
