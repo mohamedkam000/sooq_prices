@@ -9,7 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.sooq.price.model.MarketItem
+import com.sooq.price.model.*
+
+data class MarketItem(
+    val name: String,
+    val price: Int
+)
 
 @Composable
 fun MarketBubble(item: MarketItem) {
@@ -21,7 +26,8 @@ fun MarketBubble(item: MarketItem) {
             .padding(16.dp)
     ) {
         Column {
-            Text(item.item, style = MaterialTheme.typography.titleMedium)
-            Text("${item.price} SDG", style = MaterialTheme.typography }
+            Text(item.name, style = MaterialTheme.typography.titleMedium)
+            Text("${item.price} SDG", style = MaterialTheme.typography.bodyMedium)
+        }
     }
 }
