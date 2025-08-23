@@ -8,6 +8,8 @@ import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
 import com.sooq.price.ui.getGreeting
+import com.sooq.price.ui.components.*
+import com.sooq.price.model.*
 
 // Material 3
 import androidx.compose.material3.*
@@ -46,6 +48,13 @@ import androidx.compose.runtime.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Cen(navController: NavHostController) {
+    val context = LocalContext.current
+var marketData by remember { mutableStateOf<MarketData?>(null) }
+
+LaunchedEffect(Unit) {
+    marketData = loadMarketData(context)
+}
+
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
     val greeting = remember { getGreeting() }
 
@@ -69,7 +78,7 @@ fun Cen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        "Thinking...",
+                        "Placeholder",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
@@ -112,49 +121,21 @@ fun Cen(navController: NavHostController) {
 
                     Spacer(modifier = Modifier.height(100.dp))
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            Card(
-                                onClick = { navController.navigate("veg") },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(150.dp)
-                                    .clip(MaterialTheme.shapes.medium),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.veg),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.fillMaxSize()
-                                )
-                            }
-
-                            Card(
-                                onClick = { /*navController.navigate("fru")*/ },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(150.dp)
-                                    .clip(MaterialTheme.shapes.medium),
-                                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.blank),
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.fillMaxSize()
-                                )
+                    marketData?.let { data ->
+                        if (marketData == null) {
+                            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                        } else {
+                            LazyColumn {
+                                items(data.prices.entries.toList()) { entry ->
+                                    MarketBubble(
+                                        MarketItem(
+                                            name = entry.key,
+                                            price = entry.value.toIntOrNull() ?: 0
+                                        )
+                                    )
+                                }
                             }
                         }
-                        
-                        Spacer(modifier = Modifier.height(48.dp))
                     }
                 }
             }
