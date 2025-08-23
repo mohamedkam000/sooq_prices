@@ -86,6 +86,7 @@ fun stringResource(id: Int): String {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val context = LocalContext.current
     val greeting = remember { getGreeting() }
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
@@ -117,7 +118,6 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
                     IconButton(onClick = {
-                        val context = LocalContext.current
                         CoroutineScope(Dispatchers.IO).launch {
                             jsonDownloader.downloadJsonFile(context)
                         }
