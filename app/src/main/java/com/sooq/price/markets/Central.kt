@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.*
 // Compose foundation
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.*
+import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.layout.*
 
 // Compose animation
