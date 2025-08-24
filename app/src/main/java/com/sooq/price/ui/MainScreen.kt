@@ -12,6 +12,7 @@ import java.time.LocalTime
 import java.net.URL
 import java.io.File
 import kotlinx.coroutines.*
+import com.sooq.price.model.*
 
 // Material 3
 import androidx.compose.material3.*
@@ -110,7 +111,7 @@ fun MainScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        "Placeholder",
+                        text = marketData?.date ?: "Data Error",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
@@ -184,7 +185,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.kh),
-                                    fontSize = 24.sp,
+                                    fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -207,7 +208,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.jz),
-                                    fontSize = 24.sp,
+                                    fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -237,7 +238,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.rn),
-                                    style = MaterialTheme.typography.labelMedium,
+                                    fontSize = 24.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -260,7 +261,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.rs),
-                                    fontSize = 24.sp,
+                                    fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -290,7 +291,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.ks),
-                                    fontSize = 20.sp,
+                                    fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -313,7 +314,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.bn),
-                                    fontSize = 20.sp,
+                                    fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
@@ -366,7 +367,7 @@ fun MainScreen(navController: NavHostController) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = stringResource(R.string.wn),
-                                    style = MaterialTheme.typography.titleMedium,
+                                    fontSize = 24.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
                             }
