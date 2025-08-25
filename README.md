@@ -72,5 +72,21 @@ Since this app targets API 36 and supports Android 12 (API 31) and above, follow
 
 ## Credits
 
-- [Hussein Saleh](https://github.com/hussein1000) — Offered supportive services and helped track prices.
-- [Microsoft Copilot](https://copilot.microsoft.com) — Helped a lot with everyting.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/hussein1000">
+        <img src="https://github.com/hussein1000.png" width="80" height="80" alt="Hussein Saleh"/><br />
+        <sub><b>Hussein Saleh</b></sub>
+      </a>
+      <br />Market tracking & support
+    </td>
+    <td align="center">
+      <a href="https://copilot.microsoft.com">
+        <img src="https://copilot.microsoft.com/favicon.ico" width="80" height="80" alt="Microsoft Copilot"/><br />
+        <sub><b>Microsoft Copilot</b></sub>
+      </a>
+      <br />System design & a lot of debugging
+    </td>
+  </tr>
+</table>
