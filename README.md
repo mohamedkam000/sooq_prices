@@ -5,14 +5,14 @@
 <h1 align="center">Sooq Price</h1>
 
 <p align="center">
-  <i>A lightweight, modern app for tracking and comparing market prices — built for clarity, speed, and real-world utility.</i>
+  <b>A lightweight, modern app for tracking and comparing local market prices. Built for clarity, speed, and real-world utility.</b>
 </p>
 
 ---
 
 ## Overview
 
-**Sooq Price** is a minimal yet powerful Android app designed to help users stay informed about local market prices. Whether you're budgeting, comparing vendors, or just curious about price trends, Sooq Price delivers clean data in a clean UI — no clutter, no distractions.
+**Sooq Price** is a minimal yet powerful Android app designed to help users stay informed about local market prices. Whether you're budgeting, comparing vendors, or just curious about price trends, Sooq Price delivers clean data in a clean UI.
 
 Built with Jetpack Compose and Material 3, the app emphasizes usability, responsiveness, and visual clarity.
 
@@ -30,7 +30,7 @@ Built with Jetpack Compose and Material 3, the app emphasizes usability, respons
   View up-to-date prices for common goods across multiple markets.
 
 - **Offline-Friendly**  
-  Loads data from local storage — no internet required once synced.
+  Loads data from local storage — no internet required (once synced).
 
 ---
 
@@ -49,3 +49,21 @@ Built with Jetpack Compose and Material 3, the app emphasizes usability, respons
 - **Kotlin + Jetpack Compose**
 - **Material 3 UI Components**
 - **Local JSON Storage**
+
+---
+
+## Installation (Manual)
+
+Since this app targets API 36 and supports Android 12 (API 31) and above, follow these steps:
+
+- **Download the APK**
+   From your browser.
+
+- **Grant Install Permission**
+   Click on the downloaded file, and when prompted, allow the app you're using to install (e.g., Chrome, Files by Google)
+
+- **Install the APK**
+   Tap the file and proceed with installation.
+
+- **Launch the App**
+   Open it from your app drawer.
