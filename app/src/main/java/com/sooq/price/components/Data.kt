@@ -11,11 +11,14 @@ data class DataModel(
     val potatoes_k: String
 )
 
-fun loadJson(context: Context): DataModel {
-    val jsonString = context.assets.open("data.json")
-        .bufferedReader()
-        .use { it.readText() }
-
-    val json = Json { ignoreUnknownKeys = true }
-    return json.decodeFromString<DataModel>(jsonString)
+fun loadJson(context: Context): DataModel? {
+    return try {
+        val file = File(context.filesDir, "data.json")
+        val jsonString = file.readText()
+        val json = Json { ignoreUnknownKeys = true }
+        json.decodeFromString<DataModel>(jsonString)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
 }

@@ -11,6 +11,7 @@ import com.sooq.price.categories.*
 import com.sooq.price.states.*
 import com.sooq.price.markets.*
 import com.sooq.price.ui.theme.*
+import com.sooq.price.components.*
 
 // Compose Foundation
 import androidx.compose.foundation.background
@@ -60,10 +61,55 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            SooqTheme() {
-                AppNavigation()
+            val context = LocalContext.current
+            var data by remember { mutableStateOf<DataModel?>(null) }
+            var isLoading by remember { mutableStateOf(true) }
+            var hasError by remember { mutableStateOf(false) }
+        
+            LaunchedEffect(key1 = isLoading) {
+                if (isLoading) {
+                    delay(5000)
+                    try {
+                        jsonDownloader.downloadJsonFile(context)
+                        data = loadJson(context)
+                        hasError = data == null
+                    } catch (e: Exception) {
+                        hasError = true
+                    } finally {
+                        isLoading = false
+                    }
+                }
+            }
+        
+            when {
+                isLoading -> LoadingScreen()
+                hasError -> ErrorScreen(onRetry = {
+                    isLoading = true
+                    hasError = false
+                })
+                else -> {
+                    SooqTheme {
+                        AppNavigation()
+                    }
+                }
             }
         }
+    }
+}
+
+@Composable
+fun ErrorScreen(onRetry: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable { onRetry() },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "😞",
+            fontSize = 64.sp,
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
 

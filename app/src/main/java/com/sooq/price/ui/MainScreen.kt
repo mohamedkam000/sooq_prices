@@ -79,6 +79,16 @@ object jsonDownloader {
 }
 
 @Composable
+fun LoadingScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator()
+    }
+}
+
+@Composable
 fun stringResourcer(id: Int): String {
     val context = LocalContext.current
     return remember(id) { context.getString(id) }
