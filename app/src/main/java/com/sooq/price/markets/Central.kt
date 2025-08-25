@@ -7,9 +7,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
 import com.sooq.price.ui.theme.*
-import com.sooq.price.ui.getGreeting
-import com.sooq.price.ui.components.*
-import com.sooq.price.model.*
+import com.sooq.price.components.*
+import com.sooq.price.ui.*
 
 // Material 3
 import androidx.compose.material3.*
@@ -50,14 +49,9 @@ import androidx.compose.runtime.*
 @Composable
 fun Cen(navController: NavHostController) {
     val context = LocalContext.current
-    var marketData by remember { mutableStateOf<MarketData?>(null) }
-
-    LaunchedEffect(Unit) {
-        marketData = loadMarketData(context)
-    }
-
+    val data = loadJson(context)
+    val greeting = stringResource(R.string.cen)
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-    val greeting = remember { getGreeting() }
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp
@@ -79,17 +73,20 @@ fun Cen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        "Placeholder",
+                        text = data?.date ?: "Data Error",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ),
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            jsonDownloader.downloadJsonFile(context)
+                        }
+                    }) {
                         Icon(
-                            imageVector = Icons.Default.Settings,
+                            imageVector = Icons.Default.Refresh,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(32.dp)
@@ -105,38 +102,187 @@ fun Cen(navController: NavHostController) {
                     .background(backgroundColor)
                     .padding(innerPadding)
             ) {
-                if (marketData == null) {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .align(Alignment.Center)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 8.dp)
+                ) {
+                    Spacer(modifier = Modifier.height(spacerHeight))
+
+                    Text(
+                        text = greeting,
+                        fontSize = animatedFontSize,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = animatedTopPadding)
                     )
-                } else {
-                    LazyColumn(
+
+                    Spacer(modifier = Modifier.height(100.dp))
+
+                    Column(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(horizontal = 16.dp),
-                        contentPadding = PaddingValues(bottom = 32.dp)
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
                     ) {
-                        item {
-                            Spacer(modifier = Modifier.height(spacerHeight))
-                            Text(
-                                text = greeting,
-                                fontSize = animatedFontSize,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = animatedTopPadding)
-                            )
-                            Spacer(modifier = Modifier.height(100.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { navController.navigate("veg") },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.veg),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.veg),
+                                    fontSize = 22.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                            }
+                        
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { /*navController.navigate("fru")*/ },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.fru),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.fru),
+                                    fontSize = 22.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                            }
+                        }
+                    
+                        Spacer(modifier = Modifier.height(50.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { /*navController.navigate("dg")*/ },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.blank),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.dg),
+                                    fontSize = 24.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                            }
+                        
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { /*navController.navigate("mt")*/ },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.blank),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.mt),
+                                    fontSize = 22.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                            }
                         }
 
-                        items(marketData!!.prices.entries.toList()) { entry ->
-                            MarketBubble(
-                                MarketItem(
-                                    name = entry.key,
-                                    price = entry.value.toIntOrNull() ?: 0
+                        Spacer(modifier = Modifier.height(75.dp))
+                
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { /*navController.navigate("oi")*/ },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.blank),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.oi),
+                                    fontSize = 22.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
-                            )
+                            }
+                        
+                            Column(modifier = Modifier.weight(1f)) {
+                                Card(
+                                    onClick = { /*navController.navigate("bv")*/ },
+                                    modifier = Modifier
+                                        .height(150.dp)
+                                        .clip(MaterialTheme.shapes.medium),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.blank),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = stringResource(R.string.bv),
+                                    fontSize = 22.sp,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                            }
                         }
+
+                        Spacer(modifier = Modifier.height(100.dp))
                     }
                 }
             }

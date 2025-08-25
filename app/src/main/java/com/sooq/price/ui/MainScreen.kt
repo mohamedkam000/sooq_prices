@@ -12,7 +12,7 @@ import java.time.LocalTime
 import java.net.URL
 import java.io.File
 import kotlinx.coroutines.*
-import com.sooq.price.model.*
+import com.sooq.price.components.*
 
 // Material 3
 import androidx.compose.material3.*
@@ -88,7 +88,7 @@ fun stringResource(id: Int): String {
 @Composable
 fun MainScreen(navController: NavHostController) {
     val context = LocalContext.current
-    val marketData = loadMarketData(context)
+    val data = loadJson(context)
     val greeting = remember { getGreeting() }
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
@@ -112,7 +112,7 @@ fun MainScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = marketData?.date ?: "Data Error",
+                        text = data?.date ?: "Data Error",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
@@ -170,7 +170,7 @@ fun MainScreen(navController: NavHostController) {
                         ) {
                             Column(modifier = Modifier.weight(1f)) {
                                 Card(
-                                    onClick = { navController.navigate("khr") },
+                                    onClick = { navController.navigate("kh") },
                                     modifier = Modifier
                                         .height(150.dp)
                                         .clip(MaterialTheme.shapes.medium),

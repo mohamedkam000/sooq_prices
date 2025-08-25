@@ -77,8 +77,13 @@ fun AppNavigation() {
         startDestination = "main",
     ) {
         composable("main") { MainScreen(navController) }
-        composable("khr") { Khr(navController) }
+        composable("kh") { Kh(navController) }
         composable("veg") { Veg(navController) }
+/*        composable("fru") { Khr(navController) }
+        composable("oi") { Veg(navController) }
+        composable("mt") { Cen(navController) }
+        composable("bv") { Khr(navController) }
+        composable("dg") { Veg(navController) }*/
         composable("central") { Cen(navController) }
     }
 }
