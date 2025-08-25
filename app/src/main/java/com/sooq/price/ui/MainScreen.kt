@@ -79,7 +79,7 @@ object jsonDownloader {
 }
 
 @Composable
-fun stringResource(id: Int): String {
+fun stringResourcer(id: Int): String {
     val context = LocalContext.current
     return remember(id) { context.getString(id) }
 }
@@ -185,7 +185,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.kh),
+                                    text = stringResourcer(R.string.kh),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -208,7 +208,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.jz),
+                                    text = stringResourcer(R.string.jz),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -238,7 +238,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.rn),
+                                    text = stringResourcer(R.string.rn),
                                     fontSize = 24.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -261,7 +261,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.rs),
+                                    text = stringResourcer(R.string.rs),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -291,7 +291,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.ks),
+                                    text = stringResourcer(R.string.ks),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -314,7 +314,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.bn),
+                                    text = stringResourcer(R.string.bn),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -344,7 +344,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.sn),
+                                    text = stringResourcer(R.string.sn),
                                     style = MaterialTheme.typography.bodyLarge,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -367,7 +367,7 @@ fun MainScreen(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.wn),
+                                    text = stringResourcer(R.string.wn),
                                     fontSize = 24.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )

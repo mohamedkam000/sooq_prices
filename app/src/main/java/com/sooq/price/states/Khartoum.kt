@@ -9,6 +9,7 @@ import com.sooq.price.R
 import com.sooq.price.ui.theme.*
 import com.sooq.price.components.*
 import com.sooq.price.ui.*
+import kotlinx.coroutines.*
 
 // Material 3
 import androidx.compose.material3.*
@@ -50,7 +51,7 @@ import androidx.compose.runtime.*
 fun Kh(navController: NavHostController) {
     val context = LocalContext.current
     val data = loadJson(context)
-    val greeting = stringResource(R.string.kh)
+    val greeting = stringResourcer(R.string.kh)
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
     val scrollState = rememberScrollState()
@@ -146,7 +147,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.veg),
+                                    text = stringResourcer(R.string.veg),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -169,7 +170,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.fru),
+                                    text = stringResourcer(R.string.fru),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -199,7 +200,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.dg),
+                                    text = stringResourcer(R.string.dg),
                                     fontSize = 24.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -222,7 +223,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.mt),
+                                    text = stringResourcer(R.string.mt),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -252,7 +253,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.oi),
+                                    text = stringResourcer(R.string.oi),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -275,7 +276,7 @@ fun Kh(navController: NavHostController) {
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = stringResource(R.string.bv),
+                                    text = stringResourcer(R.string.bv),
                                     fontSize = 22.sp,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )

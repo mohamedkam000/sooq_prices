@@ -90,7 +90,7 @@ fun Veg(navController: NavHostController) {
     val data = loadJson(context)
 
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-    val greeting = stringResource(R.string.veg)
+    val greeting = stringResourcer(R.string.veg)
 
     val scrollState = rememberScrollState()
     val maxFontSize = 36.sp
