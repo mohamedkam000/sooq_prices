@@ -87,8 +87,8 @@ fun stringResource(id: Int): String {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val marketData = loadMarketData(context)
     val context = LocalContext.current
+    val marketData = loadMarketData(context)
     val greeting = remember { getGreeting() }
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
 
