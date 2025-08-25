@@ -59,13 +59,13 @@ Since this app targets API 36 and supports Android 12 (API 31) and above, follow
 - **Download the APK**
    From your browser.
 
-- **Grant Install Permission**
+- **Grant Install Permission**  
    Click on the downloaded file, and when prompted, allow the app you're using to install (e.g., Chrome, Files by Google)
 
-- **Install the APK**
+- **Install the APK**  
    Tap the file and proceed with installation.
 
-- **Launch the App**
+- **Launch the App**  
    Open it from your app drawer.
 
 ---
@@ -79,14 +79,14 @@ Since this app targets API 36 and supports Android 12 (API 31) and above, follow
         <img src="https://github.com/hussein1000.png" width="80" height="80" alt="Hussein Saleh"/><br />
         <sub><b>Hussein Saleh</b></sub>
       </a>
-      <br />Market tracking & support
+      <br />Market tracking, testing and physical support
     </td>
     <td align="center">
       <a href="https://copilot.microsoft.com">
         <img src="https://copilot.microsoft.com/favicon.ico" width="80" height="80" alt="Microsoft Copilot"/><br />
         <sub><b>Microsoft Copilot</b></sub>
       </a>
-      <br />System design & a lot of debugging
+      <br />App design and a lot of debugging
     </td>
   </tr>
 </table>
