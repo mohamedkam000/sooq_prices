@@ -47,7 +47,7 @@ import androidx.compose.runtime.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Cen(navController: NavHostController) {
+fun Kh(navController: NavHostController) {
     val context = LocalContext.current
     val data = loadJson(context)
     val greeting = stringResource(R.string.kh)
