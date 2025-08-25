@@ -72,5 +72,5 @@ Since this app targets API 36 and supports Android 12 (API 31) and above, follow
 
 ## Credits
 
-- [Hussein Saleh] (https://github.com/hussein1000) — Offered supportive services and helped track prices.
-- [Microsoft Copilot] (https://copilot.microsoft.com) — Helped a lot with codes.
+- [Hussein Saleh](https://github.com/hussein1000) — Offered supportive services and helped track prices.
+- [Microsoft Copilot](https://copilot.microsoft.com) — Helped a lot with everyting.
