@@ -50,11 +50,11 @@ import androidx.compose.runtime.*
 @Composable
 fun Cen(navController: NavHostController) {
     val context = LocalContext.current
-var marketData by remember { mutableStateOf<MarketData?>(null) }
+    var marketData by remember { mutableStateOf<MarketData?>(null) }
 
-LaunchedEffect(Unit) {
-    marketData = loadMarketData(context)
-}
+    LaunchedEffect(Unit) {
+        marketData = loadMarketData(context)
+    }
 
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
     val greeting = remember { getGreeting() }
@@ -84,7 +84,8 @@ LaunchedEffect(Unit) {
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                ),
                 actions = {
                     IconButton(onClick = {}) {
                         Icon(
@@ -104,38 +105,37 @@ LaunchedEffect(Unit) {
                     .background(backgroundColor)
                     .padding(innerPadding)
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(scrollState)
-                        .padding(horizontal = 16.dp)
-                ) {
-                    Spacer(modifier = Modifier.height(spacerHeight))
-
-                    Text(
-                        text = greeting,
-                        fontSize = animatedFontSize,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = animatedTopPadding)
+                if (marketData == null) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .align(Alignment.Center)
                     )
+                } else {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 16.dp),
+                        contentPadding = PaddingValues(bottom = 32.dp)
+                    ) {
+                        item {
+                            Spacer(modifier = Modifier.height(spacerHeight))
+                            Text(
+                                text = greeting,
+                                fontSize = animatedFontSize,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = animatedTopPadding)
+                            )
+                            Spacer(modifier = Modifier.height(100.dp))
+                        }
 
-                    Spacer(modifier = Modifier.height(100.dp))
-
-                    marketData?.let { data ->
-                        if (marketData == null) {
-                            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-                        } else {
-                            LazyColumn {
-                                items(data.prices.entries.toList()) { entry ->
-                                    MarketBubble(
-                                        MarketItem(
-                                            name = entry.key,
-                                            price = entry.value.toIntOrNull() ?: 0
-                                        )
-                                    )
-                                }
-                            }
+                        items(marketData!!.prices.entries.toList()) { entry ->
+                            MarketBubble(
+                                MarketItem(
+                                    name = entry.key,
+                                    price = entry.value.toIntOrNull() ?: 0
+                                )
+                            )
                         }
                     }
                 }
