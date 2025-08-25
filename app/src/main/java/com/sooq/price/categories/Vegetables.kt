@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import androidx.core.graphics.ColorUtils
 import com.sooq.price.R
+import com.sooq.price.ui.*
 import com.sooq.price.ui.theme.*
 import com.sooq.price.components.*
 
@@ -110,7 +111,7 @@ fun Veg(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = data?.date ?: "Data Error"
+                        text = data?.date ?: "Data Error",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
