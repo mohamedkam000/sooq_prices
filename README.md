@@ -56,7 +56,7 @@ Built with Jetpack Compose and Material 3, the app emphasizes usability, respons
 
 Since this app targets API 36 and supports Android 12 (API 31) and above, follow these steps:
 
-- **Download the APK**
+- **Download the APK**  
    From your browser.
 
 - **Grant Install Permission**  
