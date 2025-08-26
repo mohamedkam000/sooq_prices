@@ -87,7 +87,11 @@ fun BubbleScreen(data: DataModel) {
 @Composable
 fun Veg(navController: NavHostController) {
     val context = LocalContext.current
-    val data = loadJson(context)
+    val data = loadJson(context) ?: DataModel(
+        date = "N/A",
+        tomatoes_b = "0",
+        potatoes_k = "0"
+    )
 
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
     val greeting = stringResourcer(R.string.veg)
@@ -143,7 +147,6 @@ fun Veg(navController: NavHostController) {
                     .padding(innerPadding)
             ) {
                 BubbleScreen(data = data)
-
             }
         }
     )
