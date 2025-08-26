@@ -125,11 +125,6 @@ fun AppNavigation() {
         composable("main") { MainScreen(navController) }
         composable("kh") { Kh(navController) }
         composable("veg") { Veg(navController) }
-/*        composable("fru") { Fru(navController) }
-        composable("oi") { Oi(navController) }
-        composable("mt") { Mt(navController) }
-        composable("bv") { Bv(navController) }
-        composable("dg") { Dg(navController) }*/
         composable("central") { Cen(navController) }
     }
 }
