@@ -3,6 +3,7 @@ package com.sooq.price.components
 import android.content.Context
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import java.io.File
 
 @Serializable
 data class DataModel(
