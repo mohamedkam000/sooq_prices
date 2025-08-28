@@ -158,6 +158,11 @@
     .card-actions { display:flex; gap: 8px; margin-top: 6px; }
     .btn-card { flex:1; padding: 10px 12px; border-radius: 12px; border: 1px solid rgb(var(--border)); background: rgb(var(--bg)); cursor: pointer; }
     .btn-card.accent { background: hsl(var(--accent)); color: rgb(var(--accent-contrast)); border-color: transparent; }
+    .details-link {
+      display: block;           /* Make the link a block element */
+      width: 100%;              /* Fill available width */
+      height: 100%;             /* Fill available height */
+    }
 
     /* --------
        Footer
@@ -254,7 +259,7 @@
         <article class="product-card" aria-label="Khartoum">
           <div class="product-img"></div>
           <div class="product-body">
-          <div class="title">Khartoum</div>
+            <div class="title">Khartoum</div>
           </div>
         </article>
       </a>
