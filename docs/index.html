@@ -193,7 +193,7 @@
   
     function loadSubject1() {
       const content = `
-<!--      <div class="panel">-->
+      <div class="panel">
         <header id="dynamicHeader">
           <h1>Subject 1</h1>
         </header>
@@ -217,16 +217,20 @@
           </div>
         </div>
         <button class="back-button show" onclick="loadMainPage()">← Back</button>
-<!--      </div>-->
+      </div>
       `;
       document.getElementById('main-content').innerHTML = content;
       window.scrollTo(0, 0);
+      document.body.style.paddingTop = "100px";
+      document.body.style.paddingBottom = "100px";
     }
     const originalContent = document.getElementById('main-content').innerHTML;
 
     function loadMainPage() {
       document.getElementById('main-content').innerHTML = originalContent;
       window.scrollTo(0, 0);
+      document.body.style.paddingTop = "200px";
+      document.body.style.paddingBottom = "200px";
     }
   </script>
 </body>
