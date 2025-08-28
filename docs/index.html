@@ -70,7 +70,7 @@
   </style>
 </head>
 <body>
-  
+<div id="main-content">  
   <header id="dynamicHeader">
     <h1 id="headerText">Greetings</h1>
   </header>
@@ -78,7 +78,7 @@
   <h1>Bubbles</h1>
   <div class="grid">
     <!-- Repeatable bubble items -->
-    <div>
+    <div onclick="loadSubject1()" style="cursor: pointer;">
       <div class="bubble"><img src="https://via.placeholder.com/100" alt="Item 1" /></div>
       <div class="label">Subject 1</div>
     </div>
@@ -111,6 +111,7 @@
       <div class="label">Subject 8</div>
     </div>
   </div>
+</div>
 
   <script>
     // Time-based greeting
@@ -131,6 +132,41 @@
         header.classList.remove('shrink');
       }
     });
+    function loadSubject1() {
+      const content =
+        <header id="dynamicHeader">
+          <h1>Subject 1</h1>
+        </header>
+        <h2>Details about Subject 1</h2>
+        <div class="grid">
+          <div>
+            <div class="bubble"><img src="https://via.placeholder.com/100" alt="Item A" /></div>
+            <div class="label">Item A</div>
+          </div>
+          <div>
+            <div class="bubble"><img src="https://via.placeholder.com/100" alt="Item B" /></div>
+            <div class="label">Item B</div>
+          </div>
+          <div>
+            <div class="bubble"><img src="https://via.placeholder.com/100" alt="Item C" /></div>
+            <div class="label">Item C</div>
+          </div>
+          <div>
+            <div class="bubble"><img src="https://via.placeholder.com/100" alt="Item D" /></div>
+            <div class="label">Item D</div>
+          </div>
+        </div>
+        <button onclick="loadMainPage()" style="margin-top: 30px; padding: 10px 20px; background: #2196F3; color: white; border: none; border-radius: 5px;">← Back</button>
+      ;
+      document.getElementById('main-content').innerHTML = content;
+      window.scrollTo(0, 0);
+    }
+    const originalContent = document.getElementById('main-content').innerHTML;
+
+    function loadMainPage() {
+      document.getElementById('main-content').innerHTML = originalContent;
+      window.scrollTo(0, 0);
+    }
   </script>
 </body>
 </html>
