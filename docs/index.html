@@ -374,6 +374,23 @@
         if (input) input.value = rgbToHex(savedAccent);
       }
 
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      function updateStatusBarColor(color) {
+        if(themeColorMeta) {
+          themeColorMeta.setAttribute('content', color);
+        }
+      }
+
+      // Example: call when theme changes
+      document.querySelectorAll('.theme-toggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const theme = btn.dataset.theme;
+          if(theme === 'light') updateStatusBarColor('#ffffff');
+          else if(theme === 'dark') updateStatusBarColor('#111111');
+          else updateStatusBarColor('#f0f0f0'); // system or default
+        });
+      });
+
       document.getElementById('accentPicker')?.addEventListener('input', (e) => {
         const hex = e.target.value;
         const hsl = hexToHslString(hex);
