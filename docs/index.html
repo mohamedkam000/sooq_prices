@@ -188,6 +188,14 @@
           <div>Sooq <span style="color:hsl(var(--accent))">Price</span></div>
         </div>
       </div>
+
+      <!-- Theme toggle moved here -->
+      <div class="theme-toggle" role="group" aria-label="Theme mode">
+        <button data-theme="light" aria-pressed="false" title="Light">☀️</button>
+        <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
+        <button data-theme="dark" aria-pressed="false" title="Dark">🌙</button>
+        <button class="btn btn-ghost" id="randomAccent">🎨</button>
+      </div>
     </div>
   </header>
 
@@ -210,7 +218,7 @@
   <main class="container" style="padding: 22px 0 40px;">
     <div class="grid" id="productGrid">
       <!-- Card 1 -->
-      <article class="product-card" aria-label="Khartoum" data-url="test.html">
+      <article class="product-card" aria-label="Khartoum" data-url="khartoum.html">
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Khartoum</div>
