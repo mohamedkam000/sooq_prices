@@ -67,6 +67,30 @@
       font-size: 0.9em;
       color: #333;
     }
+    
+    .panel {
+      animation: slideInRight 0.5s ease forwards;
+    }
+
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1001;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #1976D2;
+    }
   </style>
 </head>
 <body>
@@ -114,6 +138,26 @@
 </div>
 
   <script>
+    @keyframes floatDrift {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .bubble {
+      animation: floatDrift 3s ease-in-out infinite;
+    }
+  
     // Time-based greeting
     const headerText = document.getElementById('headerText');
     const hour = new Date().getHours();
@@ -132,6 +176,7 @@
         header.classList.remove('shrink');
       }
     });
+  
     function loadSubject1() {
       const content = `
         <header id="dynamicHeader">
@@ -168,26 +213,5 @@
       window.scrollTo(0, 0);
     }
   </script>
-  <style>
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      padding: 10px 20px;
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 1001;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: #1976D2;
-    }
-  </style>
 </body>
 </html>
