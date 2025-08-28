@@ -28,6 +28,11 @@
       }
     }
 
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
       .grid {
         grid-template-columns: 1fr;
@@ -41,6 +46,7 @@
 
       header {
         padding: 20px;
+        animation: fadeSlide 0.6s ease-out;
       }
     }
     
@@ -140,12 +146,19 @@
     .back-button:hover {
       background-color: #1976D2;
     }
+    
+    .tagline {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: -10px;
+    }
   </style>
 </head>
 <body>
 <div id="main-content">  
   <header id="dynamicHeader">
-    <h1 id="headerText">Greetings</h1>
+    <h1 id="headerText"><img src="logo.png" alt="Logo" style="height: 24px; vertical-align: middle;"> Greetings</h1>
+    <p class="tagline">Welcome to Sooq Price - your smart pricing assistant</p>
   </header>
 
   <h1>Bubbles</h1>
