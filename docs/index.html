@@ -101,6 +101,13 @@
     .btn-accent { background: hsl(var(--accent)); color: rgb(var(--accent-contrast)); }
     .btn-ghost { background: rgb(var(--card)); border-color: rgb(var(--border)); }
 
+    header .nav {
+      display: flex;
+      justify-content: space-between; /* brand left, theme right */
+      align-items: center;
+      padding: 1rem;
+    }
+
     /* ----
        Hero
        ---- */
@@ -198,21 +205,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div>
-          <div class="theme-toggle" role="group" aria-label="Theme mode">
-            <button data-theme="light" aria-pressed="false" title="Light">☀️</button>
-            <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
-            <button data-theme="dark" aria-pressed="false" title="Dark">🌙</button>
-            <button class="btn btn-ghost" id="randomAccent">🎨</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Product Grid -->
   <main class="container" style="padding: 22px 0 40px;">
@@ -460,19 +452,23 @@
       function toHex(n){ return n.toString(16).padStart(2,'0'); }
     })();
 
-    document.querySelectorAll('.details-link').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const url = link.getAttribute('href');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const url = card.dataset.url; // get the URL from data-url
 
+        // SPA-style navigation
         fetch(url)
           .then(res => res.text())
           .then(html => {
             document.querySelector('main').innerHTML = html;
             history.pushState({ page: url }, "", url);
-          });
+          })
+          .catch(err => console.error(err));
+
+        // Optional: full-page fallback (uncomment to test)
+        // window.location.href = url;
       });
-     });
+    });
 
     window.addEventListener('popstate', e => {
       if (e.state && e.state.page) {
