@@ -180,9 +180,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <div>Sooq <span style="color:hsl(var(--accent))">Price</span><button data-theme="light" aria-pressed="false" title="Light">☀️</button></div>
-          <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
-<!--          <small style="color:rgb(var(--muted))">static study template</small>-->
+          <div>Sooq <span style="color:hsl(var(--accent))">Price</span></div>
         </div>
       </div>
 <!--      <label class="search" aria-label="Search products">
@@ -258,6 +256,7 @@
         </div>
         <div class="product-body">
           <div class="title">Khartoum</div>
+          <a href="khartoum.html" class="details-link">ℹ️</a>
     <!--      <div class="stars" aria-label="Rated 4.6 out of 5">★★★★☆</div>
           <div class="price"><span class="now">$119</span> <span class="was">$149</span></div>
           <div class="swatches" aria-label="Available colors">
@@ -516,6 +515,33 @@
       }
       function toHex(n){ return n.toString(16).padStart(2,'0'); }
     })();
+
+    document.querySelectorAll('.details-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+
+        fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            document.querySelector('main').innerHTML = html;
+            history.pushState({ page: url }, "", url);
+          });
+      });
+     });
+
+    window.addEventListener('popstate', e => {
+      if (e.state && e.state.page) {
+        fetch(e.state.page)
+          .then(res => res.text())
+          .then(html => {
+            document.querySelector('main').innerHTML = html;
+          });
+      } else {
+        location.reload(); // fallback to original page
+      }
+    });
+    
   </script>
 </body>
 </html>
