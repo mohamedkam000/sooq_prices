@@ -270,6 +270,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .price-date-time {
+      margin-top: -10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666; /* subtle gray */
+      font-style: italic;
+    }
+
+
+
 
     /* --------
        Footer
