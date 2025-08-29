@@ -17,9 +17,11 @@ function loadPrices() {
       if (document.getElementById("watermelon"))
         document.getElementById("watermelon").textContent = data.watermelon + " SDG";
 
-      // Show the date if you add a span with id="price_date"
-      if (document.getElementById("price_date"))
-        document.getElementById("price_date").textContent = "📅 " + data.date;
+      if (document.getElementById("priceDateTime")) {
+        const now = new Date();
+        document.getElementById("priceDateTime").textContent =
+          `آخر تحديث: ${data.date} — ${now.toLocaleTimeString()}`;
+      }
     })
     .catch(err => {
       console.error("Error loading data:", err);
