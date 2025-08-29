@@ -6,6 +6,8 @@
   <title>Sooq Price</title>
   <meta name="theme-color" content="#6C5CE7" />
   <link rel="stylesheet" href="styles.css">
+  <script src="spa.js" defer></script>
+  <script src="theme.js" defer></script>
 </head>
 <body>
   <!-- Header / Navigation -->
@@ -109,167 +111,8 @@
     </div>
   </footer>
 
-  <script>
-    // ------------------------------
-    // Theme & Accent (Dynamic Colors)
-    // ------------------------------
-    (function(){
-      const root = document.documentElement;
-      const storageKey = 'ds-theme';
-      const accentKey = 'ds-accent';
-
-      const setThemeAttr = (mode) => {
-        // mode: 'light' | 'dark' | 'system'
-        root.setAttribute('data-theme', mode);
-        localStorage.setItem(storageKey, mode);
-        // update pressed state
-        document.querySelectorAll('.theme-toggle button').forEach(btn => {
-          btn.setAttribute('aria-pressed', String(btn.dataset.theme === mode));
-        });
-      };
-
-      // Init theme from storage
-      const savedTheme = localStorage.getItem(storageKey) || 'system';
-      setThemeAttr(savedTheme);
-
-      // Wire segmented buttons
-      document.querySelectorAll('.theme-toggle button').forEach(btn => {
-        btn.addEventListener('click', () => setThemeAttr(btn.dataset.theme));
-      });
-
-      // Accent color picker
-      const savedAccent = localStorage.getItem(accentKey);
-      if (savedAccent) {
-        setAccent(savedAccent);
-        const input = document.getElementById('accentPicker');
-        if (input) input.value = rgbToHex(savedAccent);
-      }
-
-      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-      function updateStatusBarColor(color) {
-        if(themeColorMeta) {
-          themeColorMeta.setAttribute('content', color);
-        }
-      }
-
-      // Example: call when theme changes
-      document.querySelectorAll('.theme-toggle button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const theme = btn.dataset.theme;
-          if(theme === 'light') updateStatusBarColor('#ffffff');
-          else if(theme === 'dark') updateStatusBarColor('#111111');
-          else updateStatusBarColor('#f0f0f0'); // system or default
-        });
-      });
-
-      document.getElementById('accentPicker')?.addEventListener('input', (e) => {
-        const hex = e.target.value;
-        const hsl = hexToHslString(hex);
-        setAccent(hsl);
-        localStorage.setItem(accentKey, hsl);
-      });
-
-      document.getElementById('randomAccent')?.addEventListener('click', () => {
-        const palette = [
-          '#E11D48', '#F59E0B', '#10B981', '#0EA5E9', '#6366F1', '#8B5CF6', '#EC4899', '#22D3EE', '#84CC16', '#F43F5E'
-        ];
-        const pick = palette[Math.floor(Math.random()*palette.length)];
-        const hsl = hexToHslString(pick);
-        setAccent(hsl);
-        localStorage.setItem(accentKey, hsl);
-        const input = document.getElementById('accentPicker');
-        if (input) input.value = pick;
-      });
-
-      document.getElementById('themeBtn')?.addEventListener('click', () => {
-        const order = ['light','system','dark'];
-        const cur = root.getAttribute('data-theme') || 'system';
-        const next = order[(order.indexOf(cur)+1)%order.length];
-        setThemeAttr(next);
-      });
-
-      function setAccent(hslString) {
-        // hslString like: "246 82% 61%" (no hsl wrapper) or "#hex" which we convert
-        const val = hslString.includes('%') ? hslString : hexToHslString(hslString);
-        root.style.setProperty('--accent', val);
-        // Adjust theme-color for mobile address bar
-        const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', hslToHex(val));
-      }
-
-      // Utilities: HEX <-> HSL conversions
-      function hexToHslString(hex) {
-        hex = hex.replace('#','');
-        if (hex.length === 3) hex = hex.split('').map(x=>x+x).join('');
-        const r = parseInt(hex.substring(0,2),16)/255;
-        const g = parseInt(hex.substring(2,4),16)/255;
-        const b = parseInt(hex.substring(4,6),16)/255;
-        const max = Math.max(r,g,b), min = Math.min(r,g,b);
-        let h, s, l = (max+min)/2;
-        if (max===min) { h = s = 0; }
-        else {
-          const d = max-min;
-          s = l > .5 ? d/(2-max-min) : d/(max+min);
-          switch(max){
-            case r: h = (g-b)/d + (g < b ? 6 : 0); break;
-            case g: h = (b-r)/d + 2; break;
-            case b: h = (r-g)/d + 4; break;
-          }
-          h /= 6;
-        }
-        return `${Math.round(h*360)} ${Math.round(s*100)}% ${Math.round(l*100)}%`;
-      }
-      function hslToHex(hslString){
-        const [h,s,l] = hslString.replace(/%/g,'').split(' ').map(Number);
-        const S=s/100, L=l/100;
-        const C=(1-Math.abs(2*L-1))*S, X=C*(1-Math.abs((h/60)%2-1)), m=L-C/2;
-        let r=0,g=0,b=0;
-        if (0<=h && h<60) { r=C; g=X; b=0; }
-        else if (60<=h && h<120) { r=X; g=C; b=0; }
-        else if (120<=h && h<180) { r=0; g=C; b=X; }
-        else if (180<=h && h<240) { r=0; g=X; b=C; }
-        else if (240<=h && h<300) { r=X; g=0; b=C; }
-        else { r=C; g=0; b=X; }
-        const R=Math.round((r+m)*255), G=Math.round((g+m)*255), B=Math.round((b+m)*255);
-        return `#${toHex(R)}${toHex(G)}${toHex(B)}`;
-      }
-      function rgbToHex(rgbString){
-        // expects "h s% l%" already converted to hex via hslToHex
-        return hslToHex(rgbString);
-      }
-      function toHex(n){ return n.toString(16).padStart(2,'0'); }
-    })();
-
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const url = card.dataset.url;
-        fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const newContent = doc.querySelector("main").innerHTML; // only inner part
-            document.querySelector("main").innerHTML = newContent;
-            history.pushState({ page: url }, "", url);
-          })
-          .catch(err => console.error(err));
-      });
-    });
-
-
-    window.addEventListener('popstate', e => {
-      if (e.state && e.state.page) {
-        fetch(e.state.page)
-          .then(res => res.text())
-          .then(html => {
-            document.querySelector('main').innerHTML = html;
-          });
-      } else {
-        location.reload(); // fallback to original page
-      }
-    });
-    
-  </script>
+  <script src="spa.js" defer></script>
+  <script src="theme.js" defer></script>
 </body>
 </html>
   
