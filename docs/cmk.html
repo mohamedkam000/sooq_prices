@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products</title>
+  <meta name="theme-color" content="#6C5CE7">
+  <link rel="stylesheet" href="styles.css">
+  <script src="spa.js" defer></script>
+  <script src="theme.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1 style="text-align:center; margin-top:20px;">Our Products</h1>
+  </header>
+
+  <main class="grid-container">
+    <!-- Card 1 -->
+    <article class="product-card" aria-label="Fruits" data-url="fru.html">
+      <div class="product-img">
+        <span class="badge">New</span>
+      </div>
+      <div class="product-body">
+        <div class="title">Fruits</div>
+        <button class="details-btn">Details</button>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="product-card" aria-label="Vegetables" data-url="veg.html">
+      <div class="product-img">
+        <span class="badge">New</span>
+      </div>
+      <div class="product-body">
+        <div class="title">Vegetables</div>
+        <button class="details-btn">Details</button>
+      </div>
+    </article>
+  </main>
+
+  <!-- Back Button -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="history.back()">←</button>
+  </div>
+</body>
+</html>
