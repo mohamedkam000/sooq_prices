@@ -30,6 +30,10 @@ function loadPage(url, pushState = true) {
       if (pushState) {
         history.pushState({ page: url }, "", url);
       }
+
+      if (typeof loadPrices === "function") {
+        loadPrices();
+      }
     })
     .catch(err => console.error("Failed to load page:", err));
 }
