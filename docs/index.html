@@ -437,21 +437,20 @@
 
     document.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('click', () => {
-        const url = card.dataset.url; // get the URL from data-url
-
-        // SPA-style navigation
+        const url = card.dataset.url;
         fetch(url)
           .then(res => res.text())
           .then(html => {
-            document.querySelector('main').innerHTML = html;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            const newContent = doc.querySelector("main").innerHTML; // only inner part
+            document.querySelector("main").innerHTML = newContent;
             history.pushState({ page: url }, "", url);
           })
           .catch(err => console.error(err));
-
-        // Optional: full-page fallback (uncomment to test)
-         window.location.href = url;
       });
     });
+
 
     window.addEventListener('popstate', e => {
       if (e.state && e.state.page) {
