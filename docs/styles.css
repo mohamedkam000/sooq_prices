@@ -190,6 +190,7 @@
       width: 100%;              /* Fill available width */
       height: 100%;             /* Fill available height */
     }
+    .container { padding: 22px 0 40px; }
 
     /* --------
        Footer
