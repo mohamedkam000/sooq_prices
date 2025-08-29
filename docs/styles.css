@@ -193,6 +193,82 @@
     .container { padding: 22px 0 40px; }
     .brand { text-decoration: none; color: inherit; }
     .brand .logo { width: 50px; height: 50px; object-fit: contain; vertical-align: middle; }
+    .details-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 24px;
+      background: var(--card-bg, white);
+      border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .details-container h2 {
+      margin-bottom: 24px;
+      font-size: 1.6rem;
+      text-align: center;
+      color: hsl(var(--accent));
+      border-bottom: 2px solid hsl(var(--accent));
+      padding-bottom: 10px;
+    }
+
+    .price-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 10px;
+      background: #f9f9f9;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .price-row:hover {
+      background: #f0f0f0;
+      transform: scale(1.02);
+    }
+
+    .price-row .item {
+      font-weight: 600;
+    }
+
+    .price-row .price {
+      color: hsl(var(--accent));
+      font-weight: 700;
+    }
+
+    .back-btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: hsl(var(--accent));
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: hsl(var(--accent) / 0.8);
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
 
     /* --------
