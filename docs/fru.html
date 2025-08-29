@@ -1,78 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>السوق المركزي — الفواكه</title>
+  <meta name="theme-color" content="#6C5CE7">
   <link rel="stylesheet" href="styles.css">
   <script src="spa.js" defer></script>
-  <style>
-    .details-container {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 24px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .details-container h2 {
-      margin-bottom: 24px;
-      font-size: 1.6rem;
-      text-align: center;
-      color: hsl(var(--accent));
-      border-bottom: 2px solid hsl(var(--accent));
-      padding-bottom: 10px;
-    }
-
-    .price-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 14px 18px;
-      border-radius: 10px;
-      background: #f9f9f9;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .price-row:hover {
-      background: #f0f0f0;
-      transform: scale(1.02);
-    }
-
-    .price-row .item {
-      font-weight: 600;
-    }
-
-    .price-row .price {
-      color: hsl(var(--accent));
-      font-weight: 700;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a href="index.html" class="brand" style="text-decoration:none; color:inherit;">
+      <a href="index.html" class="brand">
         <div class="logo"></div>
         <div>Sooq <span style="color:hsl(var(--accent))">Price</span></div>
       </a>
     </div>
   </header>
 
-  <main class="details-container">
+  <main class="details-container container">
     <h2>Central Market - Prices</h2>
     
     <div class="price-list">
@@ -90,25 +36,8 @@
       </div>
     </div>
 
-    <!-- Back Button -->
-    <div style="text-align:center; margin-top:30px;">
-      <button onclick="history.back()" 
-              style="
-                width:50px; 
-                height:50px; 
-                border-radius:50%; 
-                border:none; 
-                background:#007BFF; 
-                color:white; 
-                font-size:1.5rem; 
-                cursor:pointer;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                transition: background 0.3s ease;
-              "
-              onmouseover="this.style.background='#0056b3'"
-              onmouseout="this.style.background='#007BFF'">
-        ←
-      </button>
+    <div class="back-btn-container">
+      <button class="back-btn" onclick="history.back()">←</button>
     </div>
   </main>
 </body>
