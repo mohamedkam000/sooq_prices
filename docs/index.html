@@ -138,6 +138,12 @@
        Products
        --------- */
     .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px; /* space between cards */
+    }
+    
     .product-card {
       grid-column: span 3;
       background: rgb(var(--card)); border: 1px solid rgb(var(--border)); border-radius: calc(var(--radius) + 4px);
@@ -229,16 +235,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Al-Jazeera</div>
-<!--          <div class="stars" aria-label="Rated 4.9 out of 5">★★★★★</div>
-          <div class="price"><span class="now">$59</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#f59e0b"></span>
-            <span class="dot" style="background:#a3e635"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
       <!-- Card 4 -->
@@ -246,17 +242,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Sennar</div>
-<!--          <div class="stars" aria-label="Rated 4.1 out of 5">★★★★☆</div>
-          <div class="price"><span class="now">$39</span> <span class="was">$49</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#22c55e"></span>
-            <span class="dot" style="background:#ef4444"></span>
-            <span class="dot" style="background:#0ea5e9"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
       <!-- Card 5 -->
@@ -264,16 +249,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Al-Gadarif</div>
-<!--          <div class="stars" aria-label="Rated 4.7 out of 5">★★★★★</div>
-          <div class="price"><span class="now">$29</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#111"></span>
-            <span class="dot" style="background:#4f46e5"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
       <!-- Card 6 -->
@@ -281,17 +256,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Kassala</div>
-<!--          <div class="stars" aria-label="Rated 4.5 out of 5">★★★★☆</div>
-          <div class="price"><span class="now">$99</span> <span class="was">$129</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#111"></span>
-            <span class="dot" style="background:#6b7280"></span>
-            <span class="dot" style="background:#22d3ee"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
       <!-- Card 7 -->
@@ -299,16 +263,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">Red Sea</div>
-    <!--      <div class="stars" aria-label="Rated 4.2 out of 5">★★★★☆</div>
-          <div class="price"><span class="now">$49</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#1f2937"></span>
-            <span class="dot" style="background:#db2777"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
       <!-- Card 8 -->
@@ -316,16 +270,6 @@
         <div class="product-img"><span class="badge">Alpha</span></div>
         <div class="product-body">
           <div class="title">North Kordofan</div>
-<!--          <div class="stars" aria-label="Rated 4.4 out of 5">★★★★☆</div>
-          <div class="price"><span class="now">$34</span> <span class="was">$39</span></div>
-          <div class="swatches">
-            <span class="dot" style="background:#6b7280"></span>
-            <span class="dot" style="background:#6ee7b7"></span>
-          </div>
-          <div class="card-actions">
-            <button class="btn-card">Details</button>
-            <button class="btn-card accent">Add to Cart</button>
-          </div>-->
         </div>
       </article>
     </div>
@@ -483,7 +427,7 @@
           .catch(err => console.error(err));
 
         // Optional: full-page fallback (uncomment to test)
-        // window.location.href = url;
+         window.location.href = url;
       });
     });
 
