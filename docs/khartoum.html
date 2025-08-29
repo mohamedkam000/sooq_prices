@@ -1,61 +1,109 @@
-<main class="grid-container">
-  <article class="product-card" aria-label="Local Market" data-url="lmk.html">
-    <div class="product-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s" alt="السوق المحلي"></div>
-    <div class="product-body">
-      <div class="title">السوق المحلي</div>
-    </div>
-  </article>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأسواق</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="spa.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a href="index.html" class="brand" style="text-decoration:none; color:inherit;">
+        <div class="logo"></div>
+        <div>Sooq <span style="color:hsl(var(--accent))">Price</span></div>
+      </a>
 
-  <article class="product-card" aria-label="Central Market" data-url=".html">
-    <div class="product-img"><img src="https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg" alt="السوق المركزي الخرطوم"><span class="badge">Alpha</span></div>
-    <div class="product-body">
-      <div class="title">السوق المركزي (الخرطوم)</div>
+      <!-- Theme toggle -->
+      <div class="theme-toggle" role="group" aria-label="Theme mode">
+        <button data-theme="light" aria-pressed="false" title="Light">☀️</button>
+        <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
+        <button data-theme="dark" aria-pressed="false" title="Dark">🌙</button>
+        <button class="btn btn-ghost" id="randomAccent">🎨</button>
+      </div>
     </div>
-  </article>
+  </header>
 
-  <article class="product-card" aria-label="Al-Arabi Market" data-url=".html">
-    <div class="product-img"><img src="https://mujaz.alahdath.news/wp-content/uploads/2025/07/%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-_-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85--scaled.jpg" alt="السوق العربي"><span class="badge">Alpha</span></div>
-    <div class="product-body">
-      <div class="title">السوق العربي</div>
-    </div>
-  </article>
+  <!-- Page content -->
+  <main class="grid-container">
+    <article class="product-card" aria-label="Local Market" data-url="lmk.html">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s" alt="السوق المحلي">
+      </div>
+      <div class="product-body">
+        <div class="title">السوق المحلي</div>
+      </div>
+    </article>
 
-  <article class="product-card" aria-label="Sabreen Market" data-url="page2.html">
-    <div class="product-img"><img src="https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png" alt="سوق صابرين"><span class="badge">Alpha</span></div>
-    <div class="product-body">
-      <div class="title">سوق صابرين</div>
-    </div>
-  </article>
+    <article class="product-card" aria-label="Central Market" data-url="central.html">
+      <div class="product-img">
+        <img src="https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg" alt="السوق المركزي الخرطوم">
+        <span class="badge">Alpha</span>
+      </div>
+      <div class="product-body">
+        <div class="title">السوق المركزي (الخرطوم)</div>
+      </div>
+    </article>
 
-  <article class="product-card" aria-label="Bahri Market" data-url=".html">
-    <div class="product-img"><img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt=""><span class="badge">Alpha</span></div>
-    <div class="product-body">
-      <div class="title">المحطة الوسطى</div>
-    </div>
-  </article>
+    <article class="product-card" aria-label="Al-Arabi Market" data-url="arabi.html">
+      <div class="product-img">
+        <img src="https://mujaz.alahdath.news/wp-content/uploads/2025/07/%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-_-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85--scaled.jpg" alt="السوق العربي">
+        <span class="badge">Alpha</span>
+      </div>
+      <div class="product-body">
+        <div class="title">السوق العربي</div>
+      </div>
+    </article>
 
-  <article class="product-card" aria-label="Libya Market" data-url=".html">
-    <div class="product-img"><img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt=""><span class="badge">Alpha</span></div>
-    <div class="product-body">
-      <div class="title">سوق ليبيا</div>
-    </div>
-  </article>
-</main>
+    <article class="product-card" aria-label="Sabreen Market" data-url="page2.html">
+      <div class="product-img">
+        <img src="https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png" alt="سوق صابرين">
+        <span class="badge">Alpha</span>
+      </div>
+      <div class="product-body">
+        <div class="title">سوق صابرين</div>
+      </div>
+    </article>
 
-<!-- Back Button OUTSIDE the grid -->
-<div style="text-align:center; margin-top:30px;">
-  <button onclick="history.back()" 
-          style="
-            width:50px; 
-            height:50px; 
-            border-radius:50%; 
-            border:none; 
-            background:#007BFF; 
-            color:white; 
-            font-size:1.5rem; 
-            cursor:pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-          ">
-    ←
-  </button>
-</div>
+    <article class="product-card" aria-label="Bahri Market" data-url="bahri.html">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s" alt="">
+        <span class="badge">Alpha</span>
+      </div>
+      <div class="product-body">
+        <div class="title">المحطة الوسطى</div>
+      </div>
+    </article>
+
+    <article class="product-card" aria-label="Libya Market" data-url="libya.html">
+      <div class="product-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s" alt="">
+        <span class="badge">Alpha</span>
+      </div>
+      <div class="product-body">
+        <div class="title">سوق ليبيا</div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Back Button OUTSIDE the grid -->
+  <div style="text-align:center; margin-top:30px;">
+    <button onclick="history.back()" 
+            style="
+              width:50px; 
+              height:50px; 
+              border-radius:50%; 
+              border:none; 
+              background:#007BFF; 
+              color:white; 
+              font-size:1.5rem; 
+              cursor:pointer;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            ">
+      ←
+    </button>
+  </div>
+</body>
+</html>
