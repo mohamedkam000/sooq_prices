@@ -42,9 +42,9 @@ function loadPage(url, pushState = true) {
         }
 
         // Run price loader only if needed
-//        if (newMain.querySelector(".price-list") && typeof loadPrices === "function") {
+        if (newMain.querySelector(".price-list") && typeof loadPrices === "function") {
         loadPrices();
-//        }
+        }
       }, { once: true });
     })
     .catch(err => console.error("Failed to load page:", err));
