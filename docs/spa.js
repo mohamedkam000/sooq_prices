@@ -2,10 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Intercept clicks on cards
   document.addEventListener("click", e => {
     const card = e.target.closest(".product-card");
-    if (card && card.dataset.url && card.dataset.url !== ".html") {
-      e.preventDefault();
-      loadPage(card.dataset.url);
-    }
+    if (!card) return; // not a product card, do nothing
+
+    const url = card.dataset.url;
+    if (!url) return; // no URL, do nothing
+
+    e.preventDefault();
+    loadPage(url);
   });
 
   // Handle back/forward buttons
