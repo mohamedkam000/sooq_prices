@@ -29,4 +29,4 @@ function loadPrices() {
 }
 
 // Run once on full page load
-document.addEventListener("DOMContentLoaded", loadPrices);
+//document.addEventListener("DOMContentLoaded", loadPrices);
