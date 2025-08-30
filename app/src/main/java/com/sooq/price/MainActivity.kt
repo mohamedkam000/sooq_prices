@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import java.net.URL
 import org.json.JSONObject
 import android.view.WindowInsetsController
 import androidx.compose.ui.graphics.toArgb
+import com.sooq.price.ui.MainScreen
 
 // -------------------- Data Model --------------------
 data class DataModel(

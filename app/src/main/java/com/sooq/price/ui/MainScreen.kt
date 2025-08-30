@@ -37,6 +37,7 @@ import androidx.navigation.compose.rememberNavController
 // Coil for image loading
 import coil.compose.rememberAsyncImagePainter
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
     val markets = listOf(
