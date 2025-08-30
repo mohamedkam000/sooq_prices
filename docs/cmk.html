@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>المحتويات</title>
+  <meta name="theme-color" content="#6C5CE7">
+  <link rel="stylesheet" href="styles.css">
+  <script src="spa.js" defer></script>
+  <script src="theme.js" defer></script>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a href="index.html" class="brand" style="text-decoration:none; color:inherit;">
+        <img src="logo.png" alt="Sooq Price Logo" class="logo">
+        <div>Sooq <span style="color:hsl(var(--accent))">Price</span></div>
+      </a>
+
+      <div class="theme-toggle" role="group" aria-label="Theme mode">
+        <button data-theme="light" aria-pressed="false" title="Light">☀️</button>
+        <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
+        <button data-theme="dark" aria-pressed="false" title="Dark">🌙</button>
+        <button class="btn btn-ghost" id="randomAccent">🎨</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="container" style="text-align:center; margin:20px 0;">
+    <h1>قائمة المحتويات</h1>
+  </div>
+
+  <!-- Products Grid -->
+  <main class="container">
+    <div class="grid" id="productGrid">
+      <article class="product-card" aria-label="Fruits" data-url="fru.html">
+        <div class="product-img">
+          <img src="https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg" alt="فواكه">
+        </div>
+        <div class="product-body">
+          <div class="title">الفواكه</div>
+        </div>
+      </article>
+
+      <article class="product-card" aria-label="Vegetables" data-url="veg.html">
+        <div class="product-img">
+          <img src="https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg" alt="خضروات">
+          <span class="badge">Alpha</span>
+        </div>
+        <div class="product-body">
+          <div class="title">الخضروات</div>
+        </div>
+      </article>
+
+      <article class="product-card" aria-label="Dry Foods" data-url="df.html">
+        <div class="product-img">
+          <img src="https://www.dabangasudan.org/wp-content/uploads/2024/03/431310037_7366758390078681_5480915322942060349_n-1024x768.jpg" alt="سلع تموينية">
+          <span class="badge">Alpha</span>
+        </div>
+        <div class="product-body">
+          <div class="title">السلع التموينية</div>
+        </div>
+      </article>
+
+      <article class="product-card" aria-label="Meat" data-url="meat.html">
+        <div class="product-img">
+          <img src="https://www.sudanakhbar.com/wp-content/uploads/2020/10/%D9%84%D8%AD%D9%88%D9%85.jpg" alt="Meat">
+          <span class="badge">Alpha</span>
+        </div>
+        <div class="product-body">
+          <div class="title">اللحوم</div>
+        </div>
+      </article>
+
+      <article class="product-card" aria-label="Beverages" data-url="bev.html">
+        <div class="product-img">
+          <img src="" alt="Beverages">
+        </div>
+        <div class="product-body">
+          <div class="title">المشروبات</div>
+        </div>
+      </article>
+
+      <article class="product-card" aria-label="Oils" data-url="oil.html">
+        <div class="product-img">
+          <img src="" alt="Oils">
+        </div>
+        <div class="product-body">
+          <div class="title">الزيوت</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="back-btn-container">
+      <button class="back-btn" onclick="history.back()">←</button>
+    </div>
+  </main>
+</body>
+</html>
