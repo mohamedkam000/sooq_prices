@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 
 // Material3
 import androidx.compose.material3.*
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.TopAppBarDefaults
 
 // Compose runtime
@@ -31,11 +32,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 // Compose Navigation
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.*
+import androidx.navigation.compose.*
 
 // Coil for image loading
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
