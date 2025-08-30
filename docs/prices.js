@@ -27,6 +27,3 @@ function loadPrices() {
       console.error("Error loading data:", err);
     });
 }
-
-// Run once on full page load
-//document.addEventListener("DOMContentLoaded", loadPrices);
