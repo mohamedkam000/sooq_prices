@@ -64,13 +64,15 @@
        Header
        ------- */
     header {
-      position: sticky; top: 0; z-index: 40;
-      backdrop-filter: saturate(1.2) blur(10px);
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.08), transparent 60%)
-        ,rgba(var(--bg), .65);
-      border-bottom: 1px solid rgb(var(--border));
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: hsl(var(--accent) / 0.85); /* 85% opacity */
+      color: white;
+      backdrop-filter: saturate(1.2) blur(10px); /* optional */
+      border-bottom: 1px solid rgba(0,0,0,0.2);
     }
+
     .nav { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 12px; padding: 14px 0; align-items: center; }
     .brand { display:flex; gap:10px; align-items:center; font-weight: 700; }
     .logo {
@@ -78,12 +80,6 @@
       background: conic-gradient(from 180deg, hsl(var(--accent) / 1), hsl(var(--accent) / .8), hsl(var(--accent) / 1));
       box-shadow: var(--shadow-1);
     }
-    .search {
-      display:flex; align-items:center; gap:10px; padding: 10px 12px;
-      border: 1px solid rgb(var(--border)); border-radius: 999px;
-      background: rgb(var(--card));
-    }
-    .search input { flex:1; background: transparent; border: none; outline: none; color: rgb(var(--text)); }
     .actions { justify-self: end; display:flex; align-items:center; gap:10px; }
     .chip { padding: 8px 12px; border-radius: 999px; border:1px solid rgb(var(--border)); background: rgb(var(--card)); font-size: 13px; }
     .btn {
