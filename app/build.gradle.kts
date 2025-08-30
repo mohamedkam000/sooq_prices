@@ -60,7 +60,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.12.0-alpha06")
     implementation("androidx.compose.material:material-icons-core:1.7.8")
     implementation("androidx.compose.runtime:runtime:1.10.0-alpha01")
-    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material3:material3:1.5.0-alpha02")
     implementation("androidx.navigation:navigation-compose:2.9.3")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.14.0-alpha04")

@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
                     else -> {
                         data?.let { d ->
                             val navController = rememberNavController()
-                            MainScreen(navController = navController, data = d)
+                            MainScreen(navController = navController)
                         }
                     }
                 }
