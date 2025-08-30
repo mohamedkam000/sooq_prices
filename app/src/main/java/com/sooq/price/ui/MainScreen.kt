@@ -82,7 +82,7 @@ fun MainScreen(navController: NavHostController) {
                         )
                     }
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(
+                colors = TopAppBarDefaults.TopAppBarColors(
                     containerColor = backgroundColor,
                     titleContentColor = contentColor
                 ),

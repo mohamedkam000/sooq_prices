@@ -56,12 +56,12 @@ class MainActivity : ComponentActivity() {
             SideEffect {
                 window.statusBarColor = colorScheme.primary.toArgb()
                 window.navigationBarColor = colorScheme.surface.toArgb()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+/*                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     window.insetsController?.setSystemBarsAppearance(
                         if (isSystemInDarkTheme()) 0 else WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
                         WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
                     )
-                }
+                }*/
             }
 
             MaterialTheme(colorScheme = colorScheme) {
