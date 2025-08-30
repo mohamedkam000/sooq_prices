@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (savedAccent) setAccent(savedAccent);
 
   document.getElementById('randomAccent')?.addEventListener('click', () => {
-    const palette = ['#E11D48','#F59E0B','#10B981','#0EA5E9','#6366F1','#8B5CF6','#EC4899','#22D3EE','#84CC16','#F43F5E'];
+    const palette = ['#E11D48','#6366F1','#8B5CF6','#EC4899','#F43F5E'];
     const pick = palette[Math.floor(Math.random()*palette.length)];
     setAccent(pick);
     localStorage.setItem(accentKey, pick);
