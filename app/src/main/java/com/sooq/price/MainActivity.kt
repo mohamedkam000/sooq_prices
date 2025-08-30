@@ -1,94 +1,97 @@
 package com.sooq.price
 
+// -------------------- Imports --------------------
 import android.os.Build
-import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.content.edit
-import com.sooq.price.ui.*
-import com.sooq.price.categories.*
-import com.sooq.price.states.*
-import com.sooq.price.markets.*
-import com.sooq.price.ui.theme.*
-import com.sooq.price.components.*
-
-// Compose Foundation
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.shape.*
-
-// Material
 import androidx.compose.material3.*
-import androidx.compose.material.icons.*
-import androidx.compose.material.icons.filled.*
-
 import androidx.compose.runtime.*
-
-// Compose UI
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.*
-
-//import coil.compose.AsyncImage
-import kotlinx.coroutines.delay
-
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import android.content.Context
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.net.URL
+import org.json.JSONObject
+import android.view.WindowInsetsController
+import androidx.compose.ui.graphics.toArgb
 
-// Compose Navigation
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+// -------------------- Data Model --------------------
+data class DataModel(
+    val orange_100: String,
+    val apple_1: String,
+    val grape_k: String,
+    val watermelon: String,
+    val date: String
+)
 
-// Compose Animation
-import androidx.compose.animation.core.*
-import androidx.compose.animation.*
-
+// -------------------- MainActivity --------------------
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.isNavigationBarContrastEnforced = false
-        }
+
+        // Edge-to-edge
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             val context = LocalContext.current
-            var data by remember { mutableStateOf<DataModel?>(null) }
-            var isLoading by remember { mutableStateOf(true) }
-            var hasError by remember { mutableStateOf(false) }
-        
-            LaunchedEffect(Unit) {
-                try {
-                    data = jsonDownloader.downloadAndLoadJson(context)
-                    if (data == null) {
-                        hasError = true
+
+            // -------- Dynamic Colors (Monet) --------
+            val colorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (isSystemInDarkTheme()) dynamicDarkColorScheme(context)
+                else dynamicLightColorScheme(context)
+            } else {
+                lightColorScheme() // fallback
+            }
+
+            // Update status bar & nav bar colors
+            SideEffect {
+                window.statusBarColor = colorScheme.primary.toArgb()
+                window.navigationBarColor = colorScheme.surface.toArgb()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    val controller = window.insetsController
+                    if (controller != null) {
+                        controller.setSystemBarsAppearance(
+                            if (isSystemInDarkTheme()) 0 else WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                        )
                     }
-                } catch (e: Exception) {
-                    Log.e("MainActivity", "Failed to load data", e)
-                    hasError = true
-                } finally {
-                    isLoading = false
                 }
             }
-        
-            when {
-                isLoading -> LoadingScreen()
-                hasError -> ErrorScreen(onRetry = {
-                    isLoading = true
-                    hasError = false
-                })
-                else -> {
-                    SooqTheme {
-                        AppNavigation(data = data!!)
+
+            MaterialTheme(colorScheme = colorScheme) {
+                var data by remember { mutableStateOf<DataModel?>(null) }
+                var isLoading by remember { mutableStateOf(true) }
+                var hasError by remember { mutableStateOf(false) }
+
+                LaunchedEffect(Unit) {
+                    try {
+                        data = loadJsonFromUrl(
+                            "https://raw.githubusercontent.com/mohamedkam000/prices/main/data.json"
+                        )
+                        hasError = data == null
+                    } catch (e: Exception) {
+                        hasError = true
+                    } finally {
+                        isLoading = false
+                    }
+                }
+
+                when {
+                    isLoading -> LoadingScreen()
+                    hasError -> ErrorScreen(onRetry = {
+                        isLoading = true
+                        hasError = false
+                    })
+                    else -> {
+                        data?.let {
+                            MainScreen(data = it) // Use your existing composable
+                        }
                     }
                 }
             }
@@ -96,34 +99,41 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// -------------------- JSON Loader --------------------
+suspend fun loadJsonFromUrl(urlString: String): DataModel? = withContext(Dispatchers.IO) {
+    try {
+        val jsonText = URL(urlString).readText()
+        val json = JSONObject(jsonText)
+        DataModel(
+            orange_100 = json.getString("orange_100"),
+            apple_1 = json.getString("apple_1"),
+            grape_k = json.getString("grape_k"),
+            watermelon = json.getString("watermelon"),
+            date = json.getString("date")
+        )
+    } catch (e: Exception) {
+        null
+    }
+}
+
+// -------------------- Error & Loading Screens --------------------
 @Composable
 fun ErrorScreen(onRetry: () -> Unit) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
             .clickable { onRetry() },
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "😞",
-            fontSize = 64.sp,
-            modifier = Modifier.padding(16.dp)
-        )
+        Text(text = "😞 Error loading data. Tap to retry.", fontSize = 18.sp)
     }
 }
 
 @Composable
-fun AppNavigation(data: DataModel) {
-    val navController = rememberNavController()
-    val context = LocalContext.current
-
-    NavHost(
-        navController = navController,
-        startDestination = "main",
+fun LoadingScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        composable("main") { MainScreen(navController) }
-        composable("kh") { Kh(navController) }
-        composable("veg") { Veg(navController, data) }
-        composable("central") { Cen(navController) }
+        CircularProgressIndicator()
     }
 }
