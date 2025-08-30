@@ -2,13 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Intercept clicks on cards
   document.addEventListener("click", e => {
     const card = e.target.closest(".product-card");
-    if (!card) return; // not a product card, do nothing
-
-    const url = card.dataset.url;
-    if (!url) return; // no URL, do nothing
-
-    e.preventDefault();
-    loadPage(url);
+    if (card && card.dataset.url && card.dataset.url !== ".html") {
+      e.preventDefault();
+      loadPage(card.dataset.url);
+    }
   });
 
   // Handle back/forward buttons
@@ -23,33 +20,20 @@ function loadPage(url, pushState = true) {
   fetch(url)
     .then(res => res.text())
     .then(html => {
+      // Extract just the <main> part of the page
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       const newMain = doc.querySelector("main");
 
-      const currentMain = document.querySelector("main");
+      document.querySelector("main").replaceWith(newMain);
 
-      // Fade out current page
-      currentMain.classList.add("fade-out");
+      if (pushState) {
+        history.pushState({ page: url }, "", url);
+      }
 
-      currentMain.addEventListener("animationend", () => {
-        // Replace with new content
-        currentMain.replaceWith(newMain);
-
-        // Fade in new content
-        newMain.classList.add("fade-in");
-
-        // Push state
-        if (pushState) {
-          history.pushState({ page: url }, "", url);
-        }
-
-        // Run price loader only if needed
-        if (newMain.querySelector(".price-list") && typeof loadPrices === "function") {
+      if (typeof loadPrices === "function") {
         loadPrices();
-        }
-      }, { once: true });
+      }
     })
     .catch(err => console.error("Failed to load page:", err));
 }
-
