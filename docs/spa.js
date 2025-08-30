@@ -25,7 +25,11 @@ function loadPage(url, pushState = true) {
       const doc = parser.parseFromString(html, "text/html");
       const newMain = doc.querySelector("main");
 
-      document.querySelector("main").replaceWith(newMain);
+      // Start hidden
+      newMain.classList.add("fade-out");
+      currentMain.replaceWith(newMain);
+
+      //document.querySelector("main").replaceWith(newMain);
 
       if (pushState) {
         history.pushState({ page: url }, "", url);
