@@ -82,10 +82,12 @@ fun MainScreen(navController: NavHostController) {
                         )
                     }
                 },
-                colors = TopAppBarDefaults.TopAppBarColors(
-                    containerColor = backgroundColor,
-                    titleContentColor = contentColor
-                ),
+                colors = object : TopAppBarColors {
+                    override fun containerColor(scrollFraction: Float): Color = Color(0xFF00897B) // Teal
+                    override fun navigationIconContentColor(scrollFraction: Float): Color = Color.White
+                    override fun titleContentColor(scrollFraction: Float): Color = Color.White
+                    override fun actionIconContentColor(scrollFraction: Float): Color = Color.White
+                },
                 modifier = Modifier.fillMaxWidth()
             )
         },
