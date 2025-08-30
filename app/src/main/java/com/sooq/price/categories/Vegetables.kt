@@ -85,7 +85,7 @@ fun BubbleScreen(data: DataModel) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Veg(navController: NavHostController) {
+fun Veg(navController: NavHostController, data: DataModel) {
     val context = LocalContext.current
     val data = loadJson(context) ?: DataModel(
         date = "N/A",

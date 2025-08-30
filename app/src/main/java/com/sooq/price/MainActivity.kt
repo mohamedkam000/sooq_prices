@@ -66,18 +66,17 @@ class MainActivity : ComponentActivity() {
             var isLoading by remember { mutableStateOf(true) }
             var hasError by remember { mutableStateOf(false) }
         
-            LaunchedEffect(key1 = isLoading) {
-                if (isLoading) {
-                    delay(5000)
-                    try {
-                        jsonDownloader.downloadJsonFile(context)
-                        data = loadJson(context)
-                        hasError = data == null
-                    } catch (e: Exception) {
+            LaunchedEffect(Unit) {
+                try {
+                    data = jsonDownloader.downloadAndLoadJson(context)
+                    if (data == null) {
                         hasError = true
-                    } finally {
-                        isLoading = false
                     }
+                } catch (e: Exception) {
+                    Log.e("MainActivity", "Failed to load data", e)
+                    hasError = true
+                } finally {
+                    isLoading = false
                 }
             }
         
@@ -89,7 +88,7 @@ class MainActivity : ComponentActivity() {
                 })
                 else -> {
                     SooqTheme {
-                        AppNavigation()
+                        AppNavigation(data = data!!)
                     }
                 }
             }
@@ -114,7 +113,7 @@ fun ErrorScreen(onRetry: () -> Unit) {
 }
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(data: DataModel) {
     val navController = rememberNavController()
     val context = LocalContext.current
 
@@ -124,7 +123,7 @@ fun AppNavigation() {
     ) {
         composable("main") { MainScreen(navController) }
         composable("kh") { Kh(navController) }
-        composable("veg") { Veg(navController) }
+        composable("veg") { Veg(navController, data) }
         composable("central") { Cen(navController) }
     }
 }
