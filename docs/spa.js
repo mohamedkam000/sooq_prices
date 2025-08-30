@@ -20,24 +20,33 @@ function loadPage(url, pushState = true) {
   fetch(url)
     .then(res => res.text())
     .then(html => {
-      // Extract just the <main> part of the page
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       const newMain = doc.querySelector("main");
 
-      // Start hidden
-      newMain.classList.add("fade-out");
-      currentMain.replaceWith(newMain);
+      const currentMain = document.querySelector("main");
 
-      //document.querySelector("main").replaceWith(newMain);
+      // Fade out current page
+      currentMain.classList.add("fade-out");
 
-      if (pushState) {
-        history.pushState({ page: url }, "", url);
-      }
+      currentMain.addEventListener("animationend", () => {
+        // Replace with new content
+        currentMain.replaceWith(newMain);
 
-      if (typeof loadPrices === "function") {
+        // Fade in new content
+        newMain.classList.add("fade-in");
+
+        // Push state
+        if (pushState) {
+          history.pushState({ page: url }, "", url);
+        }
+
+        // Run price loader only if needed
+//        if (newMain.querySelector(".price-list") && typeof loadPrices === "function") {
         loadPrices();
-      }
+//        }
+      }, { once: true });
     })
     .catch(err => console.error("Failed to load page:", err));
 }
+
