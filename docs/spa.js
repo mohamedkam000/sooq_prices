@@ -20,7 +20,6 @@ function loadPage(url, pushState = true) {
   fetch(url)
     .then(res => res.text())
     .then(html => {
-      // Extract just the <main> part of the page
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       const newMain = doc.querySelector("main");
@@ -31,6 +30,7 @@ function loadPage(url, pushState = true) {
         history.pushState({ page: url }, "", url);
       }
 
+      // Always try to update prices
       if (typeof loadPrices === "function") {
         loadPrices();
       }
