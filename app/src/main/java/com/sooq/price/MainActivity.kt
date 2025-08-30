@@ -3,6 +3,7 @@ package com.sooq.price
 // -------------------- Imports --------------------
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -14,13 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URL
 import org.json.JSONObject
-import android.view.WindowInsetsController
-import androidx.compose.ui.graphics.toArgb
 import com.sooq.price.ui.MainScreen
 
 // -------------------- Data Model --------------------
@@ -56,13 +57,10 @@ class MainActivity : ComponentActivity() {
                 window.statusBarColor = colorScheme.primary.toArgb()
                 window.navigationBarColor = colorScheme.surface.toArgb()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val controller = window.insetsController
-                    if (controller != null) {
-                        controller.setSystemBarsAppearance(
-                            if (isSystemInDarkTheme()) 0 else WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                        )
-                    }
+                    window.insetsController?.setSystemBarsAppearance(
+                        if (isSystemInDarkTheme()) 0 else WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    )
                 }
             }
 
@@ -91,8 +89,9 @@ class MainActivity : ComponentActivity() {
                         hasError = false
                     })
                     else -> {
-                        data?.let {
-                            MainScreen(data = it) // Use your existing composable
+                        data?.let { d ->
+                            val navController = rememberNavController()
+                            MainScreen(navController = navController, data = d)
                         }
                     }
                 }
@@ -122,11 +121,13 @@ suspend fun loadJsonFromUrl(urlString: String): DataModel? = withContext(Dispatc
 @Composable
 fun ErrorScreen(onRetry: () -> Unit) {
     Box(
-        modifier = Modifier.fillMaxSize()
-            .clickable { onRetry() },
+        modifier = Modifier.fillMaxSize().clickable { onRetry() },
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "😞 Error loading data. Tap to retry.", fontSize = 18.sp)
+        Text(
+            text = "😞 Error loading data. Tap to retry.",
+            fontSize = 18.sp
+        )
     }
 }
 
