@@ -279,6 +279,17 @@
       font-style: italic;
     }
 
+    /* SPA page transitions */
+    main {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    main.fade-out {
+      opacity: 0;
+      transform: translateY(10px);
+    }
 
 
 
