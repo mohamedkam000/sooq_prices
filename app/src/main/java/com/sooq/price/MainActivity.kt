@@ -3,14 +3,12 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.*
+import androidx.compose.foundation.overscroll.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -22,9 +20,7 @@ import androidx.compose.ui.unit.*
 import androidx.compose.ui.platform.*
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
 import coil.compose.rememberAsyncImagePainter
 
 data class Product(
@@ -67,9 +63,13 @@ fun HomeScreen(navController: NavHostController) {
         Product("ههههههه", "https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg", "Alpha"),
         Product("Mountains", "https://picsum.photos/300/200", "Beta"),
         Product("Desert", "https://picsum.photos/301/200", "Gamma"),
+        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
+        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
+        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
     )
 
     val dynamicColorScheme = dynamicLightColorScheme(LocalContext.current)
+    val overscroll = StretchOverscrollEffect()
 
     Box(
         modifier = Modifier
@@ -93,6 +93,9 @@ fun HomeScreen(navController: NavHostController) {
             )
     
             LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .overscroll(overscroll),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
