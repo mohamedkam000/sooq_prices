@@ -71,13 +71,43 @@ fun HomeScreen(navController: NavHostController) {
 
     val dynamicColorScheme = dynamicLightColorScheme(LocalContext.current)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(dynamicColorScheme.background)
-            .blur(20.dp)
-            .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
-    ) {
+    // Box(
+//         modifier = Modifier
+//             .fillMaxSize()
+//             .background(dynamicColorScheme.background)
+//             .blur(20.dp)
+//             .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
+//     ) {
+//         Column(modifier = Modifier.fillMaxSize()) {
+//             Text(
+//                 "Explore",
+//                 fontSize = 28.sp,
+//                 fontWeight = FontWeight.Bold,
+//                 modifier = Modifier.padding(16.dp)
+//             )
+// 
+//             LazyColumn(
+//                 modifier = Modifier.fillMaxSize(),
+//                 verticalArrangement = Arrangement.spacedBy(16.dp),
+//                 contentPadding = PaddingValues(bottom = 16.dp)
+//             ) {
+//                 items(products) { product ->
+//                     ProductCard(product) {
+//                         navController.navigate("detail/${product.title}/${product.imageUrl}")
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(dynamicColorScheme.background)
+                .blur(20.dp)
+        )
+    
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
                 "Explore",
@@ -85,7 +115,7 @@ fun HomeScreen(navController: NavHostController) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(16.dp)
             )
-
+    
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
