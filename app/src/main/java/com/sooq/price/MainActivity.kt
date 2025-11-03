@@ -68,7 +68,7 @@ fun HomeScreen(navController: NavHostController) {
     )
 
     val dynamicColorScheme = dynamicLightColorScheme(LocalContext.current)
-    val overscrollBehavior = rememberOverscrollBehavior()
+    val overscrollBehavior = ScrollableDefaults.overscrollBehavior()
 
     Box(
         modifier = Modifier
