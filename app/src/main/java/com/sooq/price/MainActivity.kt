@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.gestures.*
-import androidx.compose.foundation.overscroll.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
