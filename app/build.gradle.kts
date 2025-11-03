@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(24)
 }
 
 android {
@@ -45,10 +45,10 @@ android {
         compose = true
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
-    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_24
+//        targetCompatibility = JavaVersion.VERSION_24
+//    }
 }
 
 dependencies {
