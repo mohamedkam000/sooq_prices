@@ -69,7 +69,7 @@ fun HomeScreen(navController: NavHostController) {
     )
 
     val dynamicColorScheme = dynamicLightColorScheme(LocalContext.current)
-    val overscroll = StretchOverscrollEffect()
+    val overscrollBehavior = rememberOverscrollBehavior()
 
     Box(
         modifier = Modifier
@@ -95,7 +95,7 @@ fun HomeScreen(navController: NavHostController) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .overscroll(overscroll),
+                    .overscroll(overscrollBehavior),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(bottom = 16.dp)
             ) {
