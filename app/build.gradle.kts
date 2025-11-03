@@ -4,9 +4,9 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-kotlin {
-    jvmToolchain(24)
-}
+//kotlin {
+//    jvmToolchain(24)
+//}
 
 android {
     namespace = "com.sooq.price"
