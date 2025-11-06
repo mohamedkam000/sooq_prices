@@ -2,14 +2,13 @@ package com.sooq.price
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.layout.ContentScale
 import com.sooq.price.*
 
 @OptIn(ExperimentalFoundationApi::class)

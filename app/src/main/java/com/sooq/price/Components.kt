@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import androidx.compose.ui.layout.*
 
 @Composable
 fun SooqCard(title: String, subtitle: String, imageUrl: String?, tag: String, onClick: () -> Unit) {
