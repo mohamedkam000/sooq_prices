@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id "org.jetbrains.kotlin.kapt" version "2.2.21"
+    id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -74,7 +74,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha02")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0-alpha02")
     implementation("androidx.room:room-runtime:2.8.3")
-    kapt("androidx.room:room-compiler:2.8.3")
+    ksp("androidx.room:room-compiler:2.8.3")
     implementation("androidx.room:room-ktx:2.8.3")
     implementation("com.squareup.okhttp3:okhttp:5.3.0")
 //    implementation("com.airbnb.android:lottie-compose:6.6.7")
