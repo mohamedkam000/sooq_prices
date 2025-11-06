@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    kotlin("kapt")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -16,7 +17,7 @@ android {
         ndk {
             abiFilters += listOf("arm64-v8a")
         }
-        resConfig("en")
+//        resConfig("en")
     }
 
     signingConfigs {

@@ -360,61 +360,29 @@ function showGoods(state, market) {
 function showItems(state, market, good) {
   detailContent.innerHTML = `
     <h2>${good.name}</h2>
-    <div class="item-quant-grid"></div>
+    <div class="market-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
-
-  const itemsGrid = detailContent.querySelector('.item-quant-grid');
+  const itemsGrid = detailContent.querySelector('.market-grid');
 
   good.items.forEach(item => {
-    if (item.quant && item.quant.length > 0) {
-      item.quant.forEach(quant => {
-        const priceValue = prices[quant.price_key] || 'Price N/A';
-        const displayPrice = `${priceValue} SDG`;
-
-        const el = document.createElement('article');
-        el.className = 'card';
-        el.innerHTML = `
-          <div class="img" style="background-image:url('${item.img || ''}')"></div>
-          <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
-            <div class="city" style="font-size:1.2em;font-weight:bold">${item.name} (${quant.name})</div>
-          </div>
-          <div class="meta" style="text-align:center;">
-            <div class="price">Price: ${displayPrice}</div>
-          </div>
-        `;
-        const tag = document.createElement('div');
-        tag.className = 'tag';
-        tag.textContent = 'Price';
-        el.appendChild(tag);
-        el.addEventListener('click', () => showItemDetail(state, market, good, {...item, ...quant, price: displayPrice}));
-        itemsGrid.appendChild(el);
-      });
-    } else {
-      // For items without the 'quant' structure (e.g., Watermelon, Bananas)
-      const priceKey = `${item.id}_s`; // Default to single key
-      const priceValue = prices[priceKey] || 'Price N/A';
-      const displayPrice = `${priceValue} SDG`;
-
-      const el = document.createElement('article');
-      el.className = 'card';
-      el.innerHTML = `
-          <div class="img" style="background-image:url('${item.img || ''}')"></div>
-          <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
-            <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
-          </div>
-          <div class="meta" style="text-align:center;">
-            <div class="price">Price: ${displayPrice}</div>
-          </div>
-        `;
-        const tag = document.createElement('div');
-        tag.className = 'tag';
-        tag.textContent = 'Item';
-        el.appendChild(tag);
-        
-        el.addEventListener('click', () => showItemDetail(state, market, good, {...item, price: displayPrice}));
-        itemsGrid.appendChild(el);
-    }
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="img" style="background-image:url('${item.img || ''}')"></div>
+      <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
+        <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
+      </div>
+      <div class="meta" style="text-align:center;">
+        <div class="desc">Click to see prices</div>
+      </div>
+    `;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Item';
+    el.appendChild(tag);
+    el.addEventListener('click', () => showItemDetail(state, market, good, item));
+    itemsGrid.appendChild(el);
   });
 
   const backBtn = detailContent.querySelector('#backBtn');
@@ -423,44 +391,61 @@ function showItems(state, market, good) {
 }
 
 function showItemDetail(state, market, good, item) {
-  const itemName = item.name + (item.quant ? ` (${item.quant.name})` : '');
-  const displayPrice = item.price || 'Price N/A';
-
   detailContent.innerHTML = `
-    <h2>${itemName}</h2>
+    <h2>${item.name}</h2>
     <div class="market-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
 
   const grid = detailContent.querySelector('.market-grid');
+  
+  if (item.quant && item.quant.length > 0) {
+    item.quant.forEach(quant => {
+      const priceValue = prices[quant.price_key] || 'Price N/A';
+      const displayPrice = `${priceValue} SDG`;
 
-  const el = document.createElement('article');
-  el.className = 'card';
-  el.style.display = 'flex';
-  el.style.flexDirection = 'column';
-  el.style.justifyContent = 'center';
-  el.style.alignItems = 'center';
-  el.style.height = '200px';
-
-  el.innerHTML = `
-    <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
-      <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
-    </div>
-    <div class="meta" style="text-align:center;margin-top:10px;">
-      <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
-    </div>
-  `;
-
-  const tag = document.createElement('div');
-  tag.className = 'tag';
-  tag.textContent = 'Item Detail';
-  el.appendChild(tag);
-
-  grid.appendChild(el);
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
+          <div class="city" style="font-size:2em;font-weight:bold;">${quant.name}</div>
+        </div>
+        <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
+          <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
+        </div>
+      `;
+      const tag = document.createElement('div');
+      tag.className = 'tag';
+      tag.textContent = 'Price';
+      el.appendChild(tag);
+      grid.appendChild(el);
+    });
+  } else {
+    const priceKey = `${item.id}_s`;
+    const priceValue = prices[priceKey] || 'Price N/A';
+    const displayPrice = `${priceValue} SDG`;
+    
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+        <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
+          <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
+        </div>
+        <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
+          <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
+        </div>
+      `;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Item';
+    el.appendChild(tag);
+    grid.appendChild(el);
+  }
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showItems(state, market, good));
 }
+
 
 initializeApp();
 
