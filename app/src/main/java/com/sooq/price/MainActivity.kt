@@ -3,174 +3,103 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.gestures.*
-import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.draw.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.*
-import androidx.compose.ui.platform.*
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.*
-import coil.compose.rememberAsyncImagePainter
-
-data class Product(
-    val title: String,
-    val imageUrl: String,
-    val badge: String
-)
+import coil.compose.AsyncImage
+import com.sooq.price.ui.theme.SooqTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            MaterialTheme {
-                val navController = rememberNavController()
-                AppNavGraph(navController)
+            SooqTheme(dynamicColor = true) {
+                SooqApp()
             }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AppNavGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = "home") {
-        composable("home") {
-            HomeScreen(navController)
-        }
-        composable("detail/{title}/{imageUrl}") { backStackEntry ->
-            val title = backStackEntry.arguments?.getString("title") ?: ""
-            val imageUrl = backStackEntry.arguments?.getString("imageUrl") ?: ""
-            DetailScreen(title, imageUrl)
-        }
-    }
-}
+fun SooqApp() {
+    var currentScreen by remember { mutableStateOf<Screen>(Screen.States) }
+    var selectedState by remember { mutableStateOf<State?>(null) }
+    var selectedMarket by remember { mutableStateOf<Market?>(null) }
+    var selectedGood by remember { mutableStateOf<Good?>(null) }
+    var selectedItem by remember { mutableStateOf<Item?>(null) }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun HomeScreen(navController: NavHostController) {
-    val products = listOf(
-        Product("ههههههه", "https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg", "Alpha"),
-        Product("Mountains", "https://picsum.photos/300/200", "Beta"),
-        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
-        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
-        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
-        Product("Desert", "https://picsum.photos/301/200", "Gamma"),
-    )
-
-    val dynamicColorScheme = dynamicLightColorScheme(LocalContext.current)
-//    val overscrollBehavior = ScrollableDefaults.overscrollBehavior()
-
-    Box(
+    Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(dynamicColorScheme.primaryContainer)
-            .blur(20.dp)
+            .systemBarsPadding()
+            .background(MaterialTheme.colorScheme.background),
+        color = MaterialTheme.colorScheme.background
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
-                    bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
-                )
-        ) {
-            Text(
-                "Explore",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 16.dp)
+        when (currentScreen) {
+            is Screen.States -> StateList(
+                onClick = {
+                    selectedState = it
+                    currentScreen = Screen.Markets
+                }
             )
-    
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize(),
-//                    .overscroll(overscrollBehavior),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
-            ) {
-                items(products) { product ->
-                    ProductCard(product) {
-                        navController.navigate("detail/${product.title}/${product.imageUrl}")
-                    }
+            is Screen.Markets -> selectedState?.let { state ->
+                MarketList(state, onBack = { currentScreen = Screen.States }) {
+                    selectedMarket = it
+                    currentScreen = Screen.Goods
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun ProductCard(product: Product, onClick: () -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(220.dp)
-            .padding(horizontal = 16.dp)
-            .clip(RoundedCornerShape(24.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.9f)),
-        elevation = CardDefaults.cardElevation(10.dp),
-        onClick = onClick
-    ) {
-        Box {
-            Image(
-                painter = rememberAsyncImagePainter(product.imageUrl),
-                contentDescription = product.title,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            Box(
-                modifier = Modifier
-                    .align(Alignment.TopStart)
-                    .padding(12.dp)
-                    .background(Color.Red, shape = RoundedCornerShape(12.dp))
-                    .padding(horizontal = 8.dp, vertical = 4.dp)
-            ) {
-                Text(product.badge, color = Color.White, fontWeight = FontWeight.Bold)
+            is Screen.Goods -> selectedMarket?.let { market ->
+                GoodsList(
+                    market,
+                    onBack = { currentScreen = Screen.Markets },
+                    onClick = {
+                        selectedGood = it
+                        currentScreen = Screen.Items
+                    }
+                )
             }
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .background(Color.Black.copy(alpha = 0.4f))
-                    .fillMaxWidth()
-                    .padding(12.dp)
-            ) {
-                Text(product.title, color = Color.White, fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+            is Screen.Items -> selectedGood?.let { good ->
+                ItemList(
+                    good,
+                    onBack = { currentScreen = Screen.Goods },
+                    onClick = {
+                        selectedItem = it
+                        currentScreen = Screen.ItemDetail
+                    }
+                )
+            }
+            is Screen.ItemDetail -> selectedItem?.let { item ->
+                ItemDetail(item, onBack = { currentScreen = Screen.Items })
             }
         }
     }
 }
 
-@Composable
-fun DetailScreen(title: String, imageUrl: String) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-            .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
-    ) {
-        Image(
-            painter = rememberAsyncImagePainter(imageUrl),
-            contentDescription = title,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-        Text(
-            title,
-            color = Color.White,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(16.dp)
-        )
-    }
+sealed class Screen {
+    data object States : Screen()
+    data object Markets : Screen()
+    data object Goods : Screen()
+    data object Items : Screen()
+    data object ItemDetail : Screen()
 }

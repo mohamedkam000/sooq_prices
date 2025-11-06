@@ -1,118 +1,42 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="system">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="/garden/">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sooq Price</title>
-  <meta name="theme-color" content="#6C5CE7" />
-  <link rel="stylesheet" href="styles.css">
-  <script src="spa.js" defer></script>
-  <script src="theme.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header / Navigation -->
-  <header>
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <a href="index.html" class="brand" style="text-decoration:none; color:inherit;">
-        <img src="logo.png" alt="Sooq Price Logo" class="logo" style="width:50px; height:50px; object-fit:contain; vertical-align:middle;">
-        <div>
-          <div>Sooq Price</div>
-        </div>
-      </a>
+  <div class="app">
+    <header>
+      <h1>
+        <span class="logo"></span>
+        <span class="title-box">
+          <span id="titleColored"></span>
+        </span>
+        <span class="date-box">
+          <span id="date" class="dancing-date"></span>
+        </span>
+      </h1>
+    </header>
 
-      <!-- Theme toggle moved here -->
-      <div class="theme-toggle" role="group" aria-label="Theme mode">
-        <button data-theme="light" aria-pressed="false" title="Light">☀️</button>
-        <button data-theme="system" aria-pressed="true" title="System">🖥️</button>
-        <button data-theme="dark" aria-pressed="false" title="Dark">🌙</button>
-        <button class="btn btn-ghost" id="randomAccent">🎨</button>
-      </div>
+    <div class="shell" id="appShell">    
+      <main>
+        <section id="gridView" class="view">
+          <div class="grid" id="cardsGrid" role="list"></div>
+        </section>
+        <section id="detailView" class="view hidden">
+          <div id="detailContent" class="detail" style="margin-top:14px"></div>
+        </section>
+      </main>
+      
+      <footer class="footer-box">
+        <footer id="footer"></footer>
+      </footer>
     </div>
-  </header>
-
-  <main class="container">
-    <div class="grid" id="productGrid">
-      <article class="product-card" aria-label="Khartoum" data-url="khartoum.html">
-        <div class="product-img"><img src="https://i0.wp.com/arabscountries.com/wp-content/uploads/2020/10/sudan-1.jpg" alt="Khartoum"></div>
-        <div class="product-body">
-          <div class="title">الخرطوم</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="River Nile">
-        <div class="product-img"><img src="https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg" alt="River Nile"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">نهر النيل</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Al-Jazeera">
-        <div class="product-img"><img src="https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg" alt="Al-Jazeera"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">الجزيرة</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Sinnar">
-        <div class="product-img"><img src="https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg" alt="Sinnar"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">سنار</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Al-Gadarif">
-        <div class="product-img"><img src="https://assafirarabi.com/wp-content/uploads/2024/04/29695030_610016156014204_5046027968230156596_n.jpg" alt="Al-Gadarif"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">القضارف</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Kassala">
-        <div class="product-img"><img src="https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg" alt="Kassala"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">كسلا</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Red Sea">
-        <div class="product-img"><img src="https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg" alt="Red Sea"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">البحر الأحمر</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="Northern Sudan">
-        <div class="product-img"><img src="https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg" alt="Northern Sudan"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">الشمالية</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="North Kordofan">
-        <div class="product-img"><img src="https://alroya.news/wp-content/uploads/2023/07/%D8%A7%D9%84%D8%A3%D8%A8%D9%8A%D8%B6-%D8%AA%D9%88%D9%8A%D8%AA%D8%B1.jpg" alt="North Kordofan"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">شمال كردفان</div>
-        </div>
-      </article>
-
-      <article class="product-card" aria-label="South Kordofan">
-        <div class="product-img"><img src="https://www.alrakoba.net/wp-content/uploads/2020/06/6c21f000fac35192633bba9e5f877b90.jpg.webp" alt="South Kordofan"><span class="badge">Alpha</span></div>
-        <div class="product-body">
-          <div class="title">جنوب كردفان</div>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <footer class="container">
-    <div style="display:flex; justify-content: space-between; gap:12px; flex-wrap:wrap;">
-      <div>© 2025 Sooq Price. All rights reserved.</div>
-      <div>Made by <span style="color:hsl(var(--accent))">Muhammad Kamal</span>.</div>
-    </div>
-  </footer>
-
-  <script src="spa.js" defer></script>
-  <script src="theme.js" defer></script>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
-  

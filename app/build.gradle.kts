@@ -74,6 +74,8 @@ dependencies {
 //    implementation("com.airbnb.android:lottie:6.6.7")
 //    implementation("com.github.spotbugs:spotbugs-annotations:4.9.3")
     implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("androidx.compose.animation:animation:1.10.0-beta01")
+
 //    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
 //    implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
 }
