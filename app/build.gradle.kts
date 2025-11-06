@@ -1,12 +1,7 @@
 plugins {
     id("com.android.application")
-//    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
-
-//kotlin {
-//    jvmToolchain(24)
-//}
 
 android {
     namespace = "com.sooq.price"
@@ -50,13 +45,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_24
         targetCompatibility = JavaVersion.VERSION_24
     }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2025.10.01"))
     implementation("androidx.compose.ui:ui:1.10.0-beta01")
-//    implementation("androidx.compose.animation:animation:1.9.0-rc01")
-//    implementation("androidx.compose.ui:ui-tooling:1.10.0-alpha01")
+    implementation("androidx.compose.animation:animation:1.9.0-rc01")
+    implementation("androidx.compose.ui:ui-tooling:1.10.0-alpha01")
     implementation("androidx.compose.ui:ui-tooling-preview:1.10.0-beta01")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.activity:activity-compose:1.12.0-alpha06")
@@ -68,8 +69,13 @@ dependencies {
 //    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.14.0-alpha04")
 //    implementation("androidx.activity:activity-ktx:1.12.0-alpha06")
-//    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-//    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha02")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0-alpha02")
+    implementation("androidx.room:room-runtime:2.8.3")
+    kapt("androidx.room:room-compiler:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    implementation("com.squareup.okhttp3:okhttp:5.3.0")
 //    implementation("com.airbnb.android:lottie-compose:6.6.7")
 //    implementation("com.airbnb.android:lottie:6.6.7")
 //    implementation("com.github.spotbugs:spotbugs-annotations:4.9.3")

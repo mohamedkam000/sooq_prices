@@ -1,23 +1,26 @@
 package com.sooq.price.ui.theme
 
+import android.os.Build
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
-fun SooqTheme(
+fun SooqPriceTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    val context = LocalContext.current
+    val colorScheme = if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        dynamicDarkColorScheme(context)
+    } else {
+        darkColorScheme()
+    }
+
     MaterialTheme(
-        colorScheme = if (dynamicColor) dynamicLightColorScheme(androidx.compose.ui.platform.LocalContext.current)
-        else lightColorScheme(
-            primary = Color(0xFF06B6D4),
-            secondary = Color(0xFF8B5CF6),
-            background = Color(0xFFF6F8FB),
-            surface = Color(0xFFFFFFFF)
-        ),
-        typography = Typography(),
+        colorScheme = colorScheme,
+        typography = Typography,
+        shapes = Shapes,
         content = content
     )
 }
