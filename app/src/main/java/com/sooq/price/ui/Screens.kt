@@ -17,6 +17,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
+import com.sooq.price.data.*
+
 private val STATES = listOf("Khartoum", "Red Sea", "River Nile")
 private val MARKETS = mapOf(
     "Khartoum" to listOf("Central Market", "Omdurman Market"),
@@ -98,6 +100,7 @@ fun ItemsScreen(navController: NavHostController, repository: Repository, state:
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DetailScreen(navController: NavHostController, repository: Repository, itemKey: String) {
     var smallPrice by remember { mutableStateOf<String?>(null) }

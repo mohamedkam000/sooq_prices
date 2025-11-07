@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 
+import com.sooq.price.data.*
 @Composable
 fun AppNav(repository: Repository) {
     val navController = rememberNavController()
