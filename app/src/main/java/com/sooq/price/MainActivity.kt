@@ -5,12 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -21,149 +22,159 @@ import androidx.compose.ui.unit.sp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Hide action bar/title bar so the app looks like a single seamless screen
+        try { supportActionBar?.hide() } catch (_: Exception) {}
+
         setContent {
             MaterialTheme {
-                AppRoot()
+                AppScreen()
             }
         }
     }
 }
 
 @Composable
-fun AppRoot() {
-    Column(
+fun AppScreen() {
+    // Full-screen background (you can replace with an image or gradient)
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 64.dp, start = 20.dp, end = 20.dp, bottom = 48.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(
+                Brush.verticalGradient(
+                    listOf(
+                        Color(0xFF0F1724), // deep background — adjust as needed
+                        Color(0xFF071127)
+                    )
+                )
+            ),
+        contentAlignment = Alignment.TopCenter
     ) {
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Shell(
+        // Outer padding similar to your CSS .app padding + top margin
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
+                .fillMaxSize()
+                .padding(top = 64.dp, start = 20.dp, end = 20.dp, bottom = 48.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                HeaderRow(title = "Market Prices", subtitle = "Pick a state to view markets")
-                SampleCardsRow()
+            // The single shell container (rounded rectangle, max width)
+            Shell {
+                // Inside the shell: vertically stacked cards (one by one)
+                val sample = sampleGoods()
+                GoodsList(goods = sample)
             }
         }
     }
 }
 
 @Composable
-fun Shell(
-    modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
-) {
+fun Shell(content: @Composable ColumnScope.() -> Unit) {
     val maxWidthDp = 1200.dp
 
+    // Subtle vertical glass-like gradient (no heavy blur)
     val shellBrush = Brush.verticalGradient(
         colors = listOf(
-            Color.White.copy(alpha = 0.02f),
+            Color.White.copy(alpha = 0.03f),
             Color.White.copy(alpha = 0.01f)
         )
     )
 
-    Box(
-        modifier = modifier
+    Column(
+        modifier = Modifier
             .wrapContentHeight()
-            .widthIn(min = 0.dp, max = maxWidthDp)
-            .shadow(elevation = 30.dp, shape = RoundedCornerShape(32.dp), clip = false)
-            .background(brush = shellBrush, shape = RoundedCornerShape(32.dp))
-            .blur(10.dp)
-            .padding(28.dp)
+            .fillMaxWidth()
+            .widthIn(max = maxWidthDp)
+            .shadow(elevation = 20.dp, shape = RoundedCornerShape(28.dp))
+            .background(brush = shellBrush, shape = RoundedCornerShape(28.dp))
+            .padding(20.dp)
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            content = content
-        )
+        content()
     }
 }
 
 @Composable
-fun HeaderRow(title: String, subtitle: String) {
-    Column {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.headlineSmall.copy(
-                fontSize = 22.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = subtitle,
-            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp)
-        )
+fun GoodsList(goods: List<GoodItem>) {
+    // Vertical list of cards one after another
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(vertical = 8.dp)
+    ) {
+        items(goods) { good ->
+            MarketCard(name = good.name, subtitle = good.subtitle, price = good.price)
+        }
     }
 }
 
 @Composable
-fun SampleCardsRow() {
-    val spacing = 16.dp
-
-    Row(
+fun MarketCard(name: String, subtitle: String, price: String) {
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(spacing)
-    ) {
-        // Pass modifier with weight into the card to avoid ambiguous 'weight' resolution
-        RepeatCard(
-            modifier = Modifier
-                .weight(1f)
-                .height(120.dp),
-            title = "Khartoum",
-            subtitle = "20 markets"
-        )
-        RepeatCard(
-            modifier = Modifier
-                .weight(1f)
-                .height(120.dp),
-            title = "River Nile",
-            subtitle = "12 markets"
-        )
-        RepeatCard(
-            modifier = Modifier
-                .weight(1f)
-                .height(120.dp),
-            title = "Red Sea",
-            subtitle = "8 markets"
-        )
-    }
-}
-
-@Composable
-fun RepeatCard(modifier: Modifier = Modifier, title: String, subtitle: String) {
-    Card(
-        modifier = modifier,
-        shape = RoundedCornerShape(20.dp),
+            .heightIn(min = 84.dp),
+        shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
+        // inner gradient for card surface
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
-                    Brush.verticalGradient(
-                        listOf(
-                            Color.White.copy(alpha = 0.03f),
-                            Color.White.copy(alpha = 0.01f)
+                    Brush.horizontalGradient(
+                        colors = listOf(
+                            Color.White.copy(alpha = 0.015f),
+                            Color.White.copy(alpha = 0.008f)
                         )
                     )
                 )
                 .padding(16.dp)
         ) {
-            Column(modifier = Modifier.align(Alignment.CenterStart)) {
-                Text(text = title, style = MaterialTheme.typography.titleMedium)
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(text = subtitle, style = MaterialTheme.typography.bodySmall)
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = name,
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp)
+                    )
+                }
+
+                // Price tag on the right
+                Box(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(start = 12.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = price,
+                        style = MaterialTheme.typography.titleSmall.copy(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
             }
         }
     }
 }
+
+/** Sample data model and sample items — replace with your real data source. */
+data class GoodItem(val name: String, val subtitle: String, val price: String)
+
+fun sampleGoods(): List<GoodItem> = listOf(
+    GoodItem("Apples", "Multiple markets • Kg", "22,000"),
+    GoodItem("Tomatoes", "Single market • Kg", "18,500"),
+    GoodItem("Onions", "Multiple markets • Kg", "9,000"),
+    GoodItem("Rice (local)", "Per sack", "120,000"),
+    GoodItem("Sugar", "Per sack", "85,000"),
+    GoodItem("Fresh Milk", "Per liter", "5,500")
+)
