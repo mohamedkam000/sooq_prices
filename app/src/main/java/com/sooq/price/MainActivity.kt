@@ -37,75 +37,65 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DynamicThemeApp() {
-    MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme())
-            dynamicDarkColorScheme(LocalContext.current)
-        else
-            dynamicLightColorScheme(LocalContext.current)
-    ) {
-        ShellContent()
+    val context = LocalContext.current
+    val colors = if (isSystemInDarkTheme()) {
+        dynamicDarkColorScheme(context)
+    } else {
+        dynamicLightColorScheme(context)
+    }
+
+    MaterialTheme(colorScheme = colors) {
+        FullScreenUI()
     }
 }
 
 @Composable
-fun ShellContent() {
-    val colors = MaterialTheme.colorScheme
+fun FullScreenUI() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(colors.background),
-        contentAlignment = Alignment.Center
+            .background(Color(0xFF060710)), // darker app background
+        contentAlignment = Alignment.TopCenter
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.92f)
-                .fillMaxHeight(0.87f)
-                .clip(RoundedCornerShape(40.dp))
-                .background(
-                    Brush.verticalGradient(
-                        listOf(
-                            colors.surfaceVariant.copy(alpha = 0.15f),
-                            colors.surfaceVariant.copy(alpha = 0.08f)
-                        )
-                    )
-                )
-                .padding(20.dp)
+                .fillMaxHeight(0.85f)
+                .padding(top = 40.dp) // spacing from top of screen
+                .clip(RoundedCornerShape(26.dp))
+                .background(Color(0xFF1E1C2C)) // lighter shell background
+                .padding(top = 24.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
         ) {
-            GoodsGrid(sampleGoods())
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                contentPadding = PaddingValues(top = 12.dp, bottom = 12.dp)
+            ) {
+                items(sampleGoods()) { good ->
+                    CardItem(good)
+                }
+            }
         }
     }
 }
 
 @Composable
-fun GoodsGrid(goods: List<GoodItem>) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        contentPadding = PaddingValues(vertical = 10.dp)
-    ) {
-        items(goods) { good ->
-            GoodCard(good)
-        }
-    }
-}
-
-@Composable
-fun GoodCard(good: GoodItem) {
+fun CardItem(good: GoodItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(220.dp)
-            .clip(RoundedCornerShape(28.dp)),
-        shape = RoundedCornerShape(28.dp),
+            .height(180.dp)
+            .clip(RoundedCornerShape(26.dp)),
+        shape = RoundedCornerShape(26.dp),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
                 painter = painterResource(id = good.imageRes),
                 contentDescription = good.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
             )
             Box(
                 modifier = Modifier
@@ -115,7 +105,7 @@ fun GoodCard(good: GoodItem) {
                         Brush.verticalGradient(
                             listOf(
                                 Color.Transparent,
-                                Color.Black.copy(alpha = 0.75f)
+                                Color.Black.copy(alpha = 0.7f)
                             )
                         )
                     )
@@ -131,6 +121,7 @@ fun GoodCard(good: GoodItem) {
                     Text(
                         text = good.price,
                         fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.White.copy(alpha = 0.9f)
                     )
                 }
@@ -139,11 +130,7 @@ fun GoodCard(good: GoodItem) {
     }
 }
 
-data class GoodItem(
-    val name: String,
-    val price: String,
-    val imageRes: Int
-)
+data class GoodItem(val name: String, val price: String, val imageRes: Int)
 
 fun sampleGoods(): List<GoodItem> = listOf(
     GoodItem("Apples", "22,000 SDG", R.drawable.apples),
