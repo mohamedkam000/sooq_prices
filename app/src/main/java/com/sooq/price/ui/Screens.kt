@@ -55,13 +55,14 @@ fun StatesScreen(navController: NavHostController) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MarketsScreen(navController: NavHostController, state: String) {
     val markets = MARKETS[state] ?: emptyList()
     Scaffold(topBar = { TopAppBar(title = { Text(state) }) }) { padding ->
         LazyColumn(modifier = Modifier.padding(padding)) {
             items(markets) { mkt ->
-                ListItem(headlineText = { Text(mkt) }, modifier = Modifier.clickable { navController.navigate("categories/$state/$mkt") })
+                ListItem(headlineContent = { Text(mkt) }, modifier = Modifier.clickable { navController.navigate("categories/$state/$mkt") })
                 Divider()
             }
         }
