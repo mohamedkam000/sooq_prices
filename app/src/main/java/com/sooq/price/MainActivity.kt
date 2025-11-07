@@ -37,14 +37,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DynamicThemeApp() {
-    val context = LocalContext.current
-    val colors = if (isSystemInDarkTheme()) {
-        dynamicDarkColorScheme(context)
-    } else {
-        dynamicLightColorScheme(context)
-    }
-
-    MaterialTheme(colorScheme = colors) {
+    MaterialTheme(
+        colorScheme = if (isSystemInDarkTheme())
+            dynamicDarkColorScheme(LocalContext.current)
+        else
+            dynamicLightColorScheme(LocalContext.current)
+    ) {
         FullScreenUI()
     }
 }
@@ -54,17 +52,17 @@ fun FullScreenUI() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF060710)), // darker app background
+            .background(MaterialTheme.colorScheme.onPrimary),
         contentAlignment = Alignment.TopCenter
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.92f)
                 .fillMaxHeight(0.85f)
-                .padding(top = 40.dp) // spacing from top of screen
+                .padding(top = 40.dp)
                 .clip(RoundedCornerShape(26.dp))
                 .background(Color(0xFF1E1C2C)) // lighter shell background
-                .padding(top = 24.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
+                .padding(top = 100.dp, start = 16.dp, end = 16.dp, bottom = 0.dp)
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
