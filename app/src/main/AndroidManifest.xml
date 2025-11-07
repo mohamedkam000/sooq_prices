@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:label="Sooq Price"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/Theme.SooqPrice">
+        android:theme="@style/Theme.SooqPriceTheme">
         <activity
             android:name=".MainActivity"
             android:exported="true">
