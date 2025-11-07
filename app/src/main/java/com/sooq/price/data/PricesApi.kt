@@ -1,10 +1,12 @@
 package com.sooq.price.data
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.*
+import kotlinx.serialization.json.*
 import okhttp3.MediaType.Companion.toMediaType
-import retrofit2.Retrofit
-import retrofit2.http.GET
+import retrofit2.*
+import retrofit2.http.*
+import okhttp3.*
+import java.io.*
 
 interface PricesApi {
     @GET("/mohamedkam000/prices/main/data.json")

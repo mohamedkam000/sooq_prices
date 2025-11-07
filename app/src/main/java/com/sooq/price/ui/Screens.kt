@@ -13,7 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.text.*
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
@@ -83,7 +84,7 @@ fun CategoriesScreen(navController: NavHostController, state: String, market: St
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemsScreen(navController: NavHostController, repository: Repository, state: String, market: String, category: String) {
     val items = ITEMS[category] ?: emptyList()
@@ -91,7 +92,7 @@ fun ItemsScreen(navController: NavHostController, repository: Repository, state:
         LazyColumn(modifier = Modifier.padding(padding)) {
             items(items) { item ->
                 ListItem(
-                    headlineText = { Text(item.capitalize()) },
+                    headlineText = { Text(item.replaceFirstChar { it.uppercase() }) },
                     supportingText = { Text("Tap to see prices") },
                     modifier = Modifier.clickable { navController.navigate("detail/$item") }
                 )
@@ -101,7 +102,7 @@ fun ItemsScreen(navController: NavHostController, repository: Repository, state:
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, repository: Repository, itemKey: String) {
     var smallPrice by remember { mutableStateOf<String?>(null) }
@@ -120,7 +121,7 @@ fun DetailScreen(navController: NavHostController, repository: Repository, itemK
         }
     }
 
-    Scaffold(topBar = { TopAppBar(title = { Text(itemKey.capitalize()) }) }) { padding ->
+    Scaffold(topBar = { TopAppBar(title = { Text(item.replaceFirstChar { it.uppercase() }) }) }) { padding ->
         Column(modifier = Modifier
             .padding(padding)
             .padding(16.dp)) {
