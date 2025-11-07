@@ -92,8 +92,8 @@ fun ItemsScreen(navController: NavHostController, repository: Repository, state:
         LazyColumn(modifier = Modifier.padding(padding)) {
             items(items) { item ->
                 ListItem(
-                    headlineText = { Text(item.replaceFirstChar { it.uppercase() }) },
-                    supportingText = { Text("Tap to see prices") },
+                    headlineContent = { Text(item.replaceFirstChar { it.uppercase() }) },
+                    supportingContent = { Text("Tap to see prices") },
                     modifier = Modifier.clickable { navController.navigate("detail/$item") }
                 )
                 Divider()
@@ -121,7 +121,7 @@ fun DetailScreen(navController: NavHostController, repository: Repository, itemK
         }
     }
 
-    Scaffold(topBar = { TopAppBar(title = { Text(item.replaceFirstChar { it.uppercase() }) }) }) { padding ->
+    Scaffold(topBar = { TopAppBar(title = { Text(itemKey.replaceFirstChar { it.uppercase() }) }) }) { padding ->
         Column(modifier = Modifier
             .padding(padding)
             .padding(16.dp)) {
