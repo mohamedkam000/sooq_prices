@@ -69,6 +69,7 @@ fun MarketsScreen(navController: NavHostController, state: String) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoriesScreen(navController: NavHostController, state: String, market: String) {
     Scaffold(topBar = { TopAppBar(title = { Text(market) }) }) { padding ->
