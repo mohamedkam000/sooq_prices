@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -27,56 +26,57 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
-                Surface(color = Color.Black) {
-                    FullScreenShell()
-                }
-            }
+            DynamicThemeApp()
         }
     }
 }
 
 @Composable
-fun FullScreenShell() {
+fun DynamicThemeApp() {
+    MaterialTheme(
+        colorScheme = if (isSystemInDarkTheme())
+            dynamicDarkColorScheme(LocalContext.current)
+        else
+            dynamicLightColorScheme(LocalContext.current)
+    ) {
+        ShellContent()
+    }
+}
+
+@Composable
+fun ShellContent() {
+    val colors = MaterialTheme.colorScheme
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    listOf(
-                        Color(0xFF090C1B),
-                        Color(0xFF050711)
-                    )
-                )
-            ),
+            .background(colors.background),
         contentAlignment = Alignment.Center
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.92f)
                 .fillMaxHeight(0.87f)
-                .shadow(30.dp, RoundedCornerShape(40.dp))
                 .clip(RoundedCornerShape(40.dp))
                 .background(
                     Brush.verticalGradient(
                         listOf(
-                            Color.White.copy(alpha = 0.08f),
-                            Color.White.copy(alpha = 0.03f)
+                            colors.surfaceVariant.copy(alpha = 0.15f),
+                            colors.surfaceVariant.copy(alpha = 0.08f)
                         )
                     )
                 )
-                .padding(24.dp)
+                .padding(20.dp)
         ) {
-            GoodsColumn(sampleGoods())
+            GoodsGrid(sampleGoods())
         }
     }
 }
 
 @Composable
-fun GoodsColumn(goods: List<GoodItem>) {
+fun GoodsGrid(goods: List<GoodItem>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
         contentPadding = PaddingValues(vertical = 10.dp)
     ) {
         items(goods) { good ->
@@ -90,58 +90,46 @@ fun GoodCard(good: GoodItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp),
-        shape = RoundedCornerShape(25.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White.copy(alpha = 0.08f)
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            .height(220.dp)
+            .clip(RoundedCornerShape(28.dp)),
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        listOf(
-                            Color.White.copy(alpha = 0.08f),
-                            Color.White.copy(alpha = 0.02f)
-                        )
-                    )
-                )
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             Image(
                 painter = painterResource(id = good.imageRes),
                 contentDescription = good.name,
-                modifier = Modifier
-                    .size(90.dp)
-                    .clip(RoundedCornerShape(20.dp)),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
             )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(
-                modifier = Modifier.weight(1f)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                Color.Transparent,
+                                Color.Black.copy(alpha = 0.75f)
+                            )
+                        )
+                    )
+                    .padding(16.dp)
             ) {
-                Text(
-                    text = good.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = good.subtitle,
-                    fontSize = 14.sp,
-                    color = Color.White.copy(alpha = 0.8f)
-                )
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    text = good.price,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color(0xFF94E3FF)
-                )
+                Column {
+                    Text(
+                        text = good.name,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Text(
+                        text = good.price,
+                        fontSize = 16.sp,
+                        color = Color.White.copy(alpha = 0.9f)
+                    )
+                }
             }
         }
     }
@@ -149,16 +137,15 @@ fun GoodCard(good: GoodItem) {
 
 data class GoodItem(
     val name: String,
-    val subtitle: String,
     val price: String,
     val imageRes: Int
 )
 
 fun sampleGoods(): List<GoodItem> = listOf(
-    GoodItem("Apples", "Multiple markets • Kg", "22,000 SDG", R.drawable.apples),
-    GoodItem("Tomatoes", "Single market • Kg", "18,500 SDG", R.drawable.apples),
-    GoodItem("Onions", "Multiple markets • Kg", "9,000 SDG", R.drawable.apples),
-    GoodItem("Rice (Local)", "Per sack", "120,000 SDG", R.drawable.apples),
-    GoodItem("Sugar", "Per sack", "85,000 SDG", R.drawable.apples),
-    GoodItem("Fresh Milk", "Per liter", "5,500 SDG", R.drawable.apples)
+    GoodItem("Apples", "22,000 SDG", R.drawable.apples),
+    GoodItem("Tomatoes", "18,500 SDG", R.drawable.apples),
+    GoodItem("Onions", "9,000 SDG", R.drawable.apples),
+    GoodItem("Rice (Local)", "120,000 SDG", R.drawable.apples),
+    GoodItem("Sugar", "85,000 SDG", R.drawable.apples),
+    GoodItem("Fresh Milk", "5,500 SDG", R.drawable.apples)
 )
