@@ -1,12 +1,10 @@
 package com.sooq.price.data
 
-import retrofit2.http.GET
-import retrofit2.Retrofit
-import retrofit2.create
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
-import okhttp3.OkHttpClient
-import okhttp3.Cache
-import java.io.File
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Retrofit
+import retrofit2.http.GET
 
 interface PricesApi {
     @GET("/mohamedkam000/prices/main/data.json")
@@ -15,11 +13,11 @@ interface PricesApi {
     companion object {
         fun create(okHttpClient: OkHttpClient): PricesApi {
             val json = Json { ignoreUnknownKeys = true }
+            val contentType = "application/json".toMediaType()
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://raw.githubusercontent.com")
                 .client(okHttpClient)
-                .addConverterFactory(com.squareup.retrofit2.converter.kotlinx.serialization.asConverterFactory(
-                    okhttp3.MediaType.get("application/json"), json))
+                .addConverterFactory(json.asConverterFactory(contentType))
                 .build()
             return retrofit.create(PricesApi::class.java)
         }

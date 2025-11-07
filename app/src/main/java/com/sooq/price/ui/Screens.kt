@@ -83,6 +83,7 @@ fun CategoriesScreen(navController: NavHostController, state: String, market: St
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ItemsScreen(navController: NavHostController, repository: Repository, state: String, market: String, category: String) {
     val items = ITEMS[category] ?: emptyList()
