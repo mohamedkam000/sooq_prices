@@ -230,7 +230,7 @@ function renderCards() {
   });
 }
 
-const BASE = '/sooq_prices/docs/';
+const BASE = '/sooq_prices/';
 
 function navigateTo(path, opts={push:true}) {
   const url = BASE + path.replace(/^\/+/,'');
