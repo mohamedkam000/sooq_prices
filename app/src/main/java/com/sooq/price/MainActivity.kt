@@ -3,138 +3,178 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
+// --- Main Activity ---
+// This is the entry point of the app.
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Enable edge-to-edge display
+        enableEdgeToEdge()
+        
         setContent {
-            DynamicThemeApp()
+            // Apply the custom M3 theme
+            MyApplicationTheme {
+                // Main app UI structure
+                AppShell()
+            }
         }
     }
 }
 
+// --- Theme ---
+// A simple Material 3 theme wrapper.
 @Composable
-fun DynamicThemeApp() {
-    MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme())
-            dynamicDarkColorScheme(LocalContext.current)
-        else
-            dynamicLightColorScheme(LocalContext.current)
-    ) {
-        FullScreenUI()
+fun MyApplicationTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) {
+        darkColorScheme() // Default M3 dark colors
+    } else {
+        lightColorScheme() // Default M3 light colors
     }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = MaterialTheme.typography,
+        content = content
+    )
 }
 
+// --- App Shell Composable ---
+// Creates the main app structure with a top bar.
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FullScreenUI() {
-    Box(
+fun AppShell() {
+    // A scroll behavior for the top app bar
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+
+    Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.onPrimary),
-        contentAlignment = Alignment.TopCenter
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(0.92f)
-                .fillMaxHeight(0.85f)
-                .padding(top = 40.dp)
-                .clip(RoundedCornerShape(26.dp))
-                .background(Color(0xFF1E1C2C)) // lighter shell background
-                .padding(top = 100.dp, start = 16.dp, end = 16.dp, bottom = 0.dp)
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                contentPadding = PaddingValues(top = 12.dp, bottom = 12.dp)
-            ) {
-                items(sampleGoods()) { good ->
-                    CardItem(good)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun CardItem(good: GoodItem) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
-            .clip(RoundedCornerShape(26.dp)),
-        shape = RoundedCornerShape(26.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Image(
-                painter = painterResource(id = good.imageRes),
-                contentDescription = good.name,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            TopAppBar(
+                title = { Text("M3 Elevated Cards") },
+                scrollBehavior = scrollBehavior,
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
             )
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-                    .background(
-                        Brush.verticalGradient(
-                            listOf(
-                                Color.Transparent,
-                                Color.Black.copy(alpha = 0.7f)
-                            )
-                        )
-                    )
-                    .padding(16.dp)
-            ) {
-                Column {
-                    Text(
-                        text = good.name,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Text(
-                        text = good.price,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White.copy(alpha = 0.9f)
-                    )
-                }
-            }
+        }
+    ) { innerPadding ->
+        // Pass the padding from the Scaffold to the content
+        CardList(contentPadding = innerPadding)
+    }
+}
+
+// --- Card List Composable ---
+// Displays the vertically scrollable list of cards.
+@Composable
+fun CardList(contentPadding: PaddingValues) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+        contentPadding = contentPadding, // Apply padding from Scaffold
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        // Create 5 elevated cards
+        items(5) { index ->
+            MyElevatedCard(
+                title = "Card Title ${index + 1}",
+                content = "This is the content for card number ${index + 1}. " +
+                          "It demonstrates the Material 3 elevated card design."
+            )
         }
     }
 }
 
-data class GoodItem(val name: String, val price: String, val imageRes: Int)
+// --- Elevated Card Composable ---
+// Defines the look and content of a single card.
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyElevatedCard(title: String, content: String) {
+    ElevatedCard(
+        onClick = {
+            // Handle card click event here
+        },
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp // Standard elevation for elevated cards
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Text(
+                text = content,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+    }
+}
 
-fun sampleGoods(): List<GoodItem> = listOf(
-    GoodItem("Apples", "22,000 SDG", R.drawable.apples),
-    GoodItem("Tomatoes", "18,500 SDG", R.drawable.apples),
-    GoodItem("Onions", "9,000 SDG", R.drawable.apples),
-    GoodItem("Rice (Local)", "120,000 SDG", R.drawable.apples),
-    GoodItem("Sugar", "85,000 SDG", R.drawable.apples),
-    GoodItem("Fresh Milk", "5,500 SDG", R.drawable.apples)
-)
+// --- Previews ---
+// Enables a preview of the composables in Android Studio.
+@Preview(showBackground = true)
+@Composable
+fun AppShellPreview() {
+    MyApplicationTheme {
+        AppShell()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DarkAppShellPreview() {
+    MyApplicationTheme(darkTheme = true) {
+        AppShell()
+    }
+}
+
+@Preview
+@Composable
+fun MyElevatedCardPreview() {
+    MyApplicationTheme {
+        MyElevatedCard(
+            title = "Preview Title",
+            content = "This is preview content for the card."
+        )
+    }
+}
