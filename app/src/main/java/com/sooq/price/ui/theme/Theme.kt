@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import android.os.Build
 
 @Composable
-fun PricesTheme(
+fun SooqTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -16,8 +16,7 @@ fun PricesTheme(
     } else {
         lightColorScheme(
             primary = md_theme_light_primary,
-            onPrimary = md_theme_light_onPrimary,
-            // ... fallback colors
+            onPrimary = md_theme_light_onPrimary
         )
     }
 
