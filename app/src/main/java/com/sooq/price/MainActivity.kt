@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.text.style.*
+import androidx.compose.material.icons.*
+import androidx.compose.material.icons.filled.*
 import java.text.*
 import java.util.*
 import coil.compose.*
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            MaterialTheme {
+            AppMaterialTheme {
                 AppShell()
             }
         }
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MaterialTheme(
+fun AppMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -49,7 +51,7 @@ fun MaterialTheme(
         lightColorScheme()
     }
 
-    MaterialTheme(
+    AppMaterialTheme(
         colorScheme = colorScheme,
         typography = MaterialTheme.typography,
         content = content
@@ -131,7 +133,7 @@ fun AppShell() {
 @Preview
 @Composable
 fun FloatingTitleBarPreview() {
-    MaterialTheme {
+    AppMaterialTheme {
         FloatingTitleBar()
     }
 }
@@ -203,7 +205,7 @@ fun CardList(contentPadding: PaddingValues) {
 @Preview(showBackground = true)
 @Composable
 fun AppShellPreview() {
-    MaterialTheme {
+    AppMaterialTheme {
         AppShell()
     }
 }
@@ -211,7 +213,7 @@ fun AppShellPreview() {
 @Preview(showBackground = true)
 @Composable
 fun DarkAppShellPreview() {
-    MaterialTheme(darkTheme = false) {
+    AppMaterialTheme(darkTheme = false) {
         AppShell()
     }
 }
@@ -219,7 +221,7 @@ fun DarkAppShellPreview() {
 @Preview
 @Composable
 fun MyElevatedCardPreview() {
-    MaterialTheme {
+    AppMaterialTheme {
         MyElevatedCard(
             title = "Preview Title",
             content = "This is preview content for the card.",
