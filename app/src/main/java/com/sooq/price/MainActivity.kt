@@ -26,32 +26,20 @@ import java.text.*
 import java.util.*
 import coil.compose.*
 import coil.request.*
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
-/*class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        actionBar?.hide()
-        enableEdgeToEdge()
-        
-        setContent {
-            AppMaterialTheme {
-                AppShell()
-            }
-        }
-    }
-}
+data class CardInfo(val title: String, val imageUrl: String)
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppShell() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        containerColor = MaterialTheme.colorScheme.surface
-    ) { innerPadding ->
-        CardList(contentPadding = innerPadding)
-    }
-}*/
+private val cardDataList = listOf(
+    CardInfo("Mountain Peak", "https://picsum.photos/600/400?random=1"),
+    CardInfo("Forest Trail", "https://picsum.photos/600/400?random=2"),
+    CardInfo("Ocean Waves", "https://picsum.photos/600/400?random=3"),
+    CardInfo("Cityscape", "https://picsum.photos/600/400?random=4"),
+    CardInfo("Desert Dunes", "https://picsum.photos/600/400?random=5")
+)
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -78,15 +66,38 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
+    val navController = rememberNavController()
+
     Scaffold(
         modifier = Modifier
             .width(360.dp)
-            .height(960.dp)
+            .height(800.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
         containerColor = MaterialTheme.colorScheme.surface
     ) { innerPadding ->
-        CardList(contentPadding = innerPadding)
+        NavHost(
+            navController = navController,
+            startDestination = "home",
+            modifier = Modifier.fillMaxSize()
+        ) {
+            composable("home") {
+                CardList(
+                    navController = navController,
+                    cards = cardDataList,
+                    contentPadding = innerPadding
+                )
+            }
+            composable("detail/{cardIndex}") { backStackEntry ->
+                val cardIndex = backStackEntry.arguments?.getString("cardIndex")?.toIntOrNull() ?: 0
+                val card = cardDataList[cardIndex]
+                DetailScreen(
+                    navController = navController,
+                    card = card,
+                    contentPadding = innerPadding
+                )
+            }
+        }
     }
 }
 
@@ -107,9 +118,9 @@ fun AppMaterialTheme(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyElevatedCard(title: String, imageUrl: String) {
+fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
     ElevatedCard(
-        onClick = {},
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
@@ -154,26 +165,12 @@ fun MyElevatedCard(title: String, imageUrl: String) {
     }
 }
 
-/*@Composable
-fun CardList(contentPadding: PaddingValues) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 32.dp),
-        contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        items(16) { index ->
-            MyElevatedCard(
-                title = "Card Title ${index + 1}",
-                imageUrl = "https://picsum.photos/600/400?random=$index"
-            )
-        }
-    }
-}*/
-
 @Composable
-fun CardList(contentPadding: PaddingValues) {
+fun CardList(
+    navController: NavHostController,
+    cards: List<CardInfo>,
+    contentPadding: PaddingValues
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -181,17 +178,82 @@ fun CardList(contentPadding: PaddingValues) {
         contentPadding = PaddingValues(
             top = contentPadding.calculateTopPadding() + 100.dp,
             bottom = contentPadding.calculateBottomPadding() + 100.dp,
-            start = contentPadding.calculateStartPadding(LocalLayoutDirection.current),
-            end = contentPadding.calculateEndPadding(LocalLayoutDirection.current)
+            start = 0.dp,
+            end = 0.dp
         ),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(16) { index ->
+        itemsIndexed(cards) { index, card ->
             MyElevatedCard(
-                title = "Card Title ${index + 1}",
-                imageUrl = "https://picsum.photos/600/400?random=$index"
+                title = card.title,
+                imageUrl = card.imageUrl,
+                onClick = {
+                    navController.navigate("detail/$index")
+                }
             )
         }
+    }
+}
+
+@Composable
+fun DetailScreen(
+    navController: NavHostController,
+    card: CardInfo,
+    contentPadding: PaddingValues
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(contentPadding)
+            .verticalScroll(rememberScrollState())
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+        ) {
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(card.imageUrl)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = card.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            IconButton(
+                onClick = { navController.popBackStack() },
+                modifier = Modifier
+                    .padding(16.dp)
+                    .background(
+                        MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+                        CircleShape
+                    )
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Back",
+                    tint = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text(
+            text = card.title,
+            style = MaterialTheme.typography.headlineLarge,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 24.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "This is the shared UI screen. This content is the same for all screens, only the title and image above have changed based on the card you clicked.",
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(horizontal = 24.dp)
+        )
     }
 }
 
@@ -206,7 +268,7 @@ fun AppShellPreview() {
 @Preview(showBackground = true)
 @Composable
 fun DarkAppShellPreview() {
-    AppMaterialTheme(darkTheme = false) {
+    AppMaterialTheme(darkTheme = true) {
         AppShell()
     }
 }
@@ -217,7 +279,20 @@ fun MyElevatedCardPreview() {
     AppMaterialTheme {
         MyElevatedCard(
             title = "Preview Title",
-            imageUrl = "https://picsum.photos/600/400?random=0"
+            imageUrl = "https://picsum.photos/600/400?random=0",
+            onClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DetailScreenPreview() {
+    AppMaterialTheme {
+        DetailScreen(
+            navController = rememberNavController(),
+            card = cardDataList[0],
+            contentPadding = PaddingValues(0.dp)
         )
     }
 }
