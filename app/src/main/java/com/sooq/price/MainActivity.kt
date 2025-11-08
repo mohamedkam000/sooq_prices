@@ -45,15 +45,11 @@ fun AppMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) {
-        darkColorScheme()
-    } else {
-        lightColorScheme()
-    }
+    val colorScheme = if (darkTheme) darkColorScheme() else lightColorScheme()
 
-    AppMaterialTheme(
+    androidx.compose.material3.MaterialTheme(
         colorScheme = colorScheme,
-        typography = MaterialTheme.typography,
+        typography = Typography(),
         content = content
     )
 }
@@ -224,7 +220,6 @@ fun MyElevatedCardPreview() {
     AppMaterialTheme {
         MyElevatedCard(
             title = "Preview Title",
-            content = "This is preview content for the card.",
             imageUrl = "https://picsum.photos/600/400?random=0"
         )
     }
