@@ -75,6 +75,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppShell() {
+    Scaffold(
+        modifier = Modifier
+            .width(360.dp)
+            .height(720.dp)
+            .clip(RoundedCornerShape(48.dp))
+            .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
+        containerColor = MaterialTheme.colorScheme.surface
+    ) { innerPadding ->
+        CardList(contentPadding = innerPadding)
+    }
+}
+
 @Composable
 fun AppMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
