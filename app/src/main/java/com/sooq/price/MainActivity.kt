@@ -56,7 +56,7 @@ fun AppMaterialTheme(
     )
 }
 
-/*@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -77,66 +77,6 @@ fun AppShell() {
         }
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
-    }
-}*/
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppShell() {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-    val density = LocalDensity.current
-
-    val initialTopPaddingPx = with(density) { 8.dp.toPx() }
-
-    val customTopOffset = scrollBehavior.state.offset.let { scrollOffset ->
-        Math.max(
-            0f,
-            initialTopPaddingPx + scrollOffset
-        )
-    }
-
-    Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .offset(y = with(density) { customTopOffset.toDp() })
-            ) {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    shape = RoundedCornerShape(24.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    shadowElevation = 4.dp
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp)
-                            .padding(horizontal = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "Test Panel",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                        Spacer(Modifier.weight(1f))
-                        // reminder to add an icon here
-                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
-                    }
-                }
-            }
-        }
-    ) { innerPadding ->
-        val adjustedContentPadding = innerPadding.copy(
-            top = innerPadding.calculateTopPadding() + with(density) { initialTopPaddingPx.toDp() }
-        )
-        CardList(contentPadding = adjustedContentPadding)
     }
 }
 
