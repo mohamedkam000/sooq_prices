@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF1E1E1E)) {
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerHighest) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -81,7 +81,7 @@ fun AppShell() {
     Scaffold(
         modifier = Modifier
             .width(360.dp)
-            .height(720.dp)
+            .height(960.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
         containerColor = MaterialTheme.colorScheme.surface
@@ -142,7 +142,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = title,
@@ -154,7 +154,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
     }
 }
 
-@Composable
+/*@Composable
 fun CardList(contentPadding: PaddingValues) {
     LazyColumn(
         modifier = Modifier
@@ -170,8 +170,30 @@ fun CardList(contentPadding: PaddingValues) {
             )
         }
     }
-}
+}*/
 
+@Composable
+fun CardList(contentPadding: PaddingValues) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 32.dp),
+        contentPadding = PaddingValues(
+            top = contentPadding.calculateTopPadding() + 100.dp,
+            bottom = contentPadding.calculateBottomPadding() + 100.dp,
+            start = contentPadding.calculateStartPadding(LocalLayoutDirection.current),
+            end = contentPadding.calculateEndPadding(LocalLayoutDirection.current)
+        ),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(16) { index ->
+            MyElevatedCard(
+                title = "Card Title ${index + 1}",
+                imageUrl = "https://picsum.photos/600/400?random=$index"
+            )
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
