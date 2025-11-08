@@ -18,6 +18,9 @@ import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.layout.*
+import androidx.compose.ui.text.style.*
+import java.text.*
+import java.util.*
 import coil.compose.*
 import coil.request.*
 
@@ -55,6 +58,59 @@ fun MaterialTheme(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+fun FloatingTitleBar() {
+    val currentDate = SimpleDateFormat("dd MMM", Locale.getDefault()).format(Date())
+
+    Surface(
+        shadowElevation = 8.dp,
+        shape = RoundedCornerShape(36.dp),
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 12.dp)
+        ) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(
+                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .padding(horizontal = 12.dp, vertical = 6.dp)
+            ) {
+                Text(
+                    text = currentDate,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Icon(
+                imageVector = Icons.Default.ShoppingCart,
+                contentDescription = "Logo",
+                tint = MaterialTheme.colorScheme.onPrimary
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Market Prices",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 fun AppShell() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -63,32 +119,35 @@ fun AppShell() {
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopAppBar(
-                title = { Text("M3 Elevated Cards") },
-                scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            )
+            Box(modifier = Modifier.fillMaxWidth()) {
+                FloatingTitleBar()
+            }
         }
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
     }
 }
 
+@Preview
+@Composable
+fun FloatingTitleBarPreview() {
+    MaterialTheme {
+        FloatingTitleBar()
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyElevatedCard(title: String, content: String, imageUrl: String) {
+fun MyElevatedCard(title: String, imageUrl: String) {
     ElevatedCard(
         onClick = {},
         modifier = Modifier
             .fillMaxWidth()
-            .height(320.dp),
+            .height(280.dp),
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Box(modifier = Modifier.fillMaxSize()) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(imageUrl)
@@ -96,22 +155,28 @@ fun MyElevatedCard(title: String, content: String, imageUrl: String) {
                     .build(),
                 contentDescription = title,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp)
+                    .fillMaxSize()
                     .clip(RoundedCornerShape(36.dp)),
                 contentScale = ContentScale.Crop
             )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-            Text(
-                text = content,
-                style = MaterialTheme.typography.bodyMedium
-            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomStart)
+                    .background(
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(bottomStart = 36.dp, bottomEnd = 36.dp)
+                    )
+                    .padding(12.dp)
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.surface
+                )
+            }
         }
     }
 }
