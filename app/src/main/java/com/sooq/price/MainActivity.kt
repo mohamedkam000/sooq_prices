@@ -31,15 +31,64 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
-data class CardInfo(val title: String, val imageUrl: String)
-
-private val cardDataList = listOf(
-    CardInfo("Mountain Peak", "https://picsum.photos/600/400?random=1"),
-    CardInfo("Forest Trail", "https://picsum.photos/600/400?random=2"),
-    CardInfo("Ocean Waves", "https://picsum.photos/600/400?random=3"),
-    CardInfo("Cityscape", "https://picsum.photos/600/400?random=4"),
-    CardInfo("Desert Dunes", "https://picsum.photos/600/400?random=5")
+data class CardNode(
+    val title: String,
+    val imageUrl: String,
+    val children: List<CardNode> = emptyList()
 )
+
+private val cardTreeData = listOf(
+    CardNode("Level 1 - Item 1", "https://picsum.photos/600/400?random=1", children = listOf(
+        CardNode("Level 2 - Item 1.1", "https://picsum.photos/600/400?random=11", children = listOf(
+            CardNode("Level 3 - Item 1.1.1", "https://picsum.photos/600/400?random=111", children = listOf(
+                CardNode("Level 4 - Final Item 1", "https://picsum.photos/600/400?random=1111"),
+                CardNode("Level 4 - Final Item 2", "https://picsum.photos/600/400?random=1112")
+            ))
+        )),
+        CardNode("Level 2 - Item 1.2", "https://picsum.photos/600/400?random=12", children = listOf(
+             CardNode("Level 3 - Item 1.2.1", "https://picsum.photos/600/400?random=121", children = listOf(
+                CardNode("Level 4 - Final Item 3", "https://picsum.photos/600/400?random=1211")
+            ))
+        ))
+    )),
+    CardNode("Level 1 - Item 2", "https://picsum.photos/600/400?random=2", children = listOf(
+        CardNode("Level 2 - Item 2.1", "https://picsum.photos/600/400?random=21", children = listOf(
+            CardNode("Level 3 - Item 2.1.1", "https://picsum.photos/600/400?random=211", children = listOf(
+                CardNode("Level 4 - Final Item 4", "https://picsum.photos/600/400?random=2111")
+            ))
+        ))
+    )),
+    CardNode("Level 1 - Item 3", "https://picsum.photos/600/400?random=3"),
+    CardNode("Level 1 - Item 4", "https://picsum.photos/600/400?random=4", children = listOf(
+        CardNode("Level 2 - Item 4.1", "https://picsum.photos/600/400?random=41", children = listOf(
+             CardNode("Level 3 - Item 4.1.1", "https://picsum.photos/600/400?random=411", children = listOf(
+                CardNode("Level 4 - Final Item 5", "https://picsum.photos/600/400?random=4111")
+            ))
+        ))
+    )),
+    CardNode("Level 1 - Item 5", "https://picsum.photos/600/400?random=5")
+)
+
+private fun getNodeFromPath(path: String): CardNode {
+    val indices = path.split("_").map { it.toInt() }
+    var currentNodeList = cardTreeData
+    var node: CardNode = currentNodeList[indices[0]]
+    indices.drop(1).forEach { index ->
+        node = currentNodeList[index]
+        currentNodeList = node.children
+    }
+    return node
+}
+
+private fun getListFromPath(path: String): List<CardNode> {
+    if (path.isEmpty()) return cardTreeData
+    val indices = path.split("_").map { it.toInt() }
+    var currentNodeList = cardTreeData
+    indices.forEach { index ->
+        currentNodeList = currentNodeList[index].children
+    }
+    return currentNodeList
+}
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -78,19 +127,23 @@ fun AppShell() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "list/",
             modifier = Modifier.fillMaxSize()
         ) {
-            composable("home") {
+            composable("list/{path}") { backStackEntry ->
+                val path = backStackEntry.arguments?.getString("path") ?: ""
+                val cards = getListFromPath(path)
                 CardList(
                     navController = navController,
-                    cards = cardDataList,
+                    cards = cards,
+                    currentPath = path,
                     contentPadding = innerPadding
                 )
             }
-            composable("detail/{cardIndex}") { backStackEntry ->
-                val cardIndex = backStackEntry.arguments?.getString("cardIndex")?.toIntOrNull() ?: 0
-                val card = cardDataList[cardIndex]
+            
+            composable("detail/{path}") { backStackEntry ->
+                val path = backStackEntry.arguments?.getString("path")!!
+                val card = getNodeFromPath(path)
                 DetailScreen(
                     navController = navController,
                     card = card,
@@ -116,7 +169,7 @@ fun AppMaterialTheme(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3ai::class)
 @Composable
 fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
     ElevatedCard(
@@ -168,7 +221,8 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
 @Composable
 fun CardList(
     navController: NavHostController,
-    cards: List<CardInfo>,
+    cards: List<CardNode>,
+    currentPath: String,
     contentPadding: PaddingValues
 ) {
     LazyColumn(
@@ -188,7 +242,12 @@ fun CardList(
                 title = card.title,
                 imageUrl = card.imageUrl,
                 onClick = {
-                    navController.navigate("detail/$index")
+                    val newPath = if (currentPath.isEmpty()) "$index" else "${currentPath}_$index"
+                    if (card.children.isEmpty()) {
+                        navController.navigate("detail/$newPath")
+                    } else {
+                        navController.navigate("list/$newPath")
+                    }
                 }
             )
         }
@@ -198,7 +257,7 @@ fun CardList(
 @Composable
 fun DetailScreen(
     navController: NavHostController,
-    card: CardInfo,
+    card: CardNode,
     contentPadding: PaddingValues
 ) {
     Column(
@@ -207,24 +266,13 @@ fun DetailScreen(
             .padding(contentPadding)
             .verticalScroll(rememberScrollState())
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(card.imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = card.title,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
+        
+        Box(modifier = Modifier.fillMaxWidth()) {
             IconButton(
                 onClick = { navController.popBackStack() },
                 modifier = Modifier
                     .padding(16.dp)
+                    .align(Alignment.TopStart)
                     .background(
                         MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
                         CircleShape
@@ -238,13 +286,40 @@ fun DetailScreen(
             }
         }
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(300.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(card.imageUrl)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = card.title,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
             text = card.title,
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 24.dp)
+            modifier = Modifier
+                .padding(horizontal = 24.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -291,7 +366,7 @@ fun DetailScreenPreview() {
     AppMaterialTheme {
         DetailScreen(
             navController = rememberNavController(),
-            card = cardDataList[0],
+            card = cardTreeData[0],
             contentPadding = PaddingValues(0.dp)
         )
     }
