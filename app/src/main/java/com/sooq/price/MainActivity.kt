@@ -159,7 +159,7 @@ fun CardList(contentPadding: PaddingValues) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 32.dp, top = 200.dp, bottom = 100.dp),
+            .padding(horizontal = 32.dp),
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
