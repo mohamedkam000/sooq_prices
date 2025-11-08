@@ -89,7 +89,7 @@ fun AppShell() {
         modifier = Modifier
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
-        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest, 
+        containerColor = MaterialTheme.colorScheme.surfaceVariant, 
         topBar = {
             TopAppBar(
                 title = { Text("Test Title") },
