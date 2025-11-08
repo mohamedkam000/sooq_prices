@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
 fun AppShell() {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        containerColor = MaterialTheme.colorScheme.Surface
+        containerColor = MaterialTheme.colorScheme.surface
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
     }
