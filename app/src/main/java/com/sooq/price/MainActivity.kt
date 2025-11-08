@@ -191,7 +191,6 @@ fun CardList(contentPadding: PaddingValues) {
         items(8) { index ->
             MyElevatedCard(
                 title = "Card Title ${index + 1}",
-                content = "This is the content for card number ${index + 1}.",
                 imageUrl = "https://picsum.photos/600/400?random=$index"
             )
         }
