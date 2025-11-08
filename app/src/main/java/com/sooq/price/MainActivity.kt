@@ -120,7 +120,7 @@ fun AppShell() {
     Scaffold(
         modifier = Modifier
             .width(360.dp)
-            .height(800.dp)
+            .height(760.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
         containerColor = MaterialTheme.colorScheme.surface
@@ -169,7 +169,7 @@ fun AppMaterialTheme(
     )
 }
 
-@OptIn(ExperimentalMaterial3ai::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
     ElevatedCard(
