@@ -87,7 +87,10 @@ fun MyElevatedCard(title: String, imageUrl: String) {
             .fillMaxWidth()
             .height(320.dp),
         shape = RoundedCornerShape(36.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
     ) {
         Column(modifier = Modifier.padding(32.dp)) {
             AsyncImage(
@@ -98,7 +101,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
                 contentDescription = title,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(280.dp)
                     .clip(RoundedCornerShape(36.dp)),
                 contentScale = ContentScale.Crop
             )
@@ -107,8 +110,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.surface,
-                modifier = Modifier.padding(bottom = 4.dp)
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }
@@ -119,11 +121,12 @@ fun CardList(contentPadding: PaddingValues) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 32.dp)
+            .padding(top = 80.dp),
         contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
-        items(8) { index ->
+        items(16) { index ->
             MyElevatedCard(
                 title = "Card Title ${index + 1}",
                 imageUrl = "https://picsum.photos/600/400?random=$index"
