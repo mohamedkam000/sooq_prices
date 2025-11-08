@@ -56,7 +56,7 @@ fun AppMaterialTheme(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+/*@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -78,45 +78,73 @@ fun AppShell() {
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
     }
-}
+}*/
 
-/*@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyElevatedCard(title: String, imageUrl: String) {
-    ElevatedCard(
-        onClick = {},
+fun PolishedAppShell() {
+    // Scroll behavior for collapsing effect
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
+    Scaffold(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp),
-        shape = RoundedCornerShape(36.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    ) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = title,
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            // LargeTopAppBar provides built-in large height
+            LargeTopAppBar(
+                title = {
+                    // fraction = 0 when fully expanded, 1 when collapsed
+                    val fraction = scrollBehavior.state.collapsedFraction
+
+                    // Interpolate font size from 32.sp -> 20.sp
+                    val fontSize = (32.sp - 12.sp * fraction)
+                    val verticalPadding = (32.dp - 16.dp * fraction)
+
+                    Text(
+                        text = "Test Title",
+                        fontSize = fontSize,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = verticalPadding)
+                    )
+                },
+                scrollBehavior = scrollBehavior,
+                colors = TopAppBarDefaults.largeTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(
+                        alpha = 0.8f + 0.2f * scrollBehavior.state.collapsedFraction
+                    ),
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp)
-                    .clip(RoundedCornerShape(36.dp)),
-                contentScale = ContentScale.Crop
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                    .clip(
+                        RoundedCornerShape(
+                            32.dp * scrollBehavior.state.collapsedFraction
+                        )
+                    )
+                    .padding(horizontal = 16.dp)
+                    .shadow(
+                        elevation = 6.dp * scrollBehavior.state.collapsedFraction
+                    )
             )
         }
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 24.dp)
+                .padding(top = 16.dp, bottom = 100.dp),
+            contentPadding = innerPadding,
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            items(16) { index ->
+                MyElevatedCard(
+                    title = "Card Title ${index + 1}",
+                    imageUrl = "https://picsum.photos/600/400?random=$index"
+                )
+            }
+        }
     }
-}*/
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -173,7 +201,8 @@ fun CardList(contentPadding: PaddingValues) {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 32.dp)
-            .padding(top = 80.dp),
+            .padding(top = 200.dp),
+            .padding(bottom = 100.dp),
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
