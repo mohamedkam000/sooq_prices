@@ -46,7 +46,8 @@ fun AppMaterialTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) darkColorScheme() else lightColorScheme()
+    val colorScheme = if (darkTheme) dynamicDarkColorScheme(LocalContext.current)
+                      else dynamicLightColorScheme(LocalContext.current)
 
     androidx.compose.material3.MaterialTheme(
         colorScheme = colorScheme,
@@ -86,14 +87,14 @@ fun MyElevatedCard(title: String, imageUrl: String) {
         onClick = {},
         modifier = Modifier
             .fillMaxWidth()
-            .height(320.dp),
+            .height(300.dp),
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     ) {
-        Column(modifier = Modifier.padding(32.dp)) {
+        Column(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(imageUrl)
@@ -102,7 +103,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
                 contentDescription = title,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(280.dp)
+                    .height(220.dp)
                     .clip(RoundedCornerShape(36.dp)),
                 contentScale = ContentScale.Crop
             )
