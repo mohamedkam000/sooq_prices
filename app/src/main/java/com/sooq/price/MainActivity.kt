@@ -80,7 +80,7 @@ fun AppShell() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyElevatedCard(title: String, content: String, imageUrl: String) {
+fun MyElevatedCard(title: String, imageUrl: String) {
     ElevatedCard(
         onClick = {},
         modifier = Modifier
