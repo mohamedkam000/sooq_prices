@@ -45,86 +45,11 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-    val statusBarHeight = with(LocalDensity.current) {
-        WindowInsets.statusBars.getTop(this).toDp()
-    }
-
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
-        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        topBar = {}
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.Surface
     ) { innerPadding ->
-        Box(modifier = Modifier.fillMaxSize()) {
-            LazyColumn(
-                contentPadding = innerPadding,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                item {
-                    RoundedRectangleOverlay(
-                        height = 150.dp
-                    ) {
-                        Text(
-                            "Overlay Title",
-                            style = MaterialTheme.typography.titleLarge,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                }
-                items(50) { index ->
-                    MyElevatedCard(
-                        title = "Card Title ${index + 1}",
-                        imageUrl = "https://picsum.photos/600/400?random=$index"
-                    )
-                }
-            }
-
-            Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(statusBarHeight)
-                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
-            )
-        }
-    }
-}
-
-/*@Composable
-fun AppShell() {
-    Column(modifier = Modifier.fillMaxSize()) {
-        RoundedRectangleOverlay {
-            Text(
-                "Overlay Title",
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-
-        CardList(contentPadding = PaddingValues(16.dp))
-    }
-}*/
-
-@Composable
-fun RoundedRectangleOverlay(
-    modifier: Modifier = Modifier,
-    height: Dp = 100.dp,
-    backgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
-    content: @Composable BoxScope.() -> Unit = {}
-) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(height)
-            .clip(RoundedCornerShape(36.dp))
-            .background(backgroundColor)
-            .padding(16.dp)
-    ) {
-        CompositionLocalProvider(LocalContentColor provides contentColor) {
-            content()
-        }
+        CardList(contentPadding = innerPadding)
     }
 }
 
@@ -154,7 +79,7 @@ fun MyElevatedCard(title: String, imageUrl: String) {
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
         Column(
@@ -197,7 +122,7 @@ fun CardList(contentPadding: PaddingValues) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 32.dp),
+            .padding(horizontal = 32.dp, top = 200.dp, bottom = 100.dp),
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
