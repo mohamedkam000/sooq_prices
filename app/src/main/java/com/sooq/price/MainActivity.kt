@@ -53,14 +53,14 @@ fun AppShell() {
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
-
             CardList(contentPadding = PaddingValues(16.dp))
         }
 
+        val statusBarHeight = WindowInsets.statusBars.getTop(LocalDensity.current).toDp()
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .statusBarsHeight()
+                .height(statusBarHeight)
                 .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
         )
     }
