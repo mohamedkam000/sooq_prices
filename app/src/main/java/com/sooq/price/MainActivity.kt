@@ -56,6 +56,30 @@ fun AppMaterialTheme(
     )
 }
 
+/*@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppShell() {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            TopAppBar(
+                title = { Text("Test Title") },
+                scrollBehavior = scrollBehavior,
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            )
+        }
+    ) { innerPadding ->
+        CardList(contentPadding = innerPadding)
+    }
+}*/
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
@@ -65,6 +89,7 @@ fun AppShell() {
         modifier = Modifier
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest, 
         topBar = {
             TopAppBar(
                 title = { Text("Test Title") },
@@ -128,24 +153,6 @@ fun MyElevatedCard(title: String, imageUrl: String) {
         }
     }
 }
-
-/*@Composable
-fun CardList(contentPadding: PaddingValues) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 32.dp, top = 200.dp, bottom = 100.dp)
-        contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        items(16) { index ->
-            MyElevatedCard(
-                title = "Card Title ${index + 1}",
-                imageUrl = "https://picsum.photos/600/400?random=$index"
-            )
-        }
-    }
-}*/
 
 @Composable
 fun CardList(contentPadding: PaddingValues) {
