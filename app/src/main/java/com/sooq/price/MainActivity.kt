@@ -56,7 +56,7 @@ fun AppMaterialTheme(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+/*@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
     Scaffold(
@@ -64,6 +64,43 @@ fun AppShell() {
         containerColor = MaterialTheme.colorScheme.surfaceVariant
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
+    }
+}*/
+
+@Composable
+fun AppShell() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        RoundedRectangleOverlay {
+            Text(
+                "Overlay Title",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
+
+        CardList(contentPadding = PaddingValues(16.dp))
+    }
+}
+
+@Composable
+fun RoundedRectangleOverlay(
+    modifier: Modifier = Modifier,
+    height: Dp = 100.dp,
+    backgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    contentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+    content: @Composable BoxScope.() -> Unit = {}
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(height)
+            .clip(RoundedCornerShape(36.dp))
+            .background(backgroundColor)
+            .padding(16.dp)
+    ) {
+        CompositionLocalProvider(LocalContentColor provides contentColor) {
+            content()
+        }
     }
 }
 
