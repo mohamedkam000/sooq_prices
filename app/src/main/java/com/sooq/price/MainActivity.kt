@@ -80,7 +80,7 @@ fun AppShell() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+/*@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyElevatedCard(title: String, imageUrl: String) {
     ElevatedCard(
@@ -108,6 +108,55 @@ fun MyElevatedCard(title: String, imageUrl: String) {
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+    }
+}*/
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyElevatedCard(title: String, imageUrl: String) {
+    ElevatedCard(
+        onClick = {},
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        shape = RoundedCornerShape(36.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 16.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(220.dp)
+                    .clip(RoundedCornerShape(28.dp))
+                    .background(MaterialTheme.colorScheme.surface)
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(imageUrl)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = title,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
