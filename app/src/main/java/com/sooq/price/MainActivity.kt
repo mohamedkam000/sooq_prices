@@ -27,7 +27,7 @@ import java.util.*
 import coil.compose.*
 import coil.request.*
 
-class MainActivity : ComponentActivity() {
+/*class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +50,28 @@ fun AppShell() {
         containerColor = MaterialTheme.colorScheme.surface
     ) { innerPadding ->
         CardList(contentPadding = innerPadding)
+    }
+}*/
+
+class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        actionBar?.hide()
+        enableEdgeToEdge()
+        
+        setContent {
+            Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFF1E1E1E)) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AppMaterialTheme {
+                        AppShell()
+                    }
+                }
+            }
+        }
     }
 }
 
