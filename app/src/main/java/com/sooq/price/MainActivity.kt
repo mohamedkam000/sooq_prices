@@ -43,32 +43,30 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppMaterialTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colorScheme = if (darkTheme) dynamicDarkColorScheme(LocalContext.current)
-                      else dynamicLightColorScheme(LocalContext.current)
+fun AppShell() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            RoundedRectangleOverlay {
+                Text(
+                    "Overlay Title",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
 
-    androidx.compose.material3.MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography(),
-        content = content
-    )
+            CardList(contentPadding = PaddingValues(16.dp))
+        }
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsHeight()
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
+        )
+    }
 }
 
-/*@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppShell() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        containerColor = MaterialTheme.colorScheme.surfaceVariant
-    ) { innerPadding ->
-        CardList(contentPadding = innerPadding)
-    }
-}*/
-
-@Composable
+/*@Composable
 fun AppShell() {
     Column(modifier = Modifier.fillMaxSize()) {
         RoundedRectangleOverlay {
@@ -81,7 +79,7 @@ fun AppShell() {
 
         CardList(contentPadding = PaddingValues(16.dp))
     }
-}
+}*/
 
 @Composable
 fun RoundedRectangleOverlay(
@@ -103,6 +101,21 @@ fun RoundedRectangleOverlay(
             content()
         }
     }
+}
+
+@Composable
+fun AppMaterialTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) dynamicDarkColorScheme(LocalContext.current)
+                      else dynamicLightColorScheme(LocalContext.current)
+
+    androidx.compose.material3.MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography(),
+        content = content
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
