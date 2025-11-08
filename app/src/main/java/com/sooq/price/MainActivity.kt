@@ -157,7 +157,8 @@ fun MyElevatedCardPreview() {
     MaterialTheme {
         MyElevatedCard(
             title = "Preview Title",
-            content = "This is preview content for the card."
+            content = "This is preview content for the card.",
+            imageUrl = "https://picsum.photos/600/400?random=0"
         )
     }
 }
