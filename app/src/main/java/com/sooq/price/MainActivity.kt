@@ -107,7 +107,7 @@ fun MyElevatedCard(title: String, content: String, imageUrl: String) {
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.surface
+                color = MaterialTheme.colorScheme.surface,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
         }
