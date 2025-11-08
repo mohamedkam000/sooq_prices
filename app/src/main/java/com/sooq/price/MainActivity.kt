@@ -42,27 +42,52 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppShell() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            RoundedRectangleOverlay {
-                Text(
-                    "Overlay Title",
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-            CardList(contentPadding = PaddingValues(16.dp))
-        }
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val statusBarHeight = with(LocalDensity.current) {
+        WindowInsets.statusBars.getTop(this).toDp()
+    }
 
-        val statusBarHeight = WindowInsets.statusBars.getTop(LocalDensity.current).toDp()
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(statusBarHeight)
-                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
-        )
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        topBar = {}
+    ) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                contentPadding = innerPadding,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                item {
+                    RoundedRectangleOverlay(
+                        height = 150.dp
+                    ) {
+                        Text(
+                            "Overlay Title",
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
+                }
+                items(50) { index ->
+                    MyElevatedCard(
+                        title = "Card Title ${index + 1}",
+                        imageUrl = "https://picsum.photos/600/400?random=$index"
+                    )
+                }
+            }
+
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(statusBarHeight)
+                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
+            )
+        }
     }
 }
 
