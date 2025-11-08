@@ -183,13 +183,280 @@ const gridView = document.getElementById('gridView');
 const detailView = document.getElementById('detailView');
 const detailContent = document.getElementById('detailContent');
 
+// let prices = {};
+// 
+// async function initializeApp() {
+//   try {
+//     const res = await fetch('https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json');
+//     if (!res.ok) {
+//         throw new Error(`HTTP error! status: ${res.status}`);
+//     }
+//     const data = await res.json();
+//     prices = data;
+//     console.log('Successfully fetched prices:', prices);
+//   } catch (error) {
+//     console.warn('Failed to fetch prices:', error);
+//   }
+//   renderCards();
+//   navigateTo(location.pathname,{push:false});
+// }
+// 
+// function renderCards() {
+//   cardsGrid.innerHTML = '';
+//   states.forEach(state => {
+//     const el = document.createElement('article');
+//     el.className = 'card';
+//     el.tabIndex = 0;
+//     el.innerHTML = `
+//       <div class="img" style="background-image:url('${state.img}')"></div>
+//       <div class="title-band">
+//         <div style="display:flex;flex-direction:column">
+//           <div class="city">${state.name}</div>
+//           <div class="desc">Select state to explore its markets</div>
+//         </div>
+//       </div>
+//       <div class="meta">
+//         <div class="desc">Click to see markets inside this state</div>
+//       </div>
+//     `;
+//     const tag = document.createElement('div');
+//     tag.className = 'tag';
+//     tag.textContent = 'Alpha';
+//     el.appendChild(tag);
+//     el.addEventListener('click', () => showMarkets(state));
+//     el.addEventListener('keypress', (e) => { if(e.key === 'Enter') showMarkets(state); });
+// 
+//     cardsGrid.appendChild(el);
+//   });
+// }
+// 
+// const BASE = '/sooq_prices/';
+// 
+// function navigateTo(path, opts={push:true}) {
+//   const url = BASE + path.replace(/^\/+/,'');
+//   if (opts.push) history.pushState({path}, '', url);
+// 
+//   if (path === '/' || path === '' || path === 'index.html') {
+//     showGrid();
+//     return;
+//   }
+// 
+//   const stateMatch = path.match(/^state\/([a-z]+)/i);
+//   if (stateMatch) {
+//     const state = states.find(s => s.id === stateMatch[1]);
+//     if (state) { showMarkets(state); return; }
+//   }
+// 
+//   const marketMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)/i);
+//   if (marketMatch) {
+//     const state = states.find(s => s.id === marketMatch[1]);
+//     const market = state?.markets.find(m => m.id === marketMatch[2]);
+//     if (state && market) { showGoods(state, market); return; }
+//   }
+//   const goodMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)\/good\/([a-z]+)/i);
+//   if (goodMatch) {
+//     const state = states.find(s => s.id === goodMatch[1]);
+//     const market = state?.markets.find(m => m.id === goodMatch[2]);
+//     const good = market?.goods.find(g => g.id === goodMatch[3]);
+//     if (state && market && good) { showItemDetail(state, market, good); return; }
+//   }
+// 
+//   showGrid();
+// }
+// 
+// function showGrid() {
+//   detailView.classList.add('hidden');
+//   gridView.classList.remove('hidden');
+//   renderCards();
+//   document.title = 'Sooq Price';
+//   history.replaceState({path:'/'}, '', BASE);
+// }
+// 
+// function showMarkets(state) {
+//   detailContent.innerHTML = '';
+//   detailView.classList.remove('hidden');
+//   gridView.classList.add('hidden');
+// 
+//   detailContent.innerHTML = `
+//     <h2>${state.name} Markets</h2>
+//     <div class="market-grid"></div>
+//     <button class="btn" id="backBtn">Back</button>
+//   `;
+// 
+//   const marketGrid = detailContent.querySelector('.market-grid');
+// 
+//   state.markets.forEach(market => {
+//     const el = document.createElement('article');
+//     el.className = 'card';
+//     el.innerHTML = `
+//       <div class="img" style="background-image:url('${market.img}')"></div>
+//       <div class="title-band">
+//         <div style="display:flex;flex-direction:column">
+//           <div class="city">${market.name}</div>
+//           <div class="desc">Select market to explore goods</div>
+//         </div>
+//       </div>
+//       <div class="meta">
+//         <div class="desc">Click to see goods in this market</div>
+//       </div>
+//     `;
+//     const tag = document.createElement('div');
+//     tag.className = 'tag';
+//     tag.textContent = 'Market';
+//     el.appendChild(tag);
+//     el.addEventListener('click', () => showGoods(state, market));
+//     marketGrid.appendChild(el);
+//   });
+// 
+//   const backBtn = detailContent.querySelector('#backBtn');
+//   backBtn.addEventListener('click', () => showGrid());
+//   history.pushState({path:`state/${state.id}`}, '', `${BASE}state/${state.id}`);
+// }
+// 
+// function showGoods(state, market) {
+//   detailContent.innerHTML = '';
+//   detailContent.innerHTML = `
+//     <h2>${market.name} — Goods</h2>
+//     <div class="market-grid"></div>
+//     <button class="btn" id="backBtn">Back</button>
+//   `;
+// 
+//   const goodsGrid = detailContent.querySelector('.market-grid');
+// 
+//   market.goods.forEach(good => {
+//     const el = document.createElement('article');
+//     el.className = 'card';
+//     el.innerHTML = `
+//       <div class="img" style="background-image:url('${good.img || ''}')"></div>
+//       <div class="title-band">
+//         <div style="display:flex;flex-direction:column">
+//           <div class="city">${good.name}</div>
+//           <div class="desc">Click to see items inside</div>
+//         </div>
+//       </div>
+//       <div class="meta">
+//         <div class="desc">${good.items ? good.items.length + ' items available' : 'No items'}</div>
+//       </div>
+//     `;
+//     const tag = document.createElement('div');
+//     tag.className = 'tag';
+//     tag.textContent = 'Good';
+//     el.appendChild(tag);
+// 
+//     if (good.items && good.items.length > 0) {
+//       el.addEventListener('click', () => showItems(state, market, good));
+//     } else {
+//       el.addEventListener('click', () => alert('No items inside'));
+//     }
+// 
+//     goodsGrid.appendChild(el);
+//   });
+// 
+//   const backBtn = detailContent.querySelector('#backBtn');
+//   backBtn.addEventListener('click', () => showMarkets(state));
+//   history.pushState({path:`state/${state.id}/market/${market.id}`}, '', `${BASE}state/${state.id}/market/${market.id}`);
+// }
+// 
+// function showItems(state, market, good) {
+//   detailContent.innerHTML = `
+//     <h2>${good.name}</h2>
+//     <div class="market-grid"></div>
+//     <button class="btn" id="backBtn">Back</button>
+//   `;
+//   const itemsGrid = detailContent.querySelector('.market-grid');
+// 
+//   good.items.forEach(item => {
+//     const el = document.createElement('article');
+//     el.className = 'card';
+//     el.innerHTML = `
+//       <div class="img" style="background-image:url('${item.img || ''}')"></div>
+//       <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
+//         <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
+//       </div>
+//       <div class="meta" style="text-align:center;">
+//         <div class="desc">Click to see prices</div>
+//       </div>
+//     `;
+//     const tag = document.createElement('div');
+//     tag.className = 'tag';
+//     tag.textContent = 'Item';
+//     el.appendChild(tag);
+//     el.addEventListener('click', () => showItemDetail(state, market, good, item));
+//     itemsGrid.appendChild(el);
+//   });
+// 
+//   const backBtn = detailContent.querySelector('#backBtn');
+//   backBtn.addEventListener('click', () => showGoods(state, market));
+//   history.pushState({path:`state/${state.id}/market/${market.id}/good/${good.id}`}, '', `${BASE}state/${state.id}/market/${market.id}/good/${good.id}`);
+// }
+// 
+// function showItemDetail(state, market, good, item) {
+//   detailContent.innerHTML = `
+//     <h2>${item.name}</h2>
+//     <div class="market-grid"></div>
+//     <button class="btn" id="backBtn">Back</button>
+//   `;
+// 
+//   const grid = detailContent.querySelector('.market-grid');
+//   
+//   if (item.quant && item.quant.length > 0) {
+//     item.quant.forEach(quant => {
+//       const priceValue = prices[quant.price_key] || 'Price N/A';
+//       const displayPrice = `${priceValue} SDG`;
+// 
+//       const el = document.createElement('article');
+//       el.className = 'card';
+//       el.innerHTML = `
+//         <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
+//           <div class="city" style="font-size:2em;font-weight:bold;">${quant.name}</div>
+//         </div>
+//         <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
+//           <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
+//         </div>
+//       `;
+//       const tag = document.createElement('div');
+//       tag.className = 'tag';
+//       tag.textContent = 'Price';
+//       el.appendChild(tag);
+//       grid.appendChild(el);
+//     });
+//   } else {
+//     const priceKey = `${item.id}_s`;
+//     const priceValue = prices[priceKey] || 'Price N/A';
+//     const displayPrice = `${priceValue} SDG`;
+//     
+//     const el = document.createElement('article');
+//     el.className = 'card';
+//     el.innerHTML = `
+//         <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
+//           <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
+//         </div>
+//         <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
+//           <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
+//         </div>
+//       `;
+//     const tag = document.createElement('div');
+//     tag.className = 'tag';
+//     tag.textContent = 'Item';
+//     el.appendChild(tag);
+//     grid.appendChild(el);
+//   }
+// 
+//   const backBtn = detailContent.querySelector('#backBtn');
+//   backBtn.addEventListener('click', () => showItems(state, market, good));
+// }
+// 
+// 
+// initializeApp();
+// 
+
 let prices = {};
 
 async function initializeApp() {
   try {
     const res = await fetch('https://raw.githubusercontent.com/mohamedkam000/prices/main/data.json');
     if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
     const data = await res.json();
     prices = data;
@@ -198,196 +465,18 @@ async function initializeApp() {
     console.warn('Failed to fetch prices:', error);
   }
   renderCards();
-  navigateTo(location.pathname,{push:false});
+  navigateTo(location.pathname, { push: false });
 }
 
-function renderCards() {
-  cardsGrid.innerHTML = '';
-  states.forEach(state => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.tabIndex = 0;
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${state.img}')"></div>
-      <div class="title-band">
-        <div style="display:flex;flex-direction:column">
-          <div class="city">${state.name}</div>
-          <div class="desc">Select state to explore its markets</div>
-        </div>
-      </div>
-      <div class="meta">
-        <div class="desc">Click to see markets inside this state</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Alpha';
-    el.appendChild(tag);
-    el.addEventListener('click', () => showMarkets(state));
-    el.addEventListener('keypress', (e) => { if(e.key === 'Enter') showMarkets(state); });
-
-    cardsGrid.appendChild(el);
-  });
-}
-
-const BASE = '/sooq_prices/';
-
-function navigateTo(path, opts={push:true}) {
-  const url = BASE + path.replace(/^\/+/,'');
-  if (opts.push) history.pushState({path}, '', url);
-
-  if (path === '/' || path === '' || path === 'index.html') {
-    showGrid();
-    return;
+function getPrice(stateId, marketId, categoryId, itemId, priceKey) {
+  try {
+    return (
+      prices?.[stateId]?.[marketId]?.[categoryId]?.[itemId]?.[priceKey] ||
+      'Price N/A'
+    );
+  } catch {
+    return 'Price N/A';
   }
-
-  const stateMatch = path.match(/^state\/([a-z]+)/i);
-  if (stateMatch) {
-    const state = states.find(s => s.id === stateMatch[1]);
-    if (state) { showMarkets(state); return; }
-  }
-
-  const marketMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)/i);
-  if (marketMatch) {
-    const state = states.find(s => s.id === marketMatch[1]);
-    const market = state?.markets.find(m => m.id === marketMatch[2]);
-    if (state && market) { showGoods(state, market); return; }
-  }
-  const goodMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)\/good\/([a-z]+)/i);
-  if (goodMatch) {
-    const state = states.find(s => s.id === goodMatch[1]);
-    const market = state?.markets.find(m => m.id === goodMatch[2]);
-    const good = market?.goods.find(g => g.id === goodMatch[3]);
-    if (state && market && good) { showItemDetail(state, market, good); return; }
-  }
-
-  showGrid();
-}
-
-function showGrid() {
-  detailView.classList.add('hidden');
-  gridView.classList.remove('hidden');
-  renderCards();
-  document.title = 'Sooq Price';
-  history.replaceState({path:'/'}, '', BASE);
-}
-
-function showMarkets(state) {
-  detailContent.innerHTML = '';
-  detailView.classList.remove('hidden');
-  gridView.classList.add('hidden');
-
-  detailContent.innerHTML = `
-    <h2>${state.name} Markets</h2>
-    <div class="market-grid"></div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-
-  const marketGrid = detailContent.querySelector('.market-grid');
-
-  state.markets.forEach(market => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${market.img}')"></div>
-      <div class="title-band">
-        <div style="display:flex;flex-direction:column">
-          <div class="city">${market.name}</div>
-          <div class="desc">Select market to explore goods</div>
-        </div>
-      </div>
-      <div class="meta">
-        <div class="desc">Click to see goods in this market</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Market';
-    el.appendChild(tag);
-    el.addEventListener('click', () => showGoods(state, market));
-    marketGrid.appendChild(el);
-  });
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showGrid());
-  history.pushState({path:`state/${state.id}`}, '', `${BASE}state/${state.id}`);
-}
-
-function showGoods(state, market) {
-  detailContent.innerHTML = '';
-  detailContent.innerHTML = `
-    <h2>${market.name} — Goods</h2>
-    <div class="market-grid"></div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-
-  const goodsGrid = detailContent.querySelector('.market-grid');
-
-  market.goods.forEach(good => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${good.img || ''}')"></div>
-      <div class="title-band">
-        <div style="display:flex;flex-direction:column">
-          <div class="city">${good.name}</div>
-          <div class="desc">Click to see items inside</div>
-        </div>
-      </div>
-      <div class="meta">
-        <div class="desc">${good.items ? good.items.length + ' items available' : 'No items'}</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Good';
-    el.appendChild(tag);
-
-    if (good.items && good.items.length > 0) {
-      el.addEventListener('click', () => showItems(state, market, good));
-    } else {
-      el.addEventListener('click', () => alert('No items inside'));
-    }
-
-    goodsGrid.appendChild(el);
-  });
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showMarkets(state));
-  history.pushState({path:`state/${state.id}/market/${market.id}`}, '', `${BASE}state/${state.id}/market/${market.id}`);
-}
-
-function showItems(state, market, good) {
-  detailContent.innerHTML = `
-    <h2>${good.name}</h2>
-    <div class="market-grid"></div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-  const itemsGrid = detailContent.querySelector('.market-grid');
-
-  good.items.forEach(item => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${item.img || ''}')"></div>
-      <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
-        <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
-      </div>
-      <div class="meta" style="text-align:center;">
-        <div class="desc">Click to see prices</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Item';
-    el.appendChild(tag);
-    el.addEventListener('click', () => showItemDetail(state, market, good, item));
-    itemsGrid.appendChild(el);
-  });
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showGoods(state, market));
-  history.pushState({path:`state/${state.id}/market/${market.id}/good/${good.id}`}, '', `${BASE}state/${state.id}/market/${market.id}/good/${good.id}`);
 }
 
 function showItemDetail(state, market, good, item) {
@@ -398,10 +487,12 @@ function showItemDetail(state, market, good, item) {
   `;
 
   const grid = detailContent.querySelector('.market-grid');
-  
+
+  // If the item has quantity variants
   if (item.quant && item.quant.length > 0) {
     item.quant.forEach(quant => {
-      const priceValue = prices[quant.price_key] || 'Price N/A';
+      // New lookup based on nested structure
+      const priceValue = getPrice(state.id, market.id, good.id, item.id, `${item.id}_${quant.id}`); 
       const displayPrice = `${priceValue} SDG`;
 
       const el = document.createElement('article');
@@ -421,20 +512,20 @@ function showItemDetail(state, market, good, item) {
       grid.appendChild(el);
     });
   } else {
-    const priceKey = `${item.id}_s`;
-    const priceValue = prices[priceKey] || 'Price N/A';
+    // Fallback: single price
+    const priceValue = getPrice(state.id, market.id, good.id, item.id, `${item.id}_single`);
     const displayPrice = `${priceValue} SDG`;
-    
+
     const el = document.createElement('article');
     el.className = 'card';
     el.innerHTML = `
-        <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
-          <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
-        </div>
-        <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
-          <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
-        </div>
-      `;
+      <div class="title-band" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding: 30px 10px;">
+        <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
+      </div>
+      <div class="meta" style="text-align:center;margin-top:10px;padding-bottom: 20px;">
+        <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
+      </div>
+    `;
     const tag = document.createElement('div');
     tag.className = 'tag';
     tag.textContent = 'Item';
@@ -446,8 +537,10 @@ function showItemDetail(state, market, good, item) {
   backBtn.addEventListener('click', () => showItems(state, market, good));
 }
 
-
 initializeApp();
+
+
+
 
 /*
  * This sets the UI to use the light theme defined in the style file.

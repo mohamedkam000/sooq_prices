@@ -1,0 +1,188 @@
+{
+  "khartoum": {
+    "central": {
+      "meat": {
+        "fish": { "fish_single": "4,000" },
+        "beef": { "beef_single": "18,000" },
+        "chicken": { "chicken_single": "8,000" },
+        "mutton": { "mutton_single": "20,000" }
+      },
+      "fruits": {
+        "apples": { "apple_single": "1,200" },
+        "oranges": { "orange_single": "900", "orange_multi": "7,000" },
+        "bananas": { "banana_single": "600" },
+        "grapes": { "grape_single": "5,000" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,200" },
+        "onions": { "onion_single": "1,800" },
+        "potatoes": { "potato_single": "1,500" },
+        "carrots": { "carrot_single": "1,200" }
+      },
+      "grains": {
+        "wheat": { "wheat_kg": "3,500" },
+        "rice": { "rice_kg": "4,200" },
+        "lentils": { "lentil_kg": "4,800" }
+      }
+    },
+    "ombadda": {
+      "meat": {
+        "fish": { "fish_single": "4,200" },
+        "beef": { "beef_single": "17,800" },
+        "chicken": { "chicken_single": "8,200" }
+      },
+      "fruits": {
+        "apples": { "apple_single": "1,300" },
+        "mangoes": { "mango_single": "2,000" },
+        "bananas": { "banana_single": "700" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,000" },
+        "onions": { "onion_single": "1,700" },
+        "okra": { "okra_single": "2,300" }
+      }
+    },
+    "bahri": {
+      "meat": {
+        "fish": { "fish_single": "4,500" },
+        "beef": { "beef_single": "19,000" },
+        "chicken": { "chicken_single": "8,400" }
+      },
+      "fruits": {
+        "apples": { "apple_single": "1,400" },
+        "oranges": { "orange_single": "1,000" },
+        "dates": { "dates_kg": "5,000" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,300" },
+        "onions": { "onion_single": "1,900" },
+        "eggplant": { "eggplant_single": "2,100" }
+      }
+    },
+    "soba": {
+      "meat": {
+        "fish": { "fish_single": "4,100" },
+        "beef": { "beef_single": "18,200" },
+        "chicken": { "chicken_single": "8,100" }
+      },
+      "fruits": {
+        "apples": { "apple_single": "1,250" },
+        "bananas": { "banana_single": "650" },
+        "oranges": { "orange_single": "950" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,100" },
+        "onions": { "onion_single": "1,850" },
+        "spinach": { "spinach_bunch": "1,300" }
+      }
+    }
+  },
+  "river_nile": {
+    "atbara": {
+      "meat": {
+        "fish": { "fish_single": "4,800" },
+        "beef": { "beef_single": "18,500" }
+      },
+      "fruits": {
+        "apples": { "apple_single": "1,500" },
+        "dates": { "dates_kg": "4,800" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,400" },
+        "onions": { "onion_single": "1,900" }
+      }
+    },
+    "shendi": {
+      "meat": {
+        "beef": { "beef_single": "18,000" },
+        "chicken": { "chicken_single": "8,000" }
+      },
+      "fruits": {
+        "bananas": { "banana_single": "600" },
+        "grapes": { "grape_single": "5,500" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,200" },
+        "potatoes": { "potato_single": "1,800" }
+      }
+    }
+  },
+  "northern_sudan": {
+    "dongola": {
+      "meat": {
+        "fish": { "fish_single": "5,000" },
+        "beef": { "beef_single": "19,000" }
+      },
+      "fruits": {
+        "dates": { "dates_kg": "4,000" },
+        "apples": { "apple_single": "1,400" }
+      },
+      "vegetables": {
+        "onions": { "onion_single": "1,700" },
+        "tomatoes": { "tomato_single": "2,100" }
+      }
+    }
+  },
+  "red_sea": {
+    "port_sudan": {
+      "meat": {
+        "fish": { "fish_single": "4,500" },
+        "chicken": { "chicken_single": "8,500" }
+      },
+      "fruits": {
+        "bananas": { "banana_single": "750" },
+        "oranges": { "orange_single": "1,100" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,400" },
+        "onions": { "onion_single": "1,950" }
+      }
+    },
+    "suakin": {
+      "meat": {
+        "fish": { "fish_single": "4,300" },
+        "beef": { "beef_single": "18,000" }
+      },
+      "fruits": {
+        "mangoes": { "mango_single": "2,200" },
+        "apples": { "apple_single": "1,300" }
+      },
+      "vegetables": {
+        "okra": { "okra_single": "2,100" },
+        "potatoes": { "potato_single": "1,600" }
+      }
+    }
+  },
+  "kassala": {
+    "kassala_market": {
+      "meat": {
+        "beef": { "beef_single": "17,000" },
+        "chicken": { "chicken_single": "7,800" }
+      },
+      "fruits": {
+        "mangoes": { "mango_single": "2,000" },
+        "bananas": { "banana_single": "600" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,000" },
+        "onions": { "onion_single": "1,600" }
+      }
+    }
+  },
+  "sinnar": {
+    "sinnar_market": {
+      "meat": {
+        "beef": { "beef_single": "17,500" },
+        "chicken": { "chicken_single": "8,000" }
+      },
+      "fruits": {
+        "oranges": { "orange_single": "950" },
+        "bananas": { "banana_single": "650" }
+      },
+      "vegetables": {
+        "tomatoes": { "tomato_single": "2,100" },
+        "onions": { "onion_single": "1,700" }
+      }
+    }
+  }
+}
