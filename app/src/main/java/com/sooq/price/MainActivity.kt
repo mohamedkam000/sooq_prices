@@ -82,8 +82,7 @@ fun AppShell() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PolishedAppShell() {
-    // Scroll behavior for collapsing effect
+fun AppShell() {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     Scaffold(
@@ -91,13 +90,9 @@ fun PolishedAppShell() {
             .fillMaxSize()
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            // LargeTopAppBar provides built-in large height
             LargeTopAppBar(
                 title = {
-                    // fraction = 0 when fully expanded, 1 when collapsed
                     val fraction = scrollBehavior.state.collapsedFraction
-
-                    // Interpolate font size from 32.sp -> 20.sp
                     val fontSize = (32.sp - 12.sp * fraction)
                     val verticalPadding = (32.dp - 16.dp * fraction)
 
