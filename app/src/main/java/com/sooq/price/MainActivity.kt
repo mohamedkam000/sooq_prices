@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 //import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.*
-import dagger.hilt.android.lifecycle.
+import dagger.hilt.android.lifecycle.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
