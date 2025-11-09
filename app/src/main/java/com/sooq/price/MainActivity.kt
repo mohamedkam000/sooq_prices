@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
-//        enableEdgeToEdge()
 
         setContent {
             AppMaterialTheme {
@@ -76,50 +75,32 @@ fun AppShell() {
             startDestination = "list/",
             modifier = Modifier.fillMaxSize()
         ) {
-            // Main + nested list screens
             composable("list/{path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path") ?: ""
                 val cards = getListFromPath(path)
                 val headerInfo = remember(path) {
-                    // Main screen: title only. Nested list: image + title of section node.
                     if (path.isEmpty()) HeaderInfo(
                         title = "Sooq Price",
                         imageUrl = null
                     ) else {
                         val node = getNodeFromPath(path)
                         HeaderInfo(
-                            title = node.title,
-                            imageUrl = node.imageUrl
+                            title = node.title
                         )
                     }
                 }
 
-                // Local list state to drive the collapse animation
                 val listState = rememberLazyListState()
                 val collapseFraction by remember {
                     derivedStateOf {
-                        // Collapses based on top padding space being consumed by scroll
-                        // We use the vertical scroll offset of the first visible item.
                         val offset = listState.firstVisibleItemScrollOffset.toFloat()
-                        val maxCollapsePx = 140f // corresponds to ~140.dp of collapse range
+                        val maxCollapsePx = 140f
                         (offset / maxCollapsePx).coerceIn(0f, 1f)
                     }
                 }
                 val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
 
                 Box(modifier = Modifier.fillMaxSize()) {
-                    // Header always drawn on top
-                    CollapsingHeader(
-                        title = headerInfo.title,
-                        collapseFraction = animatedFraction,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.TopCenter)
-                            .padding(horizontal = 32.dp)
-                            .padding(top = innerPadding.calculateTopPadding())
-                    )
-                
-                    // List scrolls underneath; no top padding reserved for header
                     CardList(
                         navController = navController,
                         cards = cards,
@@ -127,19 +108,28 @@ fun AppShell() {
                         contentPadding = innerPadding,
                         listState = listState
                     )
+
+                    CollapsingHeader(
+                        title = headerInfo.title,
+                        collapseFraction = animatedFraction,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopCenter)
+                            .padding(horizontal = 32.dp)
+                            .padding(top = innerPadding.calculateTopPadding()
+                            .zIndex(1f))
+                    )
                 }
             }
 
-            // Detail screen
             composable("detail/{path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path")!!
                 val card = getNodeFromPath(path)
 
-                // For detail, we also show image + title; collapse is static unless DetailScreen provides scrolling.
                 Box(modifier = Modifier.fillMaxSize()) {
                     CollapsingHeader(
                         title = card.title,
-                        collapseFraction = 0f, // stays expanded; you can wire this to a scroll state inside DetailScreen if needed
+                        collapseFraction = 0f,
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
@@ -216,7 +206,6 @@ fun CardList(
     contentPadding: PaddingValues,
     listState: androidx.compose.foundation.lazy.LazyListState
 ) {
-    // Header height ranges 72.dp..212.dp; we reserve top padding accordingly.
     val expandedHeaderHeight = 212.dp
     val bottomSpace = 50.dp
 
@@ -324,10 +313,6 @@ fun MyElevatedCardPreview() {
     }
 }
 
-/**
- * Simple holder for header content.
- */
 data class HeaderInfo(
     val title: String,
-    val imageUrl: String?
 )
