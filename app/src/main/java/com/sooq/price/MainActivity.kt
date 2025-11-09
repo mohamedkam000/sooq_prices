@@ -142,6 +142,7 @@ fun AppShell() {
 
                     DetailScreen(
                         navController = navController,
+                        viewModel = hiltViewModel(),
 //                        card = card,
                         contentPadding = innerPadding
                     )
