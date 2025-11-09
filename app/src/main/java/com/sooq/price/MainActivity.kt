@@ -31,7 +31,6 @@ import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
-//import androidx.compose.ui.zIndex
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -97,7 +96,7 @@ fun AppShell() {
                         (offset / maxCollapsePx).coerceIn(0f, 1f)
                     }
                 }
-                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
+//                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
 
                 Box(modifier = Modifier.fillMaxSize()) {
                     CardList(
@@ -110,7 +109,8 @@ fun AppShell() {
 
                     CollapsingHeader(
                         title = headerInfo.title,
-                        collapseFraction = animatedFraction,
+                        collapseFraction = collapseFraction,
+//                        collapseFraction = animatedFraction,
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)

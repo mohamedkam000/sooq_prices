@@ -108,7 +108,7 @@ fun DetailScreen(
                 .fillMaxWidth()
                 .height(currentHeaderHeight)
                 .align(Alignment.TopCenter),
-                .zIndex(2f),
+//                .zIndex(1f),
             color = MaterialTheme.colorScheme.surfaceVariant,
             shadowElevation = 4.dp
         ) {
@@ -273,7 +273,7 @@ private fun DefaultDetailContent(card: CardNode) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp)
             .zIndex(2f),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
