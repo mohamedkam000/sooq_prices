@@ -1,9 +1,5 @@
-// script.js - updated to load states/markets/items/prices from data.json
-// --- CONFIG ---
-const DATA_URL = 'https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json';
-// If you host data.json locally in same folder, use './data.json'
+const DATA_URL = './data.json';
 
-// --- DOM ---
 const cardsGrid = document.getElementById('cardsGrid');
 const gridView = document.getElementById('gridView');
 const detailView = document.getElementById('detailView');
@@ -26,7 +22,7 @@ async function initializeApp() {
     console.log('Fetched data.json successfully');
   } catch (err) {
     console.warn('Failed to fetch data.json:', err);
-    // fallback
+
     states = fallbackStates.length ? fallbackStates : (fetchedData.states || []);
   }
   renderCards();

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -31,7 +31,7 @@ import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
-
+//*               val collapseFracti
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +88,7 @@ fun AppShell() {
                     }
                 }
 
-                val listState = rememberLazyListState()
+/*                val listState = rememberLazyListState()
                 val collapseFraction by remember {
                     derivedStateOf {
                         val offset = listState.firstVisibleItemScrollOffset.toFloat()
@@ -96,7 +96,25 @@ fun AppShell() {
                         (offset / maxCollapsePx).coerceIn(0f, 1f)
                     }
                 }
-//                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
+                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")*/
+
+                val listState = rememberLazyListState()
+
+                val scrollOffset by remember {
+                    derivedStateOf {
+                        listState.firstVisibleItemIndex * 300 + listState.firstVisibleItemScrollOffset
+                    }
+                }
+                
+                val collapseFractionTarget = (scrollOffset / 140f).coerceIn(0f, 1f)
+                val animatedFraction by animateFloatAsState(
+                    targetValue = collapseFractionTarget,
+                    animationSpec = androidx.compose.animation.core.spring(
+                        dampingRatio = 0.9f,
+                        stiffness = 200f
+                    ),
+                    label = "headerCollapseSmooth"
+                )
 
                 Box(modifier = Modifier.fillMaxSize()) {
                     CardList(
@@ -109,8 +127,7 @@ fun AppShell() {
 
                     CollapsingHeader(
                         title = headerInfo.title,
-                        collapseFraction = collapseFraction,
-//                        collapseFraction = animatedFraction,
+                        collapseFraction = animatedFraction,
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
@@ -254,7 +271,7 @@ fun CollapsingHeader(
     }
 
     val shadowElevation = 6.dp * collapseFraction
-    val backgroundColor = MaterialTheme.colorScheme.surface
+    val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
     val titleStyle = if (collapseFraction < 0.5f) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleLarge
 
     Surface(
