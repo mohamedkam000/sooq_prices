@@ -114,7 +114,7 @@ fun AppShell() {
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
                             .padding(horizontal = 32.dp)
-//                            .padding(top = innerPadding.calculateTopPadding())
+                            .padding(top = innerPadding.calculateTopPadding())
                             .zIndex(1f)
                     )
                 }
