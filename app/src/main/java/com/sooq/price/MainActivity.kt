@@ -108,9 +108,9 @@ fun AppShell() {
                 val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
 
                 Box(modifier = Modifier.fillMaxSize()) {
+                    // Header always drawn on top
                     CollapsingHeader(
                         title = headerInfo.title,
-                        imageUrl = headerInfo.imageUrl,
                         collapseFraction = animatedFraction,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -118,7 +118,8 @@ fun AppShell() {
                             .padding(horizontal = 32.dp)
                             .padding(top = innerPadding.calculateTopPadding())
                     )
-
+                
+                    // List scrolls underneath; no top padding reserved for header
                     CardList(
                         navController = navController,
                         cards = cards,
@@ -253,11 +254,9 @@ fun CardList(
 @Composable
 fun CollapsingHeader(
     title: String,
-    imageUrl: String?,
     collapseFraction: Float,
     modifier: Modifier = Modifier
 ) {
-    // Height interpolates between expanded and collapsed
     val expandedHeight = 212.dp
     val collapsedHeight = 72.dp
     val heightPxRange = with(androidx.compose.ui.platform.LocalDensity.current) {
@@ -270,16 +269,13 @@ fun CollapsingHeader(
         currentHeightPx.toDp()
     }
 
-    // Content interpolation factors
-    val imageAlpha by animateFloatAsState(targetValue = if (imageUrl != null) (1f - collapseFraction) else 0f, label = "imageAlpha")
     val titleSizeCollapsed = MaterialTheme.typography.titleMedium
     val titleSizeExpanded = MaterialTheme.typography.headlineMedium
     val useExpandedStyle = (collapseFraction < 0.5f)
     val titleStyle = if (useExpandedStyle) titleSizeExpanded else titleSizeCollapsed
 
     ElevatedCard(
-        modifier = modifier
-            .requiredHeight(currentHeight),
+        modifier = modifier.requiredHeight(currentHeight),
         shape = RoundedCornerShape(28.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
@@ -287,42 +283,15 @@ fun CollapsingHeader(
         )
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomStart
         ) {
-            if (imageUrl != null) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(imageUrl)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = title,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(28.dp))
-                        .background(Color.Black.copy(alpha = 0.05f))
-                        .then(Modifier)
-                        .padding(0.dp),
-                    alpha = imageAlpha
-                )
-                // Subtle overlay for text legibility when image is visible
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.15f * imageAlpha))
-                )
-            }
-
             Text(
                 text = title,
                 style = titleStyle,
-                color = if (imageUrl != null) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .padding(start = 20.dp, end = 20.dp, bottom = 18.dp)
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 18.dp)
             )
         }
     }
