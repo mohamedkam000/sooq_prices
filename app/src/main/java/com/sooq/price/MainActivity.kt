@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
             AppMaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surfaceContainer
                 ) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -164,7 +164,7 @@ fun CardList(
             .fillMaxSize()
             .padding(horizontal = 32.dp),
         contentPadding = PaddingValues(
-            top = contentPadding.calculateTopPadding() + 100.dp,
+            top = contentPadding.calculateTopPadding() + 150.dp,
             bottom = contentPadding.calculateBottomPadding() + 50.dp,
             start = 0.dp,
             end = 0.dp

@@ -64,8 +64,8 @@ val cardTreeData = listOf(
                 CardNode("Beans", "https://www.ranchogordo.com/cdn/shop/files/large-white-lima-bean-960994.jpg?v=1730244122")
             ))
         )),
-        CardNode("Local Market", "https://picsum.photos/600/400?random=11", children = listOf(
-            CardNode("Fruits", "https://picsum.photos/600/400?random=111", children = listOf(
+        CardNode("Local Market", placeholderImg, children = listOf(
+            CardNode("Fruits", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL4CPXA6CGmqjWrQKPJIYk3L5JjSnB5GMX9ka-FWSKOxCy0ImP2gk4d0VH&s=10", children = listOf(
                 CardNode("Apples", "https://media.istockphoto.com/id/1302999429/photo/three-apples.jpg?s=612x612&w=0&k=20&c=gvQ3KRp5ck-oA29kcyCzMjTJiJzMLTHIOzP8oABXk4k="),
                 CardNode("Oranges", "https://cdn-prod.medicalnewstoday.com/content/images/articles/272/272782/oranges-in-a-box.jpg"),
                 CardNode("Bananas", "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:2120,ch:1193,q:80,w:2120/kzMYKaqQhtY2EzL7GABdah.jpg"),
@@ -96,8 +96,8 @@ val cardTreeData = listOf(
                 CardNode("Beans", "https://www.suttonsbaytrading.com/wp-content/uploads/2013/07/baby-lima-beans.jpg")
             ))
         )),
-        CardNode("Sabreen Market", "https://picsum.photos/600/400?random=11", children = listOf(
-            CardNode("Fruits", "https://picsum.photos/600/400?random=111", children = listOf(
+        CardNode("Sabreen Market", "https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png", children = listOf(
+            CardNode("Fruits", "https://www.diagnosisdiet.com/assets/images/7/fruit-og-jcnp4h14m2mh5t9.jpg", children = listOf(
                 CardNode("Apples", "https://media.istockphoto.com/id/164084111/photo/apples.jpg?s=612x612&w=0&k=20&c=eAjYVWWhrEVKMVVvzSjNzFU9dtjh2aH2ypjmclDaUi0="),
                 CardNode("Oranges", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10"),
                 CardNode("Bananas", "https://www.verywellhealth.com/thmb/F18R53wqIZSm9RWjlqLjbT3Nf34=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/VWH-GettyImages-1650710915-877f191e64f54e168ae7ce99b9aa052b.jpg"),
