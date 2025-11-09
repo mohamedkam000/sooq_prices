@@ -108,7 +108,7 @@ fun DetailScreen(
                 .fillMaxWidth()
                 .height(currentHeaderHeight)
                 .align(Alignment.TopCenter),
-//                .zIndex(1f),
+                .zIndex(2f),
             color = MaterialTheme.colorScheme.surfaceVariant,
             shadowElevation = 4.dp
         ) {
@@ -219,7 +219,7 @@ private fun AppleSpecificDetails() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .zIndex(1f),
+            .zIndex(2f),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -274,7 +274,7 @@ private fun DefaultDetailContent(card: CardNode) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp),
-//            .zIndex(1f),
+            .zIndex(2f),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         card.price?.let { price ->

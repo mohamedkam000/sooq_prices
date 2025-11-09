@@ -16,7 +16,7 @@ val cardTreeData = listOf(
             CardNode("Fruits", "https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=600", children = listOf(
                 CardNode(
                     "Apples",
-                    "https://hips.hearstapps.com/hmg-prod/images/apples-at-farmers-market-royalty-free-image-1627321463.jpg?crop=0.796xw:1.00xh;0.103xw,0&resize=640:*",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10",
                     description = "Fresh, crispy red apples, sourced locally. Perfect for a healthy snack or baking.",
                     price = 750.00
                 ),

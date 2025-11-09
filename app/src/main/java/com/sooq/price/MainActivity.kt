@@ -114,7 +114,7 @@ fun AppShell() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-//                            .zIndex(2f)
+                            .zIndex(1f)
                     )
                 }
             }
@@ -130,7 +130,7 @@ fun AppShell() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .zIndex(2f)
+                            .zIndex(1f)
                     )
 
                     DetailScreen(
