@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerHighest) {
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.secondary) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -68,7 +68,7 @@ fun AppShell() {
             .height(760.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
-        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest
+        containerColor = MaterialTheme.colorScheme.primaryContainer
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -125,7 +125,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.primary
         )
     ) {
         Column(
@@ -138,7 +138,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
                     .fillMaxWidth()
                     .height(220.dp)
                     .clip(RoundedCornerShape(28.dp))
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(MaterialTheme.colorScheme.primary)
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
