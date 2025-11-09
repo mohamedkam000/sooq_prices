@@ -139,7 +139,6 @@ fun AppShell() {
                 Box(modifier = Modifier.fillMaxSize()) {
                     CollapsingHeader(
                         title = card.title,
-                        imageUrl = card.imageUrl,
                         collapseFraction = 0f, // stays expanded; you can wire this to a scroll state inside DetailScreen if needed
                         modifier = Modifier
                             .fillMaxWidth()
