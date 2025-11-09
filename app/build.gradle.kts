@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2025.10.01"))
+    implementation(platform("androidx.compose:compose-bom:2025.11.00"))
     implementation("androidx.compose.ui:ui:1.10.0-beta01")
     implementation("androidx.compose.animation:animation:1.9.0-rc01")
     implementation("androidx.compose.ui:ui-tooling:1.10.0-alpha01")
@@ -82,6 +82,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-kotlinx-serialization:3.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("com.squareup.okhttp3:okhttp:5.3.0")
+    implementation("com.squareup.mosh:moshi:1.15.2")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 //    implementation("com.airbnb.android:lottie-compose:6.6.7")
 //    implementation("com.airbnb.android:lottie:6.6.7")

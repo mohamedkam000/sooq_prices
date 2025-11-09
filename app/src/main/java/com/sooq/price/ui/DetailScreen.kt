@@ -207,7 +207,7 @@ private fun DetailContent(card: CardNode) {
     }
 }
 
-@Composable
+/*@Composable
 private fun AppleSpecificDetails() {
     val appleVarieties = mapOf(
         "Red Delicious" to 800.00,
@@ -241,6 +241,42 @@ private fun AppleSpecificDetails() {
                 PriceRow(
                     name = name,
                     price = price,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
+}*/
+
+@Composable
+private fun AppleSpecificDetails(viewModel: AppleViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+    val applePrices by viewModel.applePrices.collectAsState(emptyList())
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)
+            .zIndex(2f),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+/*        Text(
+            text = "Variety Pricing (per Kg)",
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )*/
+
+        applePrices.forEach { item ->
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                tonalElevation = 2.dp
+            ) {
+                PriceRow(
+                    name = item.variety,
+                    price = item.price,
                     modifier = Modifier.padding(16.dp)
                 )
             }

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2025-11-09",
-    "source": "example"
+    "lastUpdated": "2025-11-10",
+    "source": "test"
   },
   "prices": {
     "tomatoes_s": 40,
@@ -24,12 +24,12 @@
             {
               "id": "vegetables",
               "name": "Vegetables",
-              "img": "https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg",
+              "img": "https://cdn.britannica.com/17/196817-159-9E487F15/vegetables.jpg",
               "items": [
                 {
                   "id": "tomatoes",
                   "name": "Tomatoes",
-                  "img": "https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg",
+                  "img": "https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg",
                   "prices": {
                     "Box": 8500
                   },
@@ -47,7 +47,7 @@
                 {
                   "id": "potatoes",
                   "name": "Potatoes",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIBNcXz6YLA3N68KgS9BumDj3x8O_ag87cY6WmyUiCW6t2qQ-d4zwS7XdD&s=10",
                   "prices": {
                     "1 KG": 3000,
                     "Crate (~20 KG)": 54000
@@ -56,7 +56,7 @@
                 {
                   "id": "okra",
                   "name": "Okra",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "img": "https://www.cookedandloved.com/wp-content/uploads/2020/02/what-is-okra-s.jpg",
                   "prices": {
                     "Bunch": 1200,
                     "Crate": 12000
@@ -74,7 +74,7 @@
                 {
                   "id": "onions",
                   "name": "Onions",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "img": "https://www.pricepally.com/_next/image?url=https%3A%2F%2Fpp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com%2Fonions%20-%20red-1719220106956.jpg&w=3840&q=75",
                   "prices": {
                     "Bunch": 1500,
                     "Per Crate (~25 KG)": 40000
@@ -85,7 +85,7 @@
             {
               "id": "fruits",
               "name": "Fruits",
-              "img": "https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg",
+              "img": "https://www.usnews.com/object/image/00000188-2b42-d9dc-ab8b-ebcb9cae0000/gettyimages-467652436.jpg?update-time=1684352999716&size=responsive640",
               "items": [
                 {
                   "id": "apples",
@@ -188,7 +188,7 @@
                 {
                   "id": "rice",
                   "name": "Rice",
-                  "img": "https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhB_l-QANP-i4N0IChIn43qITFtV09BHNsk-8SvEE_Lg7W-U9LLWWeRlTp&s=10",
                   "prices": {
                     "1 KG": 3000,
                     "Sack (10 KG)": 27000,
@@ -238,7 +238,7 @@
         {
           "id": "sabreen",
           "name": "Sabreen Market",
-          "img": "https://www.diagnosisdiet.com/assets/images/7/fruit-og-jcnp4h14m2mh5t9.jpg",
+          "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIS_WEO33JlKFis2jDGaVXLIKOORNkDPjSwgpHlyXQya0HL55hYAqlmKY&s=10",
           "goods": [
             {
               "id": "vegetables",
@@ -404,7 +404,7 @@
                 {
                   "id": "rice",
                   "name": "Rice",
-                  "img": "https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c",
+                  "img": "https://5.imimg.com/data5/SELLER/Default/2023/3/297016385/DQ/SP/YX/33493979/long-grain-white-rice-500x500.jpg",
                   "prices": {
                     "Single": 60,
                     "Per Box (15kg)": 800
@@ -449,7 +449,7 @@
         {
           "id": "local",
           "name": "Local Market",
-          "img": "https://picsum.photos/600/400?random=99",
+          "img": "https://www.sudanakhbar.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-094336-810x483.jpg",
           "goods": [
             {
               "id": "vegetables",
@@ -690,37 +690,37 @@
     {
       "id": "wnile",
       "name": "White Nile",
-      "img": "https://picsum.photos/600/400?random=0",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/%D8%A7%D9%84%D9%86%D9%82%D9%84_%D8%A7%D9%84%D9%86%D9%87%D8%B1%D9%8A_%D9%85%D8%AF%D9%8A%D9%86%D8%A9_%D9%83%D9%88%D8%B3%D8%AA%D9%8A_02.jpg",
       "markets": []
     },
     {
       "id": "bnile",
       "name": "Blue Nile",
-      "img": "https://picsum.photos/600/400?random=1",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVy-sSI6A9eyL-nRy36KNPSFkRH1Xs3HWNvklf2P2vjCRSPwy83iRRev7s&s=10",
       "markets": []
     },
     {
       "id": "gadarif",
       "name": "Al-Gadarif",
-      "img": "2",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cxuKMG2o70T2mimUM0bMkoz5twOKzy5ryx7MlqIsqMwDiVaFalGstvM&s=10",
       "markets": []
     },
     {
       "id": "skordofan",
       "name": "Southern Kordofan",
-      "img": "https://picsum.photos/600/400?random=3",
+      "img": "https://mashaweer-news.com/wp-content/uploads/2025/10/FB_IMG_1759670580690.jpg",
       "markets": []
     },
     {
       "id": "wkordofan",
       "name": "Western Kordofan",
-      "img": "https://picsum.photos/600/400?random=4",
+      "img": "https://ultrasudan.ultrasawt.com/sites/ultrasudan.ultrasawt.com/files/styles/news_large/public/2023-03/%D8%BA%D8%B1%D8%A8-%D9%83%D8%B1%D8%AF%D9%81%D8%A7%D9%86.jpg.webp?itok=SgZZtGva",
       "markets": []
     },
     {
       "id": "nkordofan",
       "name": "Northern Kordofan",
-      "img": "https://picsum.photos/600/400?random=5",
+      "img": "https://ultrasudan.ultrasawt.com/sites/ultrasudan.ultrasawt.com/files/styles/news_large/public/2025-09/bara.jpg.webp?itok=w1HomaiW",
       "markets": []
     }
   ]
