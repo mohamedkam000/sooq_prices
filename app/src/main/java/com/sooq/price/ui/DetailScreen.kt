@@ -48,7 +48,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.sooq.price.AppMaterialTheme
+import com.sooq.price.ui.theme.AppMaterialTheme
 import com.sooq.price.data.CardNode
 import com.sooq.price.data.cardTreeData
 import kotlin.math.roundToInt
