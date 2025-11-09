@@ -1,188 +1,103 @@
 {
-  "khartoum": {
-    "central": {
-      "meat": {
-        "fish": { "fish_single": "4,000" },
-        "beef": { "beef_single": "18,000" },
-        "chicken": { "chicken_single": "8,000" },
-        "mutton": { "mutton_single": "20,000" }
-      },
-      "fruits": {
-        "apples": { "apple_single": "1,200" },
-        "oranges": { "orange_single": "900", "orange_multi": "7,000" },
-        "bananas": { "banana_single": "600" },
-        "grapes": { "grape_single": "5,000" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,200" },
-        "onions": { "onion_single": "1,800" },
-        "potatoes": { "potato_single": "1,500" },
-        "carrots": { "carrot_single": "1,200" }
-      },
-      "grains": {
-        "wheat": { "wheat_kg": "3,500" },
-        "rice": { "rice_kg": "4,200" },
-        "lentils": { "lentil_kg": "4,800" }
-      }
-    },
-    "ombadda": {
-      "meat": {
-        "fish": { "fish_single": "4,200" },
-        "beef": { "beef_single": "17,800" },
-        "chicken": { "chicken_single": "8,200" }
-      },
-      "fruits": {
-        "apples": { "apple_single": "1,300" },
-        "mangoes": { "mango_single": "2,000" },
-        "bananas": { "banana_single": "700" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,000" },
-        "onions": { "onion_single": "1,700" },
-        "okra": { "okra_single": "2,300" }
-      }
-    },
-    "bahri": {
-      "meat": {
-        "fish": { "fish_single": "4,500" },
-        "beef": { "beef_single": "19,000" },
-        "chicken": { "chicken_single": "8,400" }
-      },
-      "fruits": {
-        "apples": { "apple_single": "1,400" },
-        "oranges": { "orange_single": "1,000" },
-        "dates": { "dates_kg": "5,000" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,300" },
-        "onions": { "onion_single": "1,900" },
-        "eggplant": { "eggplant_single": "2,100" }
-      }
-    },
-    "soba": {
-      "meat": {
-        "fish": { "fish_single": "4,100" },
-        "beef": { "beef_single": "18,200" },
-        "chicken": { "chicken_single": "8,100" }
-      },
-      "fruits": {
-        "apples": { "apple_single": "1,250" },
-        "bananas": { "banana_single": "650" },
-        "oranges": { "orange_single": "950" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,100" },
-        "onions": { "onion_single": "1,850" },
-        "spinach": { "spinach_bunch": "1,300" }
-      }
-    }
+  "meta": {
+    "lastUpdated": "2025-11-09",
+    "source": "example"
   },
-  "river_nile": {
-    "atbara": {
-      "meat": {
-        "fish": { "fish_single": "4,800" },
-        "beef": { "beef_single": "18,500" }
-      },
-      "fruits": {
-        "apples": { "apple_single": "1,500" },
-        "dates": { "dates_kg": "4,800" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,400" },
-        "onions": { "onion_single": "1,900" }
-      }
+  "prices": {
+    "tomatoes_s": 40,
+    "tomatoes_m": 350,
+    "carrots_s": 25,
+    "carrots_m": 200,
+    "apples_s": 60
+  },
+  "states": [
+    {
+      "id": "khartoum",
+      "name": "Khartoum",
+      "img": "https://images.unsplash.com/photo-1659864216522-494efbd76895?auto=format&fit=crop&q=60&w=1200",
+      "markets": [
+        {
+          "id": "central",
+          "name": "Central Market",
+          "img": "https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg",
+          "goods": [
+            {
+              "id": "vegetables",
+              "name": "Vegetables",
+              "img": "https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg",
+              "items": [
+                {
+                  "id": "tomatoes",
+                  "name": "Tomatoes",
+                  "img": "https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg",
+                  "prices": {
+                    "Single": 40,
+                    "Per Box (10kg)": 350,
+                    "Wholesale (100kg pallet)": 3000
+                  },
+                  "notes": "Fresh local tomatoes"
+                },
+                {
+                  "id": "carrots",
+                  "name": "Carrots",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fruits",
+              "name": "Fruits",
+              "img": "https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg",
+              "items": [
+                {
+                  "id": "apples",
+                  "name": "Apples",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "watermelon",
+                  "name": "Watermelon",
+                  "img": "https://bagelsandlasagna.com/wp-content/uploads/2024/05/ripe-watermelon-AdobeStock-low-res-1024x575.jpeg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "bananas",
+                  "name": "Bananas",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGoUt8-4dpt_fd_q_GoEpYpEBX__QlGiYm7YjniW4O699DEt59NttcEs7G&s=10"
+                }
+              ]
+            },
+            {
+              "id": "grains",
+              "name": "Grains",
+              "img": "",
+              "items": []
+            }
+          ]
+        },
+        {
+          "id": "sabreen",
+          "name": "Sabreen Market",
+          "img": "https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png",
+          "goods": []
+        }
+      ]
     },
-    "shendi": {
-      "meat": {
-        "beef": { "beef_single": "18,000" },
-        "chicken": { "chicken_single": "8,000" }
-      },
-      "fruits": {
-        "bananas": { "banana_single": "600" },
-        "grapes": { "grape_single": "5,500" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,200" },
-        "potatoes": { "potato_single": "1,800" }
-      }
+    {
+      "id": "jazeera",
+      "name": "Al-Jazeera",
+      "img": "https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg",
+      "markets": []
     }
-  },
-  "northern_sudan": {
-    "dongola": {
-      "meat": {
-        "fish": { "fish_single": "5,000" },
-        "beef": { "beef_single": "19,000" }
-      },
-      "fruits": {
-        "dates": { "dates_kg": "4,000" },
-        "apples": { "apple_single": "1,400" }
-      },
-      "vegetables": {
-        "onions": { "onion_single": "1,700" },
-        "tomatoes": { "tomato_single": "2,100" }
-      }
-    }
-  },
-  "red_sea": {
-    "port_sudan": {
-      "meat": {
-        "fish": { "fish_single": "4,500" },
-        "chicken": { "chicken_single": "8,500" }
-      },
-      "fruits": {
-        "bananas": { "banana_single": "750" },
-        "oranges": { "orange_single": "1,100" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,400" },
-        "onions": { "onion_single": "1,950" }
-      }
-    },
-    "suakin": {
-      "meat": {
-        "fish": { "fish_single": "4,300" },
-        "beef": { "beef_single": "18,000" }
-      },
-      "fruits": {
-        "mangoes": { "mango_single": "2,200" },
-        "apples": { "apple_single": "1,300" }
-      },
-      "vegetables": {
-        "okra": { "okra_single": "2,100" },
-        "potatoes": { "potato_single": "1,600" }
-      }
-    }
-  },
-  "kassala": {
-    "kassala_market": {
-      "meat": {
-        "beef": { "beef_single": "17,000" },
-        "chicken": { "chicken_single": "7,800" }
-      },
-      "fruits": {
-        "mangoes": { "mango_single": "2,000" },
-        "bananas": { "banana_single": "600" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,000" },
-        "onions": { "onion_single": "1,600" }
-      }
-    }
-  },
-  "sinnar": {
-    "sinnar_market": {
-      "meat": {
-        "beef": { "beef_single": "17,500" },
-        "chicken": { "chicken_single": "8,000" }
-      },
-      "fruits": {
-        "oranges": { "orange_single": "950" },
-        "bananas": { "banana_single": "650" }
-      },
-      "vegetables": {
-        "tomatoes": { "tomato_single": "2,100" },
-        "onions": { "onion_single": "1,700" }
-      }
-    }
-  }
+  ]
 }
