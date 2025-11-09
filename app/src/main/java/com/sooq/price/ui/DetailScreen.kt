@@ -109,7 +109,7 @@ fun DetailScreen(
                 .fillMaxWidth()
                 .height(currentHeaderHeight)
                 .align(Alignment.TopCenter),
-            color = MaterialTheme.colorScheme.surface,
+            color = MaterialTheme.colorScheme.surfaceVariant,
             shadowElevation = 4.dp
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
