@@ -10,22 +10,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,13 +32,12 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import androidx.navigation.NavHostController
@@ -51,7 +47,6 @@ import coil.request.ImageRequest
 import com.sooq.price.ui.theme.AppMaterialTheme
 import com.sooq.price.data.CardNode
 import com.sooq.price.data.cardTreeData
-import kotlin.math.roundToInt
 
 @Composable
 fun DetailScreen(
@@ -59,16 +54,24 @@ fun DetailScreen(
     card: CardNode,
     contentPadding: PaddingValues
 ) {
-    val maxHeaderHeight = 350.dp
-    val minHeaderHeight = 120.dp
-    val maxImageSize = 300.dp
-    val minImageSize = 80.dp
+    val minHeaderHeight = 64.dp
+    val maxHeaderHeight = 300.dp
+    val minImageSize = 40.dp
+    val maxImageSize = 200.dp
 
-    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-
-    val maxHeaderHeightPx = with(LocalDensity.current) { maxHeaderHeight.toPx() }
     val minHeaderHeightPx = with(LocalDensity.current) { minHeaderHeight.toPx() }
+    val maxHeaderHeightPx = with(LocalDensity.current) { maxHeaderHeight.toPx() }
+    val scrollableHeightPx = maxHeaderHeightPx - minHeaderHeightPx
+
     val headerOffsetPx = remember { mutableFloatStateOf(0f) }
+
+    val progress = remember {
+        derivedStateOf {
+            ((-headerOffsetPx.floatValue) / scrollableHeightPx).coerceIn(0f, 1f)
+        }
+    }
+
+    val currentHeaderHeight = lerp(maxHeaderHeight, minHeaderHeight, progress.value)
 
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
@@ -76,7 +79,7 @@ fun DetailScreen(
                 val delta = available.y
                 val newOffset = headerOffsetPx.floatValue + delta
                 val oldOffset = headerOffsetPx.floatValue
-                headerOffsetPx.floatValue = newOffset.coerceIn(-(maxHeaderHeightPx - minHeaderHeightPx), 0f)
+                headerOffsetPx.floatValue = newOffset.coerceIn(-scrollableHeightPx, 0f)
                 val consumed = headerOffsetPx.floatValue - oldOffset
                 return Offset(0f, consumed)
             }
@@ -86,13 +89,11 @@ fun DetailScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = contentPadding.calculateBottomPadding())
             .nestedScroll(nestedScrollConnection)
     ) {
-        
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(top = maxHeaderHeight)
+            contentPadding = PaddingValues(top = currentHeaderHeight)
         ) {
             item {
                 DetailContent(card = card)
@@ -103,79 +104,98 @@ fun DetailScreen(
             }
         }
         
-        Box(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(maxHeaderHeight)
-                .graphicsLayer { translationY = headerOffsetPx.floatValue }
-                .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+                .height(currentHeaderHeight)
+                .align(Alignment.TopCenter),
+            color = MaterialTheme.colorScheme.surface,
+            shadowElevation = 4.dp
         ) {
-            val progress = ((-headerOffsetPx.floatValue / (maxHeaderHeightPx - minHeaderHeightPx)))
-                .coerceIn(0f, 1f)
-
-            val imageSize = lerp(maxImageSize, minImageSize, progress)
-            val imageYOffset = lerp(
-                (maxHeaderHeight - maxImageSize) / 2,
-                (minHeaderHeight - minImageSize) / 2,
-                progress
-            )
-            val imageXOffset = lerp(
-                (screenWidth - maxImageSize) / 2,
-                16.dp,
-                progress
-            )
-
-            Box(
-                modifier = Modifier
-                    .size(imageSize)
-                    .offset { IntOffset(imageXOffset.toPx().roundToInt(), imageYOffset.toPx().roundToInt()) }
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceVariant)
-            ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(card.imageUrl)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = card.title,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
+            Box(modifier = Modifier.fillMaxSize()) {
+                
+                CollapsedHeader(progress = progress.value, card = card)
+                
+                ExpandedHeader(progress = progress.value, card = card)
             }
         }
-        
-        IconButton(
-            onClick = { navController.popBackStack() },
+    }
+}
+
+@Composable
+private fun CollapsedHeader(progress: Float, card: CardNode) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+            .graphicsLayer { alpha = progress },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
             modifier = Modifier
-                .padding(16.dp)
-                .align(Alignment.TopStart)
-                .background(
-                    MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
-                    CircleShape
-                )
+                .size(40.dp)
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.surfaceVariant)
         ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back",
-                tint = MaterialTheme.colorScheme.onSurface
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(card.imageUrl)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = card.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
             )
         }
+        Spacer(modifier = Modifier.size(16.dp))
+        Text(
+            text = card.title,
+            style = MaterialTheme.typography.titleLarge,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+@Composable
+private fun ExpandedHeader(progress: Float, card: CardNode) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .graphicsLayer { alpha = 1f - progress },
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .size(200.dp)
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(card.imageUrl)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = card.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = card.title,
+            style = MaterialTheme.typography.headlineLarge,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
     }
 }
 
 @Composable
 private fun DetailContent(card: CardNode) {
     Column {
-        Text(
-            text = card.title,
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center
-        )
-
         Spacer(modifier = Modifier.height(24.dp))
         
         when (card.title) {

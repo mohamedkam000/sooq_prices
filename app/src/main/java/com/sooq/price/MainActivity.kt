@@ -43,12 +43,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerHighest) {
-                Box(
+            AppMaterialTheme {
+                Surface(
                     modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    color = MaterialTheme.colorScheme.background
                 ) {
-                    AppMaterialTheme {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
                         AppShell()
                     }
                 }
@@ -161,7 +164,7 @@ fun CardList(
             .fillMaxSize()
             .padding(horizontal = 32.dp),
         contentPadding = PaddingValues(
-            top = contentPadding.calculateTopPadding() + 150.dp,
+            top = contentPadding.calculateTopPadding() + 100.dp,
             bottom = contentPadding.calculateBottomPadding() + 50.dp,
             start = 0.dp,
             end = 0.dp

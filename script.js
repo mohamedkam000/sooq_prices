@@ -454,7 +454,7 @@ let prices = {};
 
 async function initializeApp() {
   try {
-    const res = await fetch('https://raw.githubusercontent.com/mohamedkam000/prices/main/data.json');
+    const res = await fetch('https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json');
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
