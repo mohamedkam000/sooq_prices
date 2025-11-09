@@ -3,23 +3,48 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.platform.*
-import androidx.compose.ui.text.font.*
-import androidx.compose.ui.tooling.preview.*
-import androidx.compose.ui.unit.*
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.draw.*
-import androidx.compose.ui.layout.*
-import androidx.compose.ui.text.style.*
-import androidx.compose.material.icons.*
-import androidx.compose.material.icons.filled.*
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,12 +61,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
 //        enableEdgeToEdge()
-        
+
         setContent {
             AppMaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surfaceContainer
                 ) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -60,36 +85,96 @@ class MainActivity : ComponentActivity() {
 fun AppShell() {
     val navController = rememberNavController()
 
-    Box(
+    Scaffold(
         modifier = Modifier
             .width(360.dp)
             .height(780.dp)
             .clip(RoundedCornerShape(48.dp))
-            .shadow(20.dp, shape = RoundedCornerShape(48.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-    ) {
+            .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant
+    ) { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = "list/",
             modifier = Modifier.fillMaxSize()
         ) {
+            // Main + nested list screens
             composable("list/{path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path") ?: ""
                 val cards = getListFromPath(path)
-                CardList(
-                    navController = navController,
-                    cards = cards,
-                    currentPath = path
-                )
+                val headerInfo = remember(path) {
+                    // Main screen: title only. Nested list: image + title of section node.
+                    if (path.isEmpty()) HeaderInfo(
+                        title = "Sooq Price",
+                        imageUrl = null
+                    ) else {
+                        val node = getNodeFromPath(path)
+                        HeaderInfo(
+                            title = node.title,
+                            imageUrl = node.imageUrl
+                        )
+                    }
+                }
+
+                // Local list state to drive the collapse animation
+                val listState = rememberLazyListState()
+                val collapseFraction by remember {
+                    derivedStateOf {
+                        // Collapses based on top padding space being consumed by scroll
+                        // We use the vertical scroll offset of the first visible item.
+                        val offset = listState.firstVisibleItemScrollOffset.toFloat()
+                        val maxCollapsePx = 140f // corresponds to ~140.dp of collapse range
+                        (offset / maxCollapsePx).coerceIn(0f, 1f)
+                    }
+                }
+                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")
+
+                Box(modifier = Modifier.fillMaxSize()) {
+                    CollapsingHeader(
+                        title = headerInfo.title,
+                        imageUrl = headerInfo.imageUrl,
+                        collapseFraction = animatedFraction,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopCenter)
+                            .padding(horizontal = 32.dp)
+                            .padding(top = innerPadding.calculateTopPadding())
+                    )
+
+                    CardList(
+                        navController = navController,
+                        cards = cards,
+                        currentPath = path,
+                        contentPadding = innerPadding,
+                        listState = listState
+                    )
+                }
             }
-            
+
+            // Detail screen
             composable("detail/{path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path")!!
                 val card = getNodeFromPath(path)
-                DetailScreen(
-                    navController = navController,
-                    card = card
-                )
+
+                // For detail, we also show image + title; collapse is static unless DetailScreen provides scrolling.
+                Box(modifier = Modifier.fillMaxSize()) {
+                    CollapsingHeader(
+                        title = card.title,
+                        imageUrl = card.imageUrl,
+                        collapseFraction = 0f, // stays expanded; you can wire this to a scroll state inside DetailScreen if needed
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.TopCenter)
+                            .padding(horizontal = 32.dp)
+                            .padding(top = innerPadding.calculateTopPadding())
+                    )
+
+                    DetailScreen(
+                        navController = navController,
+                        card = card,
+                        contentPadding = innerPadding
+                    )
+                }
             }
         }
     }
@@ -106,10 +191,10 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerLowest
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
-        Column(
+        androidx.compose.foundation.layout.Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 16.dp)
@@ -132,152 +217,134 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(start = 16.dp) 
+                modifier = Modifier.padding(start = 16.dp)
             )
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardList(
     navController: NavHostController,
     cards: List<CardNode>,
-    currentPath: String
+    currentPath: String,
+    contentPadding: PaddingValues,
+    listState: androidx.compose.foundation.lazy.LazyListState
 ) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
-        rememberTopAppBarState()
-    )
-    
-    // Determine the header title
-    val currentTitle = if (currentPath.isEmpty()) "Categories" else getNodeFromPath(currentPath).title
+    // Header height ranges 72.dp..212.dp; we reserve top padding accordingly.
+    val expandedHeaderHeight = 212.dp
+    val bottomSpace = 50.dp
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { 
-                    if (currentPath.isEmpty()) {
-                        // Main screen: simple large title that shrinks to a small title
-                        Text(
-                            text = currentTitle,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
+    LazyColumn(
+        state = listState,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 32.dp),
+        contentPadding = PaddingValues(
+            top = contentPadding.calculateTopPadding() + expandedHeaderHeight,
+            bottom = contentPadding.calculateBottomPadding() + bottomSpace,
+            start = 0.dp,
+            end = 0.dp
+        ),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        itemsIndexed(cards) { index, card ->
+            MyElevatedCard(
+                title = card.title,
+                imageUrl = card.imageUrl,
+                onClick = {
+                    val newPath = if (currentPath.isEmpty()) "$index" else "${currentPath}_$index"
+                    if (card.children.isEmpty()) {
+                        navController.navigate("detail/$newPath")
                     } else {
-                        // Sub-categories: title + image header similar to details screen
-                        CollapsingListHeader(
-                            card = getNodeFromPath(currentPath),
-                            scrollBehavior = scrollBehavior
-                        )
+                        navController.navigate("list/$newPath")
                     }
-                },
-                navigationIcon = {
-                    if (currentPath.isNotEmpty()) {
-                        IconButton(onClick = { navController.popBackStack() }) {
-                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                        }
-                    }
-                },
-                scrollBehavior = scrollBehavior
+                }
             )
-        },
-        containerColor = MaterialTheme.colorScheme.surfaceContainer
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp),
-            contentPadding = PaddingValues(
-                top = innerPadding.calculateTopPadding() + 8.dp, // Add a bit of space below the header
-                bottom = innerPadding.calculateBottomPadding() + 50.dp,
-                start = 0.dp,
-                end = 0.dp
-            ),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            itemsIndexed(cards) { index, card ->
-                MyElevatedCard(
-                    title = card.title,
-                    imageUrl = card.imageUrl,
-                    onClick = {
-                        val newPath = if (currentPath.isEmpty()) "$index" else "${currentPath}_$index"
-                        if (card.children.isEmpty()) {
-                            navController.navigate("detail/$newPath")
-                        } else {
-                            navController.navigate("list/$newPath")
-                        }
-                    }
-                )
-            }
         }
     }
 }
 
-// A custom Composable for the sub-category collapsing header (title + image)
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CollapsingListHeader(card: CardNode, scrollBehavior: TopAppBarScrollBehavior) {
-    val progress = scrollBehavior.state.collapsedFraction
-    
-    // Scale for the large title (fades out as it collapses)
-    val largeTitleAlpha = lerp(0.0f, 1.0f, 1f - progress).coerceIn(0f, 1f)
-    
-    // Scale for the image (shrinks as it collapses)
-    val imageSize = lerp(50.dp, 100.dp, 1f - progress)
-    
-    val smallTitleAlpha = lerp(0.0f, 1.0f, progress)
+fun CollapsingHeader(
+    title: String,
+    imageUrl: String?,
+    collapseFraction: Float,
+    modifier: Modifier = Modifier
+) {
+    // Height interpolates between expanded and collapsed
+    val expandedHeight = 212.dp
+    val collapsedHeight = 72.dp
+    val heightPxRange = with(androidx.compose.ui.platform.LocalDensity.current) {
+        (expandedHeight.toPx() - collapsedHeight.toPx())
+    }
+    val currentHeightPx = with(androidx.compose.ui.platform.LocalDensity.current) {
+        collapsedHeight.toPx() + (1f - collapseFraction) * heightPxRange
+    }
+    val currentHeight = with(androidx.compose.ui.platform.LocalDensity.current) {
+        currentHeightPx.toDp()
+    }
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+    // Content interpolation factors
+    val imageAlpha by animateFloatAsState(targetValue = if (imageUrl != null) (1f - collapseFraction) else 0f, label = "imageAlpha")
+    val titleSizeCollapsed = MaterialTheme.typography.titleMedium
+    val titleSizeExpanded = MaterialTheme.typography.headlineMedium
+    val useExpandedStyle = (collapseFraction < 0.5f)
+    val titleStyle = if (useExpandedStyle) titleSizeExpanded else titleSizeCollapsed
+
+    ElevatedCard(
+        modifier = modifier
+            .requiredHeight(currentHeight),
+        shape = RoundedCornerShape(28.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
     ) {
-        // Image (Visible in expanded state, shrinks but stays in the row)
         Box(
             modifier = Modifier
-                .size(imageSize)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surfaceVariant)
-                .graphicsLayer { alpha = largeTitleAlpha } // Fades out with the large title
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surface),
+            contentAlignment = Alignment.BottomStart
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(card.imageUrl)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = card.title,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-        
-        Spacer(modifier = Modifier.width(16.dp))
+            if (imageUrl != null) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(imageUrl)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = title,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(28.dp))
+                        .background(Color.Black.copy(alpha = 0.05f))
+                        .then(Modifier)
+                        .padding(0.dp),
+                    alpha = imageAlpha
+                )
+                // Subtle overlay for text legibility when image is visible
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.15f * imageAlpha))
+                )
+            }
 
-        // Title
-        Column {
-            // Large Title (Visible only when expanded)
             Text(
-                text = card.title,
-                style = MaterialTheme.typography.headlineLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.graphicsLayer { alpha = largeTitleAlpha }
-            )
-            
-            // Small Title (Visible only when collapsed/scrolled)
-            Text(
-                text = card.title,
-                style = MaterialTheme.typography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.graphicsLayer { alpha = smallTitleAlpha }
+                text = title,
+                style = titleStyle,
+                color = if (imageUrl != null) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(start = 20.dp, end = 20.dp, bottom = 18.dp)
             )
         }
     }
@@ -310,3 +377,11 @@ fun MyElevatedCardPreview() {
         )
     }
 }
+
+/**
+ * Simple holder for header content.
+ */
+data class HeaderInfo(
+    val title: String,
+    val imageUrl: String?
+)
