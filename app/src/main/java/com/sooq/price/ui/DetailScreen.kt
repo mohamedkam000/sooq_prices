@@ -218,7 +218,8 @@ private fun AppleSpecificDetails() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp)
+            .zIndex(1f),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -272,7 +273,8 @@ private fun DefaultDetailContent(card: CardNode) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp)
+            .zIndex(1f),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         card.price?.let { price ->

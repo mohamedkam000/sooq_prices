@@ -31,6 +31,7 @@ import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
+import androidx.compose.ui.zIndex
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -113,9 +114,7 @@ fun AppShell() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .padding(horizontal = 32.dp)
-                            .padding(top = innerPadding.calculateTopPadding())
-                            .zIndex(1f)
+                            .zIndex(2f)
                     )
                 }
             }
@@ -127,12 +126,11 @@ fun AppShell() {
                 Box(modifier = Modifier.fillMaxSize()) {
                     CollapsingHeader(
                         title = card.title,
-                        collapseFraction = 0f,
+                        collapseFraction = 1f,
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .padding(horizontal = 32.dp)
-                            .padding(top = innerPadding.calculateTopPadding())
+                            .zIndex(2f)
                     )
 
                     DetailScreen(
@@ -160,7 +158,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
-        androidx.compose.foundation.layout.Column(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 16.dp)
@@ -183,7 +181,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
                 )
             }
 
-            androidx.compose.foundation.layout.Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = title,
@@ -202,7 +200,7 @@ fun CardList(
     cards: List<CardNode>,
     currentPath: String,
     contentPadding: PaddingValues,
-    listState: androidx.compose.foundation.lazy.LazyListState
+    listState: LazyListState
 ) {
     val expandedHeaderHeight = 212.dp
     val bottomSpace = 50.dp
@@ -245,39 +243,37 @@ fun CollapsingHeader(
 ) {
     val expandedHeight = 212.dp
     val collapsedHeight = 72.dp
-    val heightPxRange = with(androidx.compose.ui.platform.LocalDensity.current) {
+    val heightPxRange = with(LocalDensity.current) {
         (expandedHeight.toPx() - collapsedHeight.toPx())
     }
-    val currentHeightPx = with(androidx.compose.ui.platform.LocalDensity.current) {
+    val currentHeightPx = with(LocalDensity.current) {
         collapsedHeight.toPx() + (1f - collapseFraction) * heightPxRange
     }
-    val currentHeight = with(androidx.compose.ui.platform.LocalDensity.current) {
+    val currentHeight = with(LocalDensity.current) {
         currentHeightPx.toDp()
     }
 
-    val titleSizeCollapsed = MaterialTheme.typography.titleMedium
-    val titleSizeExpanded = MaterialTheme.typography.headlineMedium
-    val useExpandedStyle = (collapseFraction < 0.5f)
-    val titleStyle = if (useExpandedStyle) titleSizeExpanded else titleSizeCollapsed
+    val shadowElevation = 6.dp * collapseFraction
+    val backgroundColor = MaterialTheme.colorScheme.surface
+    val titleStyle = if (collapseFraction < 0.5f) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleLarge
 
-    ElevatedCard(
-        modifier = modifier.requiredHeight(currentHeight),
-        shape = RoundedCornerShape(28.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        )
+    Surface(
+        modifier = modifier
+            .requiredHeight(currentHeight)
+            .shadow(shadowElevation),
+        color = backgroundColor
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomStart
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp),
+            contentAlignment = if (collapseFraction < 0.5f) Alignment.BottomStart else Alignment.CenterStart
         ) {
             Text(
                 text = title,
                 style = titleStyle,
                 color = MaterialTheme.colorScheme.onSurface,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 18.dp)
+                fontWeight = FontWeight.Bold
             )
         }
     }
@@ -298,18 +294,6 @@ fun DarkAppShellPreview() {
         AppShell()
     }
 }
-
-/*@Preview
-@Composable
-fun MyElevatedCardPreview() {
-    AppMaterialTheme {
-        MyElevatedCard(
-            title = "Preview Title",
-            imageUrl = "https://picsum.photos/600/400?random=0",
-            onClick = {}
-        )
-    }
-}*/
 
 data class HeaderInfo(
     val title: String,
