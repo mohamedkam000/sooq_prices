@@ -142,7 +142,7 @@ fun AppShell() {
 
                     DetailScreen(
                         navController = navController,
-                        card = card,
+//                        card = card,
                         contentPadding = innerPadding
                     )
                 }
