@@ -3,7 +3,9 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+//import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -31,7 +33,8 @@ import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
-//*               val collapseFracti
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
