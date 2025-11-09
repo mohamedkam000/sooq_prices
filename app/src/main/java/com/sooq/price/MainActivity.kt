@@ -88,16 +88,6 @@ fun AppShell() {
                     }
                 }
 
-/*                val listState = rememberLazyListState()
-                val collapseFraction by remember {
-                    derivedStateOf {
-                        val offset = listState.firstVisibleItemScrollOffset.toFloat()
-                        val maxCollapsePx = 140f
-                        (offset / maxCollapsePx).coerceIn(0f, 1f)
-                    }
-                }
-                val animatedFraction by animateFloatAsState(targetValue = collapseFraction, label = "headerCollapse")*/
-
                 val listState = rememberLazyListState()
 
                 val scrollOffset by remember {
@@ -147,7 +137,7 @@ fun AppShell() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .zIndex(1f)
+//                            .zIndex(1f)
                     )
 
                     DetailScreen(

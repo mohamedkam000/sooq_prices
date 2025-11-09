@@ -89,6 +89,7 @@ fun DetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .nestedScroll(nestedScrollConnection)
+            .zIndex(3f)
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -107,8 +108,8 @@ fun DetailScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(currentHeaderHeight)
-                .align(Alignment.TopCenter),
-//                .zIndex(1f),
+                .align(Alignment.TopCenter)
+                .zIndex(2f),
             color = MaterialTheme.colorScheme.surfaceVariant,
             shadowElevation = 4.dp
         ) {

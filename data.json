@@ -31,7 +31,7 @@
                   "name": "Tomatoes",
                   "img": "https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg",
                   "prices": {
-                    "Box": 8500,
+                    "Box": 8500
                   },
                   "notes": "Fresh"
                 },
@@ -110,7 +110,7 @@
                   "img": "https://www.seriouseats.com/thmb/XwtcUWlY3TDauWPbBiID1yZ-6Jw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1289843973-karandaev-hero-ca6df1eb21504ba0965e2319ef4c26e3.jpg",
                   "prices": {
                     "Bunch": 2500,
-                    "Basket": 15000,
+                    "Basket": 15000
                   }
                 },
                 {
@@ -219,7 +219,7 @@
                   "img": "https://nyspiceshop.com/cdn/shop/products/Split_Red_Lentils-Masoor_Dal.jpg?v=1730224120&width=1445",
                   "prices": {
                     "1 KG": 4000,
-                    "Sack (12.5 KG)": 45000,
+                    "Sack (12.5 KG)": 45000
                   }
                 },
                 {
