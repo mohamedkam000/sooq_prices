@@ -12,7 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.*
-import androidx.compose.ui.input.nestedscroll.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
@@ -34,6 +33,7 @@ import com.sooq.price.data.CardNode
 import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
+import com.sooq.price.ui.theme.AppMaterialTheme
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.secondary) {
+            Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerHighest) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -68,7 +68,7 @@ fun AppShell() {
             .height(760.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
-        containerColor = MaterialTheme.colorScheme.primaryContainer
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -99,21 +99,6 @@ fun AppShell() {
     }
 }
 
-@Composable
-fun AppMaterialTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colorScheme = if (darkTheme) dynamicDarkColorScheme(LocalContext.current)
-                      else dynamicLightColorScheme(LocalContext.current)
-
-    androidx.compose.material3.MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography(),
-        content = content
-    )
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
@@ -125,7 +110,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
         shape = RoundedCornerShape(36.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
         Column(
@@ -138,7 +123,7 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
                     .fillMaxWidth()
                     .height(220.dp)
                     .clip(RoundedCornerShape(28.dp))
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(MaterialTheme.colorScheme.surface)
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
@@ -155,9 +140,9 @@ fun MyElevatedCard(title: String, imageUrl: String, onClick: () -> Unit) {
 
             Text(
                 text = title,
-                style = MaterialTheme. typography.titleLarge,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp) 
             )
         }
@@ -176,7 +161,7 @@ fun CardList(
             .fillMaxSize()
             .padding(horizontal = 32.dp),
         contentPadding = PaddingValues(
-            top = contentPadding.calculateTopPadding() + 100.dp,
+            top = contentPadding.calculateTopPadding() + 150.dp,
             bottom = contentPadding.calculateBottomPadding() + 50.dp,
             start = 0.dp,
             end = 0.dp
@@ -211,7 +196,7 @@ fun AppShellPreview() {
 @Preview(showBackground = true)
 @Composable
 fun DarkAppShellPreview() {
-    AppMaterialTheme {
+    AppMaterialTheme(darkTheme = true) {
         AppShell()
     }
 }
