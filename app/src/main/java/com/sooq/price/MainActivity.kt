@@ -114,8 +114,8 @@ fun AppShell() {
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
                             .padding(horizontal = 32.dp)
-//                            .padding(top = innerPadding.calculateTopPadding()
-                            .zIndex(1f))
+//                            .padding(top = innerPadding.calculateTopPadding())
+                            .zIndex(1f)
                     )
                 }
             }
@@ -299,7 +299,7 @@ fun DarkAppShellPreview() {
     }
 }
 
-@Preview
+/*@Preview
 @Composable
 fun MyElevatedCardPreview() {
     AppMaterialTheme {
@@ -309,7 +309,7 @@ fun MyElevatedCardPreview() {
             onClick = {}
         )
     }
-}
+}*/
 
 data class HeaderInfo(
     val title: String,
