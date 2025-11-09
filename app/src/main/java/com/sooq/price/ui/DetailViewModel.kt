@@ -17,7 +17,7 @@ class DetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val itemId: String = checkNotNull(savedStateHandle["itemId"])
+    private val itemId: String = checkNotNull(savedStateHandle["path"])
 
     val item: StateFlow<ItemEntity?> = repository.getItem(itemId)
         .stateIn(

@@ -282,29 +282,3 @@ private fun PriceRow(name: String, price: Double, modifier: Modifier = Modifier)
         )
     }
 }
-
-
-/*@Preview(showBackground = true)
-@Composable
-fun DetailScreenPreview() {
-    val previewItem = ItemEntity(
-        id = "apples",
-        name = "Apples",
-        img = "https://example.com/apple.jpg",
-        prices = mapOf(
-            "Piece" to 1000.00,
-            "Basket (20)" to 18000.00
-        ),
-        notes = "Fresh red apples.",
-        goodsId = "fruits",
-        marketId = "central",
-        stateId = "khartoum"
-    )
-    
-    AppMaterialTheme {
-        CollapsingDetailContent(
-            navController = rememberNavController(),
-            item = previewItem
-        )
-    }
-}*/
