@@ -276,7 +276,7 @@ fun AppShell() {
             .height(760.dp)
             .clip(RoundedCornerShape(48.dp))
             .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
-        containerColor = MaterialTheme.colorScheme.surface
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -496,7 +496,7 @@ fun AppShellPreview() {
 @Preview(showBackground = true)
 @Composable
 fun DarkAppShellPreview() {
-    AppMaterialTheme(darkTheme = false) {
+    AppMaterialTheme {
         AppShell()
     }
 }
