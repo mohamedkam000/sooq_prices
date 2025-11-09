@@ -31,7 +31,7 @@ import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
-import androidx.compose.ui.zIndex
+//import androidx.compose.ui.zIndex
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -114,7 +114,7 @@ fun AppShell() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.TopCenter)
-                            .zIndex(2f)
+//                            .zIndex(2f)
                     )
                 }
             }
