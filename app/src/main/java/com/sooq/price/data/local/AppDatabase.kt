@@ -2,9 +2,11 @@ package com.sooq.price.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.sooq.price.data.model.ApplePriceEntity
+import androidx.room.TypeConverters
+import com.sooq.price.data.ItemEntity
 
-@Database(entities = [ApplePriceEntity::class], version = 1)
+@Database(entities = [ItemEntity::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun applePriceDao(): ApplePriceDao
+    abstract fun priceDao(): PriceDao
 }

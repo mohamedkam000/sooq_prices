@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -71,6 +72,9 @@ dependencies {
     implementation("com.google.android.material:material:1.14.0-alpha04")
 //    implementation("androidx.activity:activity-ktx:1.12.0-alpha06")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("com.google.dagger:hilt-android:2.57.2")
+    ksp("com.google.dagger:hilt-compiler:2.57.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0-alpha02")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0-alpha02")
     implementation("androidx.room:room-runtime:2.8.2")

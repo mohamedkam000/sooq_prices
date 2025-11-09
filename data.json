@@ -1,15 +1,4 @@
 {
-  "meta": {
-    "lastUpdated": "2025-11-10",
-    "source": "test"
-  },
-  "prices": {
-    "tomatoes_s": 40,
-    "tomatoes_m": 350,
-    "carrots_s": 25,
-    "carrots_m": 200,
-    "apples_s": 60
-  },
   "states": [
     {
       "id": "khartoum",
