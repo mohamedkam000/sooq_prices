@@ -1,6 +1,7 @@
 package com.sooq.price.ui
 
 import androidx.compose.foundation.*
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -43,6 +43,8 @@ import coil.request.ImageRequest
 import com.sooq.price.ui.theme.AppMaterialTheme
 import com.sooq.price.data.CardNode
 import com.sooq.price.data.cardTreeData
+import com.sooq.price.data.PriceData
+import com.sooq.price.data.fetchPriceData
 
 @Composable
 fun DetailScreen(
@@ -266,7 +268,7 @@ private fun PriceRow(name: String, price: Double, modifier: Modifier = Modifier)
     }
 }
 
-@Composable
+/*@Composable
 private fun DefaultDetailContent(card: CardNode) {
     Column(
         modifier = Modifier
@@ -293,6 +295,83 @@ private fun DefaultDetailContent(card: CardNode) {
             textAlign = TextAlign.Start,
             modifier = Modifier.fillMaxWidth()
         )
+    }
+}*/
+
+@Composable
+private fun DefaultDetailContent(card: CardNode) {
+    val githubRawUrl = "https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json" 
+
+    var priceData by remember { mutableStateOf<PriceData?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        scope.launch {
+            isLoading = true
+            priceData = fetchPriceData(githubRawUrl)
+            isLoading = false
+        }
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)
+            .zIndex(2f),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.height(24.dp))
+
+        if (isLoading) {
+            Text(text = "Loading price data...", style = MaterialTheme.typography.bodyLarge)
+        } else if (priceData == null) {
+            Text(text = "Failed to load data.", style = MaterialTheme.typography.bodyLarge)
+        } else {
+            val pricesMap = priceData!!.states
+                .flatMap { it.markets }
+                .flatMap { it.goods }
+                .flatMap { it.items }
+                .find { it.name == card.title }
+                ?.prices ?: emptyMap()
+
+            if (pricesMap.isNotEmpty()) {
+                Text(
+                    text = "${card.title} Prices:",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                pricesMap.forEach { (unit, price) ->
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        tonalElevation = 2.dp
+                    ) {
+                        PriceRow(
+                            name = unit, 
+                            price = price.toDouble(), 
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
+                }
+            } else {
+                Text(text = "Price details not found for ${card.title}.", style = MaterialTheme.typography.bodyLarge)
+            }
+        }
+        
+        Spacer(modifier = Modifier.height(24.dp))
+        
+        card.description?.let { description ->
+             Text(
+                text = description,
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Start,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
     }
 }
 
