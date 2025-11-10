@@ -197,11 +197,12 @@ private fun ExpandedHeader(progress: Float, card: CardNode) {
 private fun DetailContent(card: CardNode) {
     Column {
         Spacer(modifier = Modifier.height(24.dp))
+        DefaultDetailContent(card = card)
         
-        when (card.title) {
+/*        when (card.title) {
             "Apples" -> AppleSpecificDetails()
             
-            else -> DefaultDetailContent(card = card)
+            else -> DefaultDetailContent(card = card)*/
         }
     }
 }
