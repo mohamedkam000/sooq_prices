@@ -77,6 +77,7 @@ dependencies {
     ksp("com.google.dagger:hilt-compiler:2.57.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
     implementation("io.ktor:ktor-client-core:3.3.2")
+    implementation("io.ktor:ktor-client-android:3.3.2")
     implementation("io.ktor:ktor-client-cio:3.3.2")
     implementation("io.ktor:ktor-client-content-negotiation:3.3.2")
     implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.2")
