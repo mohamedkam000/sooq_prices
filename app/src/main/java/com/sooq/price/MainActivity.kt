@@ -36,7 +36,7 @@ import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
 import com.sooq.price.ui.theme.AppMaterialTheme
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
