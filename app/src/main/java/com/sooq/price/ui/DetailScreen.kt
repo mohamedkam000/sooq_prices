@@ -197,23 +197,21 @@ private fun ExpandedHeader(progress: Float, card: CardNode) {
 private fun DetailContent(card: CardNode) {
     Column {
         Spacer(modifier = Modifier.height(24.dp))
-        DefaultDetailContent(card = card)
+//        DefaultDetailContent(card = card)
         
-/*        when (card.title) {
+        when (card.title) {
             "Apples" -> AppleSpecificDetails()
             
             else -> DefaultDetailContent(card = card)
-        }*/
+        }
     }
 }
 
 @Composable
 private fun AppleSpecificDetails() {
     val appleVarieties = mapOf(
-        "Red Delicious" to 800.00,
-        "Granny Smith" to 750.00,
-        "Gala" to 780.00,
-        "Fuji" to 820.00
+        "Piece" to 1000,
+        "Basket (20)" to 18000
     )
 
     Column(
