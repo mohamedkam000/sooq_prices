@@ -300,7 +300,8 @@ private fun DefaultDetailContent(card: CardNode) {
 
 @Composable
 private fun DefaultDetailContent(card: CardNode) {
-    val githubRawUrl = "https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json" 
+    val githubRawUrl = "https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json"
+    val context = LocalContext.current
 
     var priceData by remember { mutableStateOf<PriceData?>(null) }
     var isLoading by remember { mutableStateOf(true) }
@@ -308,8 +309,7 @@ private fun DefaultDetailContent(card: CardNode) {
 
     LaunchedEffect(Unit) {
         scope.launch {
-            isLoading = true
-            priceData = fetchPriceData(githubRawUrl)
+            priceData = fetchPriceData(context, githubRawUrl)
             isLoading = false
         }
     }
