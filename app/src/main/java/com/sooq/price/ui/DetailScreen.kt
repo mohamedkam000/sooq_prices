@@ -202,8 +202,8 @@ private fun DetailContent(card: CardNode) {
 /*        when (card.title) {
             "Apples" -> AppleSpecificDetails()
             
-            else -> DefaultDetailContent(card = card)*/
-        }
+            else -> DefaultDetailContent(card = card)
+        }*/
     }
 }
 
