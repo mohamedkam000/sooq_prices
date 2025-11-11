@@ -1,7 +1,6 @@
 package com.sooq.price.ui
 
 import androidx.compose.foundation.*
-import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,9 +41,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.sooq.price.ui.theme.AppMaterialTheme
 import com.sooq.price.data.CardNode
-import com.sooq.price.data.cardTreeData
-import com.sooq.price.data.PriceData
-import com.sooq.price.data.fetchPriceData
 
 @Composable
 fun DetailScreen(
@@ -54,8 +50,6 @@ fun DetailScreen(
 ) {
     val minHeaderHeight = 64.dp
     val maxHeaderHeight = 300.dp
-    val minImageSize = 40.dp
-    val maxImageSize = 200.dp
 
     val minHeaderHeightPx = with(LocalDensity.current) { minHeaderHeight.toPx() }
     val maxHeaderHeightPx = with(LocalDensity.current) { maxHeaderHeight.toPx() }
@@ -271,29 +265,5 @@ private fun DefaultDetailContent(card: CardNode) {
                 modifier = Modifier.fillMaxWidth()
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DetailScreenPreview() {
-    AppMaterialTheme {
-        DetailScreen(
-            navController = rememberNavController(),
-            card = cardTreeData[0].children[0].children[0].children[0],
-            contentPadding = PaddingValues(0.dp)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DetailScreenDefaultPreview() {
-    AppMaterialTheme {
-        DetailScreen(
-            navController = rememberNavController(),
-            card = cardTreeData[0].children[0].children[2].children[0],
-            contentPadding = PaddingValues(0.dp)
-        )
     }
 }

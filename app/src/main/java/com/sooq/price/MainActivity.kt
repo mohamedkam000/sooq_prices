@@ -1,5 +1,6 @@
 package com.sooq.price
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -310,28 +311,4 @@ fun CollapsingHeader(
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AppShellPreview() {
-    AppMaterialTheme {
-        AppShell(viewModel = PreviewMainViewModel())
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DarkAppShellPreview() {
-    AppMaterialTheme(darkTheme = true) {
-        AppShell(viewModel = PreviewMainViewModel())
-    }
-}
-
-data class HeaderInfo(
-    val title: String,
-)
-
-private fun PreviewMainViewModel(): MainViewModel {
-    return MainViewModel(Application())
 }
