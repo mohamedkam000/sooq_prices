@@ -197,52 +197,7 @@ private fun ExpandedHeader(progress: Float, card: CardNode) {
 private fun DetailContent(card: CardNode) {
     Column {
         Spacer(modifier = Modifier.height(24.dp))
-//        DefaultDetailContent(card = card)
-        
-        when (card.title) {
-            "Apples" -> AppleSpecificDetails()
-            
-            else -> DefaultDetailContent(card = card)
-        }
-    }
-}
-
-@Composable
-private fun AppleSpecificDetails() {
-    val appleVarieties = mapOf(
-        "Piece" to 1000,
-        "Basket (20)" to 18000
-    )
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-            .zIndex(2f),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        Text(
-            text = "Variety Pricing",
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
-        appleVarieties.forEach { (name, price) ->
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                tonalElevation = 2.dp
-            ) {
-                PriceRow(
-                    name = name,
-                    price = price,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
-        }
+        DefaultDetailContent(card = card)
     }
 }
 
@@ -267,52 +222,8 @@ private fun PriceRow(name: String, price: Double, modifier: Modifier = Modifier)
     }
 }
 
-/*@Composable
-private fun DefaultDetailContent(card: CardNode) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-            .zIndex(2f),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        card.price?.let { price ->
-            val formattedPrice = "SDG ${"%.2f".format(price)}"
-            Text(
-                text = formattedPrice,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-        }
-
-        Text(
-            text = card.description,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-}*/
-
 @Composable
 private fun DefaultDetailContent(card: CardNode) {
-    val githubRawUrl = "https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json"
-    val context = LocalContext.current
-
-    var priceData by remember { mutableStateOf<PriceData?>(null) }
-    var isLoading by remember { mutableStateOf(true) }
-    val scope = rememberCoroutineScope()
-
-    LaunchedEffect(Unit) {
-        scope.launch {
-            priceData = fetchPriceData(context, githubRawUrl)
-            isLoading = false
-        }
-    }
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -322,43 +233,32 @@ private fun DefaultDetailContent(card: CardNode) {
     ) {
         Spacer(modifier = Modifier.height(24.dp))
 
-        if (isLoading) {
-            Text(text = "Loading price data...", style = MaterialTheme.typography.bodyLarge)
-        } else if (priceData == null) {
-            Text(text = "Failed to load data.", style = MaterialTheme.typography.bodyLarge)
-        } else {
-            val pricesMap = priceData!!.states
-                .flatMap { it.markets }
-                .flatMap { it.goods }
-                .flatMap { it.items }
-                .find { it.name == card.title }
-                ?.prices ?: emptyMap()
+        if (card.prices.isNotEmpty()) {
+            Text(
+                text = "${card.title} Prices:",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
 
-            if (pricesMap.isNotEmpty()) {
-                Text(
-                    text = "${card.title} Prices:",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-
-                pricesMap.forEach { (unit, price) ->
-                    Surface(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(16.dp),
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        tonalElevation = 2.dp
-                    ) {
-                        PriceRow(
-                            name = unit, 
-                            price = price.toDouble(), 
-                            modifier = Modifier.padding(16.dp)
-                        )
-                    }
+            card.prices.forEach { (unit, price) ->
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    tonalElevation = 2.dp
+                ) {
+                    PriceRow(
+                        name = unit,
+                        price = price.toDouble(),
+                        modifier = Modifier.padding(16.dp)
+                    )
                 }
-            } else {
-                Text(text = "Price details not found for ${card.title}.", style = MaterialTheme.typography.bodyLarge)
             }
+        } else if (card.children.isEmpty()) {
+            Text(text = "Price details not found for ${card.title}.", style = MaterialTheme.typography.bodyLarge)
         }
         
         Spacer(modifier = Modifier.height(24.dp))

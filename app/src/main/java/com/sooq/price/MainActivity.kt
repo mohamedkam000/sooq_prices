@@ -3,7 +3,6 @@ package com.sooq.price
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-//import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.*
 import dagger.hilt.android.*
@@ -22,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import coil.compose.AsyncImage
@@ -34,11 +34,12 @@ import com.sooq.price.data.CardNode
 import com.sooq.price.data.getListFromPath
 import com.sooq.price.data.getNodeFromPath
 import com.sooq.price.ui.DetailScreen
+import com.sooq.price.ui.MainViewModel
+import com.sooq.price.ui.UiState
 import com.sooq.price.ui.theme.AppMaterialTheme
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar?.hide()
@@ -61,32 +62,60 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppShell() {
-    val navController = rememberNavController()
+fun AppShell(viewModel: MainViewModel = hiltViewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
 
-    Scaffold(
+    Box(
         modifier = Modifier
             .width(360.dp)
             .height(780.dp)
             .clip(RoundedCornerShape(48.dp))
-            .shadow(20.dp, shape = RoundedCornerShape(48.dp)),
+            .shadow(20.dp, shape = RoundedCornerShape(48.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        when (val state = uiState) {
+            is UiState.Loading -> {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
+            is UiState.Error -> {
+                Text(
+                    text = state.message,
+                    color = MaterialTheme.colorScheme.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(24.dp)
+                )
+            }
+            is UiState.Success -> {
+                AppNavigation(cardList = state.data)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppNavigation(cardList: List<CardNode>) {
+    val navController = rememberNavController()
+
+    Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceVariant
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "list/",
+            startDestination = "list",
             modifier = Modifier.fillMaxSize()
         ) {
-            composable("list/{path}") { backStackEntry ->
+            composable("list?path={path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path") ?: ""
-                val cards = getListFromPath(path)
+                val cards = getListFromPath(path, cardList)
                 val headerInfo = remember(path) {
                     if (path.isEmpty()) HeaderInfo(
                         title = "Sooq Price"
                     ) else {
-                        val node = getNodeFromPath(path)
+                        val node = getNodeFromPath(path, cardList)
                         HeaderInfo(
                             title = node.title
                         )
@@ -131,23 +160,13 @@ fun AppShell() {
                 }
             }
 
-            composable("detail/{path}") { backStackEntry ->
+            composable("detail?path={path}") { backStackEntry ->
                 val path = backStackEntry.arguments?.getString("path")!!
-                val card = getNodeFromPath(path)
+                val card = getNodeFromPath(path, cardList)
 
                 Box(modifier = Modifier.fillMaxSize()) {
-                    CollapsingHeader(
-                        title = card.title,
-                        collapseFraction = 1f,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.TopCenter)
-//                            .zIndex(1f)
-                    )
-
                     DetailScreen(
                         navController = navController,
-//                        viewModel = hiltViewModel(),
                         card = card,
                         contentPadding = innerPadding
                     )
@@ -238,9 +257,9 @@ fun CardList(
                 onClick = {
                     val newPath = if (currentPath.isEmpty()) "$index" else "${currentPath}_$index"
                     if (card.children.isEmpty()) {
-                        navController.navigate("detail/$newPath")
+                        navController.navigate("detail?path=$newPath")
                     } else {
-                        navController.navigate("list/$newPath")
+                        navController.navigate("list?path=$newPath")
                     }
                 }
             )
@@ -286,7 +305,8 @@ fun CollapsingHeader(
                 text = title,
                 style = titleStyle,
                 color = MaterialTheme.colorScheme.onSurface,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                maxLines = 1
             )
         }
     }
@@ -296,7 +316,7 @@ fun CollapsingHeader(
 @Composable
 fun AppShellPreview() {
     AppMaterialTheme {
-        AppShell()
+        AppShell(viewModel = PreviewMainViewModel())
     }
 }
 
@@ -304,10 +324,14 @@ fun AppShellPreview() {
 @Composable
 fun DarkAppShellPreview() {
     AppMaterialTheme(darkTheme = true) {
-        AppShell()
+        AppShell(viewModel = PreviewMainViewModel())
     }
 }
 
 data class HeaderInfo(
     val title: String,
 )
+
+private fun PreviewMainViewModel(): MainViewModel {
+    return MainViewModel(Application())
+}
