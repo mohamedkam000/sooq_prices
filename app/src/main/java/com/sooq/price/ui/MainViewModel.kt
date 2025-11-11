@@ -9,7 +9,7 @@ import com.sooq.price.data.fetchPriceData
 import com.sooq.price.data.toCardNodeList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.AsStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
-    val uiState: AsStateFlow<UiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     private val githubRawUrl = "https://raw.githubusercontent.com/mohamedkam000/sooq_prices/main/data.json"
 
