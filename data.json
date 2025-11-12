@@ -21,8 +21,7 @@
                   "img": "https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg",
                   "prices": {
                     "Box": 8500
-                  },
-                  "notes": "Fresh"
+                  }
                 },
                 {
                   "id": "carrots",
@@ -242,8 +241,7 @@
                     "Single": 40,
                     "Per Box (10kg)": 350,
                     "Wholesale (100kg pallet)": 3000
-                  },
-                  "notes": "Fresh local tomatoes"
+                  }
                 },
                 {
                   "id": "carrots",
@@ -453,8 +451,7 @@
                     "Single": 40,
                     "Per Box (10kg)": 350,
                     "Wholesale (100kg pallet)": 3000
-                  },
-                  "notes": "Fresh local tomatoes"
+                  }
                 },
                 {
                   "id": "carrots",
