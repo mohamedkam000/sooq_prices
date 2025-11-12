@@ -15,7 +15,7 @@ private val httpClient = HttpClient(Android) {
         json(Json {
             ignoreUnknownKeys = true
             isLenient = true
-            useDefaults = true
+//            useDefaults = true
         })
     }
 }
@@ -23,7 +23,7 @@ private val httpClient = HttpClient(Android) {
 private val jsonParser = Json {
     ignoreUnknownKeys = true
     isLenient = true
-    useDefaults = true
+//    useDefaults = true
 }
 
 suspend fun fetchPriceData(context: Context, githubRawUrl: String): PriceData? {

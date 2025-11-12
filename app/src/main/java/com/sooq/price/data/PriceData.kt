@@ -36,6 +36,6 @@ data class ItemNode(
     val id: String,
     val name: String,
     val img: String,
-    val prices: Map<String, Int>, 
-    val notes: String? = null
+    val prices: Map<String, Int> 
+//    val notes: String? = null
 )
