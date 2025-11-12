@@ -58,7 +58,7 @@ fun getNodeFromPath(path: String, cardTree: List<CardNode>): CardNode {
 
 fun getListFromPath(path: String, cardTree: List<CardNode>): List<CardNode> {
     if (path.isEmpty()) return cardTree
-    val indices = path.split("_").map { it.toInt()D }
+    val indices = path.split("_").map { it.toInt() }
     var currentNodeList = cardTree
     indices.forEach { index ->
         currentNodeList = currentNodeList[index].children
