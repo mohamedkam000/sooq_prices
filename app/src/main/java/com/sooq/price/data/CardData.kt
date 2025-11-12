@@ -41,7 +41,6 @@ private fun ItemNode.toCardNode(): CardNode {
         title = this.name,
         imageUrl = this.img,
         children = emptyList(),
-        description = this.notes,
         prices = this.prices
     )
 }
@@ -59,7 +58,7 @@ fun getNodeFromPath(path: String, cardTree: List<CardNode>): CardNode {
 
 fun getListFromPath(path: String, cardTree: List<CardNode>): List<CardNode> {
     if (path.isEmpty()) return cardTree
-    val indices = path.split("_").map { it.toInt() }
+    val indices = path.split("_").map { it.toInt()D }
     var currentNodeList = cardTree
     indices.forEach { index ->
         currentNodeList = currentNodeList[index].children
