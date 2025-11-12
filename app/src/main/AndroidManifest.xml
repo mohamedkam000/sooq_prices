@@ -4,7 +4,6 @@
 
     <application
         android:name=".PriceApplication"
-        android:allowBackup="true"
         android:label="Sooq Price"
         android:icon="@mipmap/ic_launcher">
         <activity
