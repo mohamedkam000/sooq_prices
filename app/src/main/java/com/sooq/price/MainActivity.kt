@@ -312,3 +312,7 @@ fun CollapsingHeader(
         }
     }
 }
+
+data class HeaderInfo (
+val title: String,
+)
