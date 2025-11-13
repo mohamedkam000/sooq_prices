@@ -24,6 +24,42 @@
                   }
                 },
                 {
+                  "id": "carrots",
+                  "name": "Carrots",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Bunch": 2000,
+                    "Crate (~20 KG)": 37000
+                  }
+                },
+                {
+                  "id": "potatoes",
+                  "name": "Potatoes",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIBNcXz6YLA3N68KgS9BumDj3x8O_ag87cY6WmyUiCW6t2qQ-d4zwS7XdD&s=10",
+                  "prices": {
+                    "1 KG": 3000,
+                    "Crate (~20 KG)": 54000
+                  }
+                },
+                {
+                  "id": "okra",
+                  "name": "Okra",
+                  "img": "https://www.cookedandloved.com/wp-content/uploads/2020/02/what-is-okra-s.jpg",
+                  "prices": {
+                    "Bunch": 1200,
+                    "Crate": 12000
+                  }
+                },
+                {
+                  "id": "eggplants",
+                  "name": "Eggplants",
+                  "img": "https://cdn.britannica.com/64/143464-050-B0EC6714/Eggplant.jpg",
+                  "prices": {
+                    "Bunch": 2000,
+                    "Crate (~10 KG)": 18000
+                  }
+                },
+                {
                   "id": "onions",
                   "name": "Onions",
                   "img": "https://www.pricepally.com/_next/image?url=https%3A%2F%2Fpp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com%2Fonions%20-%20red-1719220106956.jpg&w=3840&q=75",
@@ -49,6 +85,41 @@
                   }
                 },
                 {
+                  "id": "watermelon",
+                  "name": "Watermelon",
+                  "img": "https://bagelsandlasagna.com/wp-content/uploads/2024/05/ripe-watermelon-AdobeStock-low-res-1024x575.jpeg",
+                  "prices": {
+                    "Piece": 8000
+                  }
+                },
+                {
+                  "id": "grapes",
+                  "name": "Grapes",
+                  "img": "https://www.seriouseats.com/thmb/XwtcUWlY3TDauWPbBiID1yZ-6Jw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1289843973-karandaev-hero-ca6df1eb21504ba0965e2319ef4c26e3.jpg",
+                  "prices": {
+                    "Bunch": 2500,
+                    "Basket": 15000
+                  }
+                },
+                {
+                  "id": "mangoes",
+                  "name": "Mangoes",
+                  "img": "https://ichef.bbci.co.uk/images/ic/1040x1040/p06hk0h6.jpg",
+                  "prices": {
+                    "Piece": 500,
+                    "Crate (25)": 10000
+                  }
+                },
+                {
+                  "id": "oranges",
+                  "name": "Oranges",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10",
+                  "prices": {
+                    "Dozen": 1500,
+                    "Sack (100)": 12000
+                  }
+                },
+                {
                   "id": "bananas",
                   "name": "Bananas",
                   "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGoUt8-4dpt_fd_q_GoEpYpEBX__QlGiYm7YjniW4O699DEt59NttcEs7G&s=10",
@@ -69,6 +140,22 @@
                   "img": "https://www.allrecipes.com/thmb/zN81HQ86Fa2rHnkH-KUvUf6pBZE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Cuts-of-Beef-3x2-1-a557f31f8b13462185b4f2c17ab5b746.png",
                   "prices": {
                     "1 KG": 14000
+                  }
+                },
+                {
+                  "id": "mutton",
+                  "name": "Mutton",
+                  "img": "https://bf1af2.akinoncloudcdn.com/products/2024/10/01/148192/1d9ad42e-f8b2-4300-a0e8-3003d6925d5e.jpg",
+                  "prices": {
+                    "1 KG": 22000
+                  }
+                },
+                {
+                  "id": "fish",
+                  "name": "Fish",
+                  "img": "https://static.vecteezy.com/system/resources/previews/007/461/070/large_2x/whole-fresh-raw-big-salmon-fish-photo.jpg",
+                  "prices": {
+                    "1 KG": 3000
                   }
                 },
                 {
@@ -97,6 +184,33 @@
                   }
                 },
                 {
+                  "id": "wheat",
+                  "name": "Wheat",
+                  "img": "https://5.imimg.com/data5/SELLER/Default/2024/1/375542488/CX/OT/AL/190754030/indian-wheat-grain.jpeg",
+                  "prices": {
+                    "1 KG": 1000,
+                    "Sack (25 KG)": 20000
+                  }
+                },
+                {
+                  "id": "flour",
+                  "name": "Flour",
+                  "img": "https://bobs-redmill.transforms.svdcdn.com/production/blog/uploads/2017/04/shutterstock_260258060.jpg?w=1280&h=633&auto=compress%2Cformat&fit=max&dm=1719288824&s=b383b80708da9fc7181a8e0891a67b68",
+                  "prices": {
+                    "1 KG": 2500,
+                    "Sack (25 KG)": 33000
+                  }
+                },
+                {
+                  "id": "lentils",
+                  "name": "Lentils",
+                  "img": "https://nyspiceshop.com/cdn/shop/products/Split_Red_Lentils-Masoor_Dal.jpg?v=1730224120&width=1445",
+                  "prices": {
+                    "1 KG": 4000,
+                    "Sack (12.5 KG)": 45000
+                  }
+                },
+                {
                   "id": "beans",
                   "name": "Beans",
                   "img": "https://www.ranchogordo.com/cdn/shop/files/large-white-lima-bean-960994.jpg?v=1730244122",
@@ -108,8 +222,492 @@
               ]
             }
           ]
+        },
+        {
+          "id": "sabreen",
+          "name": "Sabreen Market",
+          "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIS_WEO33JlKFis2jDGaVXLIKOORNkDPjSwgpHlyXQya0HL55hYAqlmKY&s=10",
+          "goods": [
+            {
+              "id": "vegetables",
+              "name": "Vegetables",
+              "img": "https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg",
+              "items": [
+                {
+                  "id": "tomatoes",
+                  "name": "Tomatoes",
+                  "img": "https://media.istockphoto.com/id/116027879/photo/cherry-tomatoes.jpg?s=170667a&w=0&k=20&c=U5S3uGtpIRUHlwVZOnXAQ5kSryPu4b8Ohf8iC6qAZ-Q=",
+                  "prices": {
+                    "Single": 40,
+                    "Per Box (10kg)": 350,
+                    "Wholesale (100kg pallet)": 3000
+                  }
+                },
+                {
+                  "id": "carrots",
+                  "name": "Carrots",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "potatoes",
+                  "name": "Potatoes",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "okra",
+                  "name": "Okra",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "eggplants",
+                  "name": "Eggplants",
+                  "img": "https://cdn.britannica.com/64/143464-050-B0EC6714/Eggplant.jpg",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "onions",
+                  "name": "Onions",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fruits",
+              "name": "Fruits",
+              "img": "https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg",
+              "items": [
+                {
+                  "id": "apples",
+                  "name": "Apples",
+                  "img": "https://media.istockphoto.com/id/164084111/photo/apples.jpg?s=612x612&w=0&k=20&c=eAjYVWWhrEVKMVVvzSjNzFU9dtjh2aH2ypjmclDaUi0=",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "watermelon",
+                  "name": "Watermelon",
+                  "img": "https://www.chhs.colostate.edu/fsi/wp-content/uploads/sites/51/2024/07/stack-of-watermelon-800x0-c-default.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "grapes",
+                  "name": "Grapes",
+                  "img": "https://parade.com/.image/c_fill,w_600,h_600,g_faces:center/ODowMDAwMDAwMDAxMTE5ODc0/what-happens-to-your-body-when-you-eat-grapes-every-day.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "oranges",
+                  "name": "Oranges",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "mangoes",
+                  "name": "Mangoes",
+                  "img": "https://static.vecteezy.com/system/resources/thumbnails/023/732/154/small/mango-fruit-hanging-on-a-tree-with-a-rustic-wooden-table-free-photo.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "bananas",
+                  "name": "Bananas",
+                  "img": "https://www.verywellhealth.com/thmb/F18R53wqIZSm9RWjlqLjbT3Nf34=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/VWH-GettyImages-1650710915-877f191e64f54e168ae7ce99b9aa052b.jpg"
+                }
+              ]
+            },
+            {
+              "id": "meat",
+              "name": "Meat",
+              "img": "https://www.hayesmeats.com/wp-content/uploads/2018/11/test2.jpg",
+              "items": [
+                {
+                  "id": "beef",
+                  "name": "Beef",
+                  "img": "https://www.allrecipes.com/thmb/zN81HQ86Fa2rHnkH-KUvUf6pBZE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Cuts-of-Beef-3x2-1-a557f31f8b13462185b4f2c17ab5b746.png",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "mutton",
+                  "name": "Mutton",
+                  "img": "https://bf1af2.akinoncloudcdn.com/products/2024/10/01/148192/1d9ad42e-f8b2-4300-a0e8-3003d6925d5e.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "fish",
+                  "name": "Fish",
+                  "img": "https://static.vecteezy.com/system/resources/previews/007/461/070/large_2x/whole-fresh-raw-big-salmon-fish-photo.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "chicken",
+                  "name": "Chicken",
+                  "img": "https://media.istockphoto.com/id/1282866808/photo/fresh-raw-chicken.jpg?s=612x612&w=0&k=20&c=QtfdAhdeIGpR3JUNDmYFo6cN0el8oYMcOXMQI7Qder4=",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                }
+              ]
+            },
+            {
+              "id": "grains",
+              "name": "Grains",
+              "img": "https://media.istockphoto.com/id/481882305/photo/different-types-of-cereal-grains-with-ears.jpg?s=612x612&w=0&k=20&c=1cD0aYvSyQuZSCozhmBUojERS7QMmOQYOgkcpg7hcvk=",
+              "items": [
+                {
+                  "id": "rice",
+                  "name": "Rice",
+                  "img": "https://5.imimg.com/data5/SELLER/Default/2023/3/297016385/DQ/SP/YX/33493979/long-grain-white-rice-500x500.jpg",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "wheat",
+                  "name": "Wheat",
+                  "img": "https://5.imimg.com/data5/SELLER/Default/2024/1/375542488/CX/OT/AL/190754030/indian-wheat-grain.jpeg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "flour",
+                  "name": "Flour",
+                  "img": "https://bobs-redmill.transforms.svdcdn.com/production/blog/uploads/2017/04/shutterstock_260258060.jpg?w=1280&h=633&auto=compress%2Cformat&fit=max&dm=1719288824&s=b383b80708da9fc7181a8e0891a67b68",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "lentils",
+                  "name": "Lentils",
+                  "img": "https://nyspiceshop.com/cdn/shop/products/Split_Red_Lentils-Masoor_Dal.jpg?v=1730224120&width=1445",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "beans",
+                  "name": "Beans",
+                  "img": "https://www.ranchogordo.com/cdn/shop/files/large-white-lima-bean-960994.jpg?v=1730244122",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "local",
+          "name": "Local Market",
+          "img": "https://www.sudanakhbar.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-094336-810x483.jpg",
+          "goods": [
+            {
+              "id": "vegetables",
+              "name": "Vegetables",
+              "img": "https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg",
+              "items": [
+                {
+                  "id": "tomatoes",
+                  "name": "Tomatoes",
+                  "img": "https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg",
+                  "prices": {
+                    "Single": 40,
+                    "Per Box (10kg)": 350,
+                    "Wholesale (100kg pallet)": 3000
+                  }
+                },
+                {
+                  "id": "carrots",
+                  "name": "Carrots",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "potatoes",
+                  "name": "Potatoes",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "okra",
+                  "name": "Okra",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "eggplants",
+                  "name": "Eggplants",
+                  "img": "https://cdn.britannica.com/64/143464-050-B0EC6714/Eggplant.jpg",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                },
+                {
+                  "id": "onions",
+                  "name": "Onions",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
+                  "prices": {
+                    "Single": 25,
+                    "Per Crate (20kg)": 450
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fruits",
+              "name": "Fruits",
+              "img": "https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg",
+              "items": [
+                {
+                  "id": "apples",
+                  "name": "Apples",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "watermelon",
+                  "name": "Watermelon",
+                  "img": "https://bagelsandlasagna.com/wp-content/uploads/2024/05/ripe-watermelon-AdobeStock-low-res-1024x575.jpeg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "grapes",
+                  "name": "Grapes",
+                  "img": "https://www.seriouseats.com/thmb/XwtcUWlY3TDauWPbBiID1yZ-6Jw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1289843973-karandaev-hero-ca6df1eb21504ba0965e2319ef4c26e3.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "oranges",
+                  "name": "Oranges",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "bananas",
+                  "name": "Bananas",
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGoUt8-4dpt_fd_q_GoEpYpEBX__QlGiYm7YjniW4O699DEt59NttcEs7G&s=10"
+                }
+              ]
+            },
+            {
+              "id": "meat",
+              "name": "Meat",
+              "img": "https://t3.ftcdn.net/jpg/02/26/53/80/360_F_226538033_C42p96JDNwkSdQs86Agxd1TtaVJsyJ71.jpg",
+              "items": [
+                {
+                  "id": "beef",
+                  "name": "Beef",
+                  "img": "https://www.allrecipes.com/thmb/zN81HQ86Fa2rHnkH-KUvUf6pBZE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Cuts-of-Beef-3x2-1-a557f31f8b13462185b4f2c17ab5b746.png",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "mutton",
+                  "name": "Mutton",
+                  "img": "https://bf1af2.akinoncloudcdn.com/products/2024/10/01/148192/1d9ad42e-f8b2-4300-a0e8-3003d6925d5e.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "fish",
+                  "name": "Fish",
+                  "img": "https://static.vecteezy.com/system/resources/previews/007/461/070/large_2x/whole-fresh-raw-big-salmon-fish-photo.jpg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "chicken",
+                  "name": "Chicken",
+                  "img": "https://media.istockphoto.com/id/1282866808/photo/fresh-raw-chicken.jpg?s=612x612&w=0&k=20&c=QtfdAhdeIGpR3JUNDmYFo6cN0el8oYMcOXMQI7Qder4=",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                }
+              ]
+            },
+            {
+              "id": "grains",
+              "name": "Grains",
+              "img": "https://media.istockphoto.com/id/481882305/photo/different-types-of-cereal-grains-with-ears.jpg?s=612x612&w=0&k=20&c=1cD0aYvSyQuZSCozhmBUojERS7QMmOQYOgkcpg7hcvk=",
+              "items": [
+                {
+                  "id": "rice",
+                  "name": "Rice",
+                  "img": "https://media.istockphoto.com/id/153737841/photo/rice.jpg?s=612x612&w=0&k=20&c=lfO7iLT0UsDDzra0uBOsN1rvr2d5OEtrG2uwbts33_c",
+                  "prices": {
+                    "Single": 60,
+                    "Per Box (15kg)": 800
+                  }
+                },
+                {
+                  "id": "wheat",
+                  "name": "Wheat",
+                  "img": "https://5.imimg.com/data5/SELLER/Default/2024/1/375542488/CX/OT/AL/190754030/indian-wheat-grain.jpeg",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "flour",
+                  "name": "Flour",
+                  "img": "https://bobs-redmill.transforms.svdcdn.com/production/blog/uploads/2017/04/shutterstock_260258060.jpg?w=1280&h=633&auto=compress%2Cformat&fit=max&dm=1719288824&s=b383b80708da9fc7181a8e0891a67b68",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "lentils",
+                  "name": "Lentils",
+                  "img": "https://nyspiceshop.com/cdn/shop/products/Split_Red_Lentils-Masoor_Dal.jpg?v=1730224120&width=1445",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                },
+                {
+                  "id": "beans",
+                  "name": "Beans",
+                  "img": "https://www.ranchogordo.com/cdn/shop/files/large-white-lima-bean-960994.jpg?v=1730244122",
+                  "prices": {
+                    "Per Piece": 120
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
+    },
+    {
+      "id": "jazeera",
+      "name": "Al-Jazeera",
+      "img": "https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg",
+      "markets": []
+    },
+    {
+      "id": "rivernile",
+      "name": "River Nile",
+      "img": "https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg",
+      "markets": []
+    },
+    {
+      "id": "redsea",
+      "name": "Red Sea",
+      "img": "https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg",
+      "markets": []
+    },
+    {
+      "id": "kassala",
+      "name": "Kassala",
+      "img": "https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg",
+      "markets": []
+    },
+    {
+      "id": "sinnar",
+      "name": "Sinnar",
+      "img": "https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg",
+      "markets": []
+    },
+    {
+      "id": "nsudan",
+      "name": "Northern Sudan",
+      "img": "https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg",
+      "markets": []
+    },
+    {
+      "id": "wnile",
+      "name": "White Nile",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/5/5c/%D8%A7%D9%84%D9%86%D9%82%D9%84_%D8%A7%D9%84%D9%86%D9%87%D8%B1%D9%8A_%D9%85%D8%AF%D9%8A%D9%86%D8%A9_%D9%83%D9%88%D8%B3%D8%AA%D9%8A_02.jpg",
+      "markets": []
+    },
+    {
+      "id": "bnile",
+      "name": "Blue Nile",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVy-sSI6A9eyL-nRy36KNPSFkRH1Xs3HWNvklf2P2vjCRSPwy83iRRev7s&s=10",
+      "markets": []
+    },
+    {
+      "id": "gadarif",
+      "name": "Al-Gadarif",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cxuKMG2o70T2mimUM0bMkoz5twOKzy5ryx7MlqIsqMwDiVaFalGstvM&s=10",
+      "markets": []
+    },
+    {
+      "id": "skordofan",
+      "name": "Southern Kordofan",
+      "img": "https://mashaweer-news.com/wp-content/uploads/2025/10/FB_IMG_1759670580690.jpg",
+      "markets": []
+    },
+    {
+      "id": "wkordofan",
+      "name": "Western Kordofan",
+      "img": "https://ultrasudan.ultrasawt.com/sites/ultrasudan.ultrasawt.com/files/styles/news_large/public/2023-03/%D8%BA%D8%B1%D8%A8-%D9%83%D8%B1%D8%AF%D9%81%D8%A7%D9%86.jpg.webp?itok=SgZZtGva",
+      "markets": []
+    },
+    {
+      "id": "nkordofan",
+      "name": "Northern Kordofan",
+      "img": "https://ultrasudan.ultrasawt.com/sites/ultrasudan.ultrasawt.com/files/styles/news_large/public/2025-09/bara.jpg.webp?itok=w1HomaiW",
+      "markets": []
     }
   ]
 }
