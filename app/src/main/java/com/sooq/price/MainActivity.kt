@@ -4,9 +4,6 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import androidx.lifecycle.*
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
@@ -106,6 +103,10 @@ fun AppShell(viewModel: MainViewModel = hiltViewModel()) {
 @Composable
 fun AppNavigation(cardList: List<CardNode>) {
     val navController = rememberNavController()
+    
+    val lastUpdated by produceState(initialValue = "") {
+        value = loadCachedDate(context) ?: ""
+    }
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -120,11 +121,13 @@ fun AppNavigation(cardList: List<CardNode>) {
                 val cards = getListFromPath(path, cardList)
                 val headerInfo = remember(path) {
                     if (path.isEmpty()) HeaderInfo(
-                        title = "Sooq Price"
+                        title = "Sooq Price",
+                        date = lastUpdated
                     ) else {
                         val node = getNodeFromPath(path, cardList)
                         HeaderInfo(
-                            title = node.title
+                            title = node.title,
+                            date = lastUpdated
                         )
                     }
                 }
@@ -158,6 +161,7 @@ fun AppNavigation(cardList: List<CardNode>) {
 
                     CollapsingHeader(
                         title = headerInfo.title,
+                        date = headerInfo.date,
                         collapseFraction = animatedFraction,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -277,6 +281,7 @@ fun CardList(
 @Composable
 fun CollapsingHeader(
     title: String,
+    date: String = "",
     collapseFraction: Float,
     modifier: Modifier = Modifier
 ) {
@@ -300,11 +305,6 @@ fun CollapsingHeader(
         else
             MaterialTheme.typography.titleLarge
 
-    val currentDate = remember {
-        java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-            .format(java.util.Date())
-    }
-
     Surface(
         modifier = modifier
             .requiredHeight(currentHeight)
@@ -322,42 +322,28 @@ fun CollapsingHeader(
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "App Logo",
-                        modifier = Modifier
-                            .size(if (collapseFraction < 0.5f) 48.dp else 32.dp)
-                            .clip(RoundedCornerShape(8.dp)),
-                        contentScale = ContentScale.Fit
-                    )
-
-                    Text(
-                        text = title,
-                        style = titleStyle,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1
-                    )
-                }
-
-                Box(
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "App Logo",
                     modifier = Modifier
-                        .shadow(2.dp, RoundedCornerShape(8.dp))
-                        .background(
-                            color = MaterialTheme.colorScheme.surface,
-                            shape = RoundedCornerShape(8.dp)
-                        )
-                        .padding(horizontal = 10.dp, vertical = 6.dp)
-                ) {
+                        .size(if (collapseFraction < 0.5f) 48.dp else 32.dp)
+                        .clip(RoundedCornerShape(8.dp)),
+                    contentScale = ContentScale.Fit
+                )
+
+                Text(
+                    text = title,
+                    style = titleStyle,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                )
+                
+                if (date.isNotEmpty()) {
                     Text(
-                        text = currentDate,
+                        text = date,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Medium
@@ -369,5 +355,6 @@ fun CollapsingHeader(
 }
 
 data class HeaderInfo (
-val title: String,
+    val title: String,
+    val date: String = ""
 )

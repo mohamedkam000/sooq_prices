@@ -4,7 +4,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PriceData(
+    val meta: MetaInfo,
     val states: List<StateNode> = emptyList()
+)
+
+@Serializable
+data class MetaInfo(
+    val lastUpdated: String
 )
 
 @Serializable
