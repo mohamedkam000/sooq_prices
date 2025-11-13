@@ -24,42 +24,6 @@
                   }
                 },
                 {
-                  "id": "carrots",
-                  "name": "Carrots",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10",
-                  "prices": {
-                    "Bunch": 2000,
-                    "Crate (~20 KG)": 37000
-                  }
-                },
-                {
-                  "id": "potatoes",
-                  "name": "Potatoes",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIBNcXz6YLA3N68KgS9BumDj3x8O_ag87cY6WmyUiCW6t2qQ-d4zwS7XdD&s=10",
-                  "prices": {
-                    "1 KG": 3000,
-                    "Crate (~20 KG)": 54000
-                  }
-                },
-                {
-                  "id": "okra",
-                  "name": "Okra",
-                  "img": "https://www.cookedandloved.com/wp-content/uploads/2020/02/what-is-okra-s.jpg",
-                  "prices": {
-                    "Bunch": 1200,
-                    "Crate": 12000
-                  }
-                },
-                {
-                  "id": "eggplants",
-                  "name": "Eggplants",
-                  "img": "https://cdn.britannica.com/64/143464-050-B0EC6714/Eggplant.jpg",
-                  "prices": {
-                    "Bunch": 2000,
-                    "Crate (~10 KG)": 18000
-                  }
-                },
-                {
                   "id": "onions",
                   "name": "Onions",
                   "img": "https://www.pricepally.com/_next/image?url=https%3A%2F%2Fpp-new-node-medusa-prod-bucket.s3.us-east-1.amazonaws.com%2Fonions%20-%20red-1719220106956.jpg&w=3840&q=75",
@@ -82,41 +46,6 @@
                   "prices": {
                     "Piece": 1000,
                     "Basket (20)": 18000
-                  }
-                },
-                {
-                  "id": "watermelon",
-                  "name": "Watermelon",
-                  "img": "https://bagelsandlasagna.com/wp-content/uploads/2024/05/ripe-watermelon-AdobeStock-low-res-1024x575.jpeg",
-                  "prices": {
-                    "Piece": 8000
-                  }
-                },
-                {
-                  "id": "grapes",
-                  "name": "Grapes",
-                  "img": "https://www.seriouseats.com/thmb/XwtcUWlY3TDauWPbBiID1yZ-6Jw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1289843973-karandaev-hero-ca6df1eb21504ba0965e2319ef4c26e3.jpg",
-                  "prices": {
-                    "Bunch": 2500,
-                    "Basket": 15000
-                  }
-                },
-                {
-                  "id": "mangoes",
-                  "name": "Mangoes",
-                  "img": "https://ichef.bbci.co.uk/images/ic/1040x1040/p06hk0h6.jpg",
-                  "prices": {
-                    "Piece": 500,
-                    "Crate (25)": 10000
-                  }
-                },
-                {
-                  "id": "oranges",
-                  "name": "Oranges",
-                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10",
-                  "prices": {
-                    "Dozen": 1500,
-                    "Sack (100)": 12000
                   }
                 },
                 {
@@ -143,22 +72,6 @@
                   }
                 },
                 {
-                  "id": "mutton",
-                  "name": "Mutton",
-                  "img": "https://bf1af2.akinoncloudcdn.com/products/2024/10/01/148192/1d9ad42e-f8b2-4300-a0e8-3003d6925d5e.jpg",
-                  "prices": {
-                    "1 KG": 22000
-                  }
-                },
-                {
-                  "id": "fish",
-                  "name": "Fish",
-                  "img": "https://static.vecteezy.com/system/resources/previews/007/461/070/large_2x/whole-fresh-raw-big-salmon-fish-photo.jpg",
-                  "prices": {
-                    "1 KG": 3000
-                  }
-                },
-                {
                   "id": "chicken",
                   "name": "Chicken",
                   "img": "https://media.istockphoto.com/id/1282866808/photo/fresh-raw-chicken.jpg?s=612x612&w=0&k=20&c=QtfdAhdeIGpR3JUNDmYFo6cN0el8oYMcOXMQI7Qder4=",
@@ -181,33 +94,6 @@
                     "1 KG": 3000,
                     "Sack (10 KG)": 27000,
                     "Sack (25 KG)": 60000
-                  }
-                },
-                {
-                  "id": "wheat",
-                  "name": "Wheat",
-                  "img": "https://5.imimg.com/data5/SELLER/Default/2024/1/375542488/CX/OT/AL/190754030/indian-wheat-grain.jpeg",
-                  "prices": {
-                    "1 KG": 1000,
-                    "Sack (25 KG)": 20000
-                  }
-                },
-                {
-                  "id": "flour",
-                  "name": "Flour",
-                  "img": "https://bobs-redmill.transforms.svdcdn.com/production/blog/uploads/2017/04/shutterstock_260258060.jpg?w=1280&h=633&auto=compress%2Cformat&fit=max&dm=1719288824&s=b383b80708da9fc7181a8e0891a67b68",
-                  "prices": {
-                    "1 KG": 2500,
-                    "Sack (25 KG)": 33000
-                  }
-                },
-                {
-                  "id": "lentils",
-                  "name": "Lentils",
-                  "img": "https://nyspiceshop.com/cdn/shop/products/Split_Red_Lentils-Masoor_Dal.jpg?v=1730224120&width=1445",
-                  "prices": {
-                    "1 KG": 4000,
-                    "Sack (12.5 KG)": 45000
                   }
                 },
                 {
