@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.*
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 import dagger.hilt.android.lifecycle.*
 import dagger.hilt.android.*
 import androidx.hilt.navigation.compose.*
@@ -289,7 +291,11 @@ fun CollapsingHeader(
 
     val shadowElevation = 6.dp * collapseFraction
     val backgroundColor = MaterialTheme.colorScheme.surfaceVariant
-    val titleStyle = if (collapseFraction < 0.5f) MaterialTheme.typography.headlineMedium else MaterialTheme.typography.titleLarge
+    val titleStyle =
+        if (collapseFraction < 0.5f)
+            MaterialTheme.typography.headlineMedium
+        else
+            MaterialTheme.typography.titleLarge
 
     Surface(
         modifier = modifier
@@ -301,15 +307,32 @@ fun CollapsingHeader(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 20.dp),
-            contentAlignment = if (collapseFraction < 0.5f) Alignment.BottomStart else Alignment.CenterStart
+            contentAlignment = if (collapseFraction < 0.5f)
+                Alignment.BottomStart
+            else
+                Alignment.CenterStart
         ) {
-            Text(
-                text = title,
-                style = titleStyle,
-                color = MaterialTheme.colorScheme.onSurface,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "App Logo",
+                    modifier = Modifier
+                        .size(if (collapseFraction < 0.5f) 48.dp else 32.dp)
+                        .clip(RoundedCornerShape(8.dp)),
+                    contentScale = ContentScale.Fit
+                )
+
+                Text(
+                    text = title,
+                    style = titleStyle,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                )
+            }
         }
     }
 }

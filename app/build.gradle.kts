@@ -19,7 +19,10 @@ android {
         ndk {
             abiFilters += listOf("arm64-v8a")
         }
-        resConfig("en")
+
+        androidResources {
+            localeFilters += setOf("en")
+        }
     }
 
     signingConfigs {

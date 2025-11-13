@@ -1,4 +1,5 @@
 <div align="center">
+<div align="center">
   <img src="app/sooq_price.png" width="600" />
 </div>
 
@@ -18,7 +19,7 @@
   Dynamically loads new price data, entries for new items, categories, markets, and states directly from the shared `data.json` file.
 
 - **Android App**  
-  Built with Jetpack Compose and Material 3, emphasizing usability, responsiveness, and visual clarity. Currently loads data locally, with dynamic updates coming soon to match the website.
+  Built with Jetpack Compose and Material 3, emphasizing usability, responsiveness, and visual clarity. Now fully syncable with the website, the app dynamically loads new data from the shared source, ensuring it always reflects the latest updates.
 
 Both platforms share the **same exact purpose** and **same exact data source**, ensuring consistency across devices.
 
@@ -35,11 +36,11 @@ Both platforms share the **same exact purpose** and **same exact data source**, 
 - **Local Price Snapshot**  
   View up-to-date prices for common goods across multiple markets.
 
-- **Dynamic Data Loading (Web)**  
-  Automatically reflects new items, categories, and markets from `data.json`.
+- **Dynamic Data Loading (App + Web)**  
+  Both platforms automatically reflect new items, categories, and markets from `data.json`.
 
 - **Offline-Friendly (App)**  
-  Loads data from local storage — no internet required (once synced).
+  Sync once, then access data locally without requiring an internet connection.
 
 ---
 
@@ -66,7 +67,7 @@ Both platforms share the **same exact purpose** and **same exact data source**, 
 
 The **Sooq Price** ecosystem consists of two platforms — an Android app and a website — both connected to the same shared data source (`data.json`).  
 
-```text
+```
                  ┌─────────────────────┐
                  │     data.json       │
                  │  (shared dataset)   │
@@ -76,46 +77,50 @@ The **Sooq Price** ecosystem consists of two platforms — an Android app and a 
         │                                     │
 ┌───────────────┐                     ┌────────────────┐
 │   Website     │                     │ Android App    │
-│ - Dynamic     │                     │ - Local JSON   │
-│   loading     │                     │   (sync soon)  │
-│ - Always up   │                     │ - Material 3   │
-│   to date     │                     │   UI           │
+│ - Dynamic     │                     │ - Dynamic      │
+│   loading     │                     │   loading      │
+│ - Always up   │                     │ - Fully sync   │
+│   to date     │                     │ - Material 3   │
 └───────────────┘                     └────────────────┘
         │                                     │
         └─────────────── Shared Purpose ──────┘
+                 Consistent Market Price Data
+────────────────────────────────────────────────────────
 
-- Shared Data Source: Both platforms rely on the same data.json file for items, categories, markets, and states.
-- Website: Dynamically reflects new entries as soon as they’re added.
-- Android App: Currently loads data locally, with dynamic syncing planned to match the website.
-- Unified Goal: Deliver consistent, accessible market price information across devices.
+```
+
+- Shared Data Source: Both platforms rely on the same data.json file for items, categories, markets, and states.  
+- Website: Dynamically reflects new entries as soon as they’re added.  
+- Android App: Now fully syncable, dynamically loading updates from the shared dataset.  
+- Unified Goal: Deliver consistent, accessible market price information across devices.  
 
 ---
 
-## Installation (Manual for Android)
+Installation (Manual for Android)
 
 Since the app targets API 36 and supports Android 12 (API 31) and above, follow these steps:
 
-- **Download the APK**  
+- Download the APK  
    From your browser.
 
-- **Grant Install Permission**  
+- Grant Install Permission  
    Click on the downloaded file, and when prompted, allow the app you're using to install (e.g., Chrome, Files by Google).
 
-- **Install the APK**  
+- Install the APK  
    Tap the file and proceed with installation.
 
-- **Launch the App**  
+- Launch the App  
    Open it from your app drawer.
 
 ---
 
-## Accessing the Website
+Accessing the Website
 
-Simply open the hosted website in your browser. It will always reflect the latest data from `data.json`.
+Simply open the hosted website in your browser. It will always reflect the latest data from data.json.
 
 ---
 
-## Credits
+Credits
 
 <table>
   <tr>
