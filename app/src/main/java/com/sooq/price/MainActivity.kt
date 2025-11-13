@@ -105,8 +105,9 @@ fun AppShell(viewModel: MainViewModel = hiltViewModel()) {
 fun AppNavigation(cardList: List<CardNode>) {
     val navController = rememberNavController()
     
+    val context = LocalContext.current
     val lastUpdated by produceState(initialValue = "") {
-        value = loadCachedDate(context) ?: ""
+        value = loadCachedDate(context.applicationContext as Application) ?: ""
     }
 
     Scaffold(
