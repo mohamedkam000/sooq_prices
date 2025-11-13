@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-//    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.google.dagger.hilt.android")
@@ -20,7 +19,7 @@ android {
         ndk {
             abiFilters += listOf("arm64-v8a")
         }
-//        resConfig("en")
+        resConfig("en")
     }
 
     signingConfigs {
@@ -35,8 +34,12 @@ android {
 
     buildTypes {
         release {
-//            isMinifyEnabled = true
+            isMinifyEnabled = true
             isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -70,9 +73,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.5.0-alpha02")
     implementation("androidx.compose.foundation:foundation:1.10.0-beta01")
     implementation("androidx.navigation:navigation-compose:2.9.3")
-//    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.14.0-alpha04")
-//    implementation("androidx.activity:activity-ktx:1.12.0-alpha06")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("com.google.dagger:hilt-android:2.57.2")
     ksp("com.google.dagger:hilt-compiler:2.57.2")
@@ -96,9 +97,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.3.0")
     implementation("com.squareup.moshi:moshi:1.15.2")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
-//    implementation("com.airbnb.android:lottie-compose:6.6.7")
-//    implementation("com.airbnb.android:lottie:6.6.7")
-//    implementation("com.github.spotbugs:spotbugs-annotations:4.9.3")
     implementation("io.coil-kt:coil-compose:2.7.0")
     implementation("androidx.compose.animation:animation:1.10.0-beta01")
 
