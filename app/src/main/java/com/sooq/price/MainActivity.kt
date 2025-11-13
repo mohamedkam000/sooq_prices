@@ -8,6 +8,7 @@ import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.*
 import dagger.hilt.android.*
 import androidx.hilt.navigation.compose.*
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

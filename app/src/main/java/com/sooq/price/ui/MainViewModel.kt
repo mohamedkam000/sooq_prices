@@ -38,12 +38,8 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val priceData = fetchPriceData(application, githubRawUrl)
-                if (priceData != null) {
-                    val cardList = priceData.toCardNodeList()
-                    _uiState.value = UiState.Success(cardList)
-                } else {
-                    _uiState.value = UiState.Error("Failed to load data. Check network connection.")
-                }
+                val cardList = priceData.toCardNodeList()
+                _uiState.value = UiState.Success(cardList)
             } catch (e: Exception) {
                 e.printStackTrace()
                 _uiState.value = UiState.Error(e.message ?: "An unknown error occurred.")

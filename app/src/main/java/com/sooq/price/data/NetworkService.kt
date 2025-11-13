@@ -24,7 +24,7 @@ private val jsonParser = Json {
     isLenient = true
 }
 
-suspend fun fetchPriceData(context: Context, githubRawUrl: String): PriceData? {
+suspend fun fetchPriceData(context: Context, githubRawUrl: String): PriceData {
     val fileManager = FileStorageManager(context)
 
     val cachedJson = fileManager.loadJson()
@@ -35,16 +35,13 @@ suspend fun fetchPriceData(context: Context, githubRawUrl: String): PriceData? {
             e.printStackTrace()
         }
     }
+    
+    val response = httpClient.get(githubRawUrl)
+    val freshJson = response.bodyAsText()
 
-    return try {
-        val response = httpClient.get(githubRawUrl)
-        val freshJson = response.bodyAsText()
-
-        fileManager.saveJson(freshJson)
-        jsonParser.decodeFromString<PriceData>(freshJson)
-
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
+    val priceData = jsonParser.decodeFromString<PriceData>(freshJson)
+    
+    fileManager.saveJson(freshJson)
+    
+    return priceData
 }

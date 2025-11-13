@@ -51,7 +51,7 @@ fun getNodeFromPath(path: String, cardTree: List<CardNode>): CardNode {
     var node: CardNode? = null
     indices.forEach { index ->
         node = currentNodeList[index]
-        currentNodeList = node!!.children
+        currentNodeList = node.children
     }
     return node!!
 }
