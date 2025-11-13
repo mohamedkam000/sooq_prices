@@ -19,7 +19,7 @@ private val httpClient = HttpClient(Android) {
     }
 }
 
-private val jsonParser = Json {
+val jsonParser = Json {
     ignoreUnknownKeys = true
     isLenient = true
 }
